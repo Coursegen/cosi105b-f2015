@@ -1,0 +1,48 @@
+---
+title: TDD
+desc: Review of concepts of Test Driven Development
+homework: POODR Chapters 8 and 8; tdd assignment; complete nT 0.2
+---
+<%= homework_hdr %>
+* Read \[POODR\] Chapters 8 and 9. Apply what you are learing to the team's nanoTwitter project.
+* Read [Minimalicious testing in Ruby 1.9 with MiniTest](http://blog.arvidandersson.se/2012/03/28/minimalicous-testing-in-ruby-1-9)
+* Do the assignment in <%= link_to_topic :hw_tdd %>. Do it in your <%= :portfolio %> under subdirectory `tdd_example`. <%= deliverable "Code in your portolio." %>
+* Complete nT functionality TESTSUITE, SEEDDATA, CODESHIP and HEROKU. Work should be done in your <%= link_to_intro :portfolio %>, directory `/nanotwitter`. When complete, submit it to github. <%= team_deliverable "Completed nanoTwitter Version 0.2 github URL" %>. You should use the same github repo but tag the previous version as 0.1 and the current version of 0.2. (See [Git Tagging](http://git-scm.com/book/tr/v2/Git-Basics-Tagging))
+
+<%= callout("REMINDER", " Your portfolios will be reviewed and graded TODAY for progress.") %>
+
+#### Discussion
+* Everyone go to [http://b.socrative.com/login/student/](http://b.socrative.com/login/student/) and go to room "Pito"
+	* Question 1: Are you in now
+	* Question 2: Are you caught up on the nanoTwitter homework from today?
+	* Interactive questions
+* Homework
+  * Did you really do TDD? What is the key to it?
+  * How did it feel to program in this way? Was it easier, harder, different?
+  * Conventions: file names, separating the tests from the code (why?)
+
+* Loader.io!
+
+#### Testing Intro
+<%= include_topic :tdd_intro %>
+
+#### Simplistic Demo
+* <%= link_to_topic :tdd_demo %>
+
+#### Money Demo
+* Goal: A Money class
+	* represent money in different currencies
+	* Allow them to be added and subtracted etc.
+* Look at the test suite
+* Look at [TDD Demo Video together](https://youtu.be/MGgzGIEYH38)
+
+#### Discussion
+* What do "I" do with testing in "real life"?
+* Let's review some of the options in [Minitest Quick Reference](http://mattsears.com/articles/2011/12/10/minitest-quick-reference)
+
+<%= include_topic :test_fixtures %>
+
+<%= include_topic :four_rules_simple_design %>
+
+#### Next Class
+* Look at homework: <%= link_to_next_lecture %>

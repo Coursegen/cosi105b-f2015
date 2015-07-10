@@ -1,0 +1,74 @@
+---
+title: Introduction to Sinatra
+desc: A very lightweight Ruby based web server
+homework: Read AND DO \\[SODRR\\] Chapter 2. Submit code from \\[SOODR\\] Chapter 1. Do Schema Design exercise.
+---
+<%= homework_hdr %>
+* Read \[SODRR\] Chapter 2. **Read to understand**
+  * What is a Service Oriented Architecture? 
+  * A web server is now used not just as a place that has web pages for people to read, but as a place that delivers a service (functionality, data, information) to other programs, without human intervention.
+  * instead of returning HTML (for web browsers to render) it returns data (for other apps to use!) Such a server is often said to be delivering a *web service* or *web API*. 
+  * This brings the notion of modularity, isolation, information hiding all the way up to the level of full servers. And creating an application can now become the stringing together of web services, each of which might be delivered by a different company (think Amazon, Heroku, Apple, IBM)
+* Homework from last week: 
+  * Complete and hand in working version of \[SODDR\] Chapter 1 Code. Here's what to hand in:
+  * Complete and cleaned up code your portfolio/user-service
+  * Link to a brief <%= link_to_topic :screencast %> showing the rspec test running and anything else you want to show off or explain.
+  * Brief explanation of your understanding of the precise purpose of the client library.
+  * <%= deliverable "Working code in your porfolio/user-service; screencast of running of your tests; brief expanation of purpose of client library." %>
+* Do <%= link_to_topic :hw_schema_design %>. <%= deliverable "Submit a pdf with the schemas requested, in the format requested" %>
+
+
+#### Homework
+* Discuss building teams for projects?
+* Discuss coding workshop this week
+  * Eyad: Tue or Thu
+  * Nick: Wed 
+* Homwork structure - coding from book?
+* Discuss concepts you learned
+* Quick review of web client / server relationship (http/url/html/json)
+
+#### What is Sintra?
+* A ruby library
+* Easiest way to create a simple web server
+* Much smaller and easy to understand than rails (also less powerful)
+
+#### Components of a Sinatra app
+* Single main ruby program
+* Routing
+  * One method for each "route"
+  * Rendering of Views
+  * Nice pattern matching to generalize similar routes
+  * At the end of the method, either render html, json, or redirect
+  * Each of the route methods are "kind of like" a controller
+* Data
+  * Sinatra doesn't do anything special about working with the database
+  * Whatever database access you prefer will work
+  * Our examples use ActiveRecrord as a library to interface with the database
+  * But there are other ones that work just as well
+  * Typical design
+    * encapsulates the data access in a class
+    * one class for each table or entity
+    * often referred to as a model class
+* Views
+  * Erb is a very common templating language
+  * Look at <%= link_to_topic :erb_crib %>
+  * They are what is generated at the end of the route method
+  * In addition to erb there are tons of others
+  * What they have in common: they all generate data (in the end) that is returned as the result of an HTTP request
+
+#### Walk through some code
+* [Sinatra Intro](http://www.sinatrarb.com/intro.html)
+* [Simple Dataase Driven Website with Heroku](https://samuelstern.wordpress.com/2012/11/28/making-a-simple-database-driven-website-with-sinatra-and-heroku/)
+* [SOTL-simple-service](https://github.com/pitosalas/sotl-user-service)
+
+
+#### Sinatra References
+* The readme of Sinatra is a great resource: [Sinatra Readme](http://www.sinatrarb.com/intro.html)
+* A good basic book on sinatra is: [Sinatra Up and Running](http://www.amazon.com/Sinatra-Up-Running-Alan-Harris/dp/1449304230)
+
+##### Gems
+* [Shotgun Gem](https://github.com/rtomayko/shotgun)
+* [Foreman Gem](https://github.com/ddollar/foreman)
+* [ReRun Gem](https://github.com/alexch/rerun)
+* [Scale Testing Choices](http://blazemeter.com/blog/open-source-load-testing-tools-which-one-should-you-use)
+

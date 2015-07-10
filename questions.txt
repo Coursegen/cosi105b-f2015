@@ -1,0 +1,24 @@
+What functionality is added when a class C (e.g. Parts) includes the line `extend Forwardable`?
+
+1) Class C acquires some new methods, specifically those listed in the `def_delegators` statement.
+2) Class C can now be used as a delegate within another class.
+3) More or less the same as if class C was derived from class Array, for example: class C < Array
+
+A 'factory' is:
+
+1) Any variable or class or method can be called factory, it's not a special name
+2) Factory is the name of a pattern, the 'factory pattern' and denotes a class whose sole job is to create other classes
+3) Factory is a fairly advanced feature in the Ruby language which can also be found in other languages
+
+In Ruby, the Openstruct and Struct classes do:
+1) The same thing; OpenStruct was added into Ruby when it was made more general
+2) Struct is a core part of the Ruby language; OpenStruct is just a gem that does something different
+3) Struct and OpenStruct are both in the core Ruby library and solve similar problems.
+
+Composition vs. Inheritence:
+1) Are alternative design approaches which solve essentially the same problem. Everything you can do with one, you can do with the other
+2) Composition is when a class is designed to need another class to provide it's full functionality. When Inheritence and Composition can both be used to solve a problem, prefer Composition every time.
+3) Two fundamental Object Oriented design patterns, which are important and applicable in different situations. They are not the same thing.
+
+-- Chapter 9 of POODR
+

@@ -1,0 +1,35 @@
+---
+title: Twitter Case Study
+desc: Introduction to Twitter and nanoTwitter
+homework: Understand the key features of Twitter. View two videos and submit a diagram and an explanation of a certain part of the design.
+---
+<%= homework_hdr %>
+* Clarify your understanding of twitter.com. If you don't use Twitter or don't 'believe in it', still sign up for an account just to play. Make sure you understand each of the core concepts of Twitter:
+  * a username (aka Twitter handle) your name on twitter
+  * to "mention":when you write @pitosalas in a tweet; 
+  * to followi: when you ask to see tweets from someone else; 
+  * \[n,v\] "tweet" or "post" or "update": the 140 character message you can send with twitter.
+  * a twitter stream or feed: all the tweets that a certain user has posted
+  * a #hashtag: a way to tag any tweet, which can be searched later
+  * a timeline: a real time stream of tweets. Your home stream or timeline is where you see all the tweets shared by the people you follow
+  * <%= deliverable "Your 2 sentence definitions of each of the concepts listed above. Submit as a pdf." %>
+* View [Twitter: From Ruby on Rails to the JVM](http://youtu.be/ohHdZXnsNi8) AND [Real Time Delivery Architecture at Twitter](http://www.infoq.com/presentations/Real-Time-Delivery-Twitter). 
+  * These two talks give you a preliminary sense of what a real-world scalable architecture looks like. Many of the concepts, optimizations, design choices will apply in many other scenarios. Beware, there is a lot of depth here. It will be easy to understand superficially and hard to really understand.
+  * You are  asked to draw a architectural diagram with as much detail as you understand. No more than 20 diagram boxes though. Add labels and comments as needed. You can draw neatly on paper, or use some tool to make a diagram, whatever you prefer. 
+  * The second talk includes an explanation of the design elements that support the display of a new tweet on following users' timelines. It also explains design elements that allow a new tweet to appear in a search result. They are fundamentally and subtlelly different. The difference is a key part of the scalability of Twitter. You are asked to explain the two designs in your own words.
+  * <%= deliverable "Your explanation of what the difference between a new tweet on timeline vs. new tweet in search result. Your diagram, as a .pdf. For paper, take a cell phone picture that is clear enough to read." %>
+
+#### Discussion about homework
+* Lets look at some students' diagrams
+* Let's talk about the features in the real Twitter
+
+#### All About nano Twitter
+
+1. **<%= link_to_section :nt, :nt_functionality %>:** Point by point requirements for the project that everyone will be doing, nanoTwitter
+
+1. **<%= link_to_section :nt, :nt_arch %>:**Review of key technical points of architecture and process
+
+1. **<%= link_to_section :nt, :nt_outline %>:** Approximate sequence of steps to get to the finished product
+
+#### Next Class
+* Look at homework: <%= link_to_next_lecture %>

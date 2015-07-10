@@ -1,0 +1,106 @@
+---
+title: Design Patterns
+desc: Review and go deeper on Design Patterns
+homework: nT 0.3, listen to podcast and read article, write reflection the night before!
+---
+<%= homework_hdr %>
+* Actively Read/Listen. <%= ir "Submit answers to the questions by midnight before class" %>
+  * [The Art of Enbugging](http://www.ccs.neu.edu/research/demeter/related-work/pragmatic-programmer/jan_03_enbug.pdf)
+  * [Book Club: Patterns of Enterprise Application Architecture with Martin Fowler](http://devchat.tv/ruby-rogues/097-rr-book-club-patterns-of-enterprise-architecture-with-martin-fowler)
+  * Answer these 3 questions:
+    * In what way are the "Tell don't ask" and the "Law of Demeter" principles related, that is, serving the same more basic purpose?
+    * Explain the Active record pattern and how it is related or different from the Data mapper pattern.
+    * What 1 or 2 important things from the reading/listening did you not undertand; and if you understood it all, then what 1 or 2 important things were most insightful/useful/valuable to you.
+  * <%= deliverable "BY MIDNIGHT THE NIGHT BEFORE: the answers to these questions, as a pdf, 1 page max" %>
+
+* Complete nT 0.3 functionality 
+	* See <%= link_to_section :nt, :nt_outline %>: LOADTEST, INSTRUMENT, RUNLOADEXPERIMENT and MANUALTEST
+	* Of course this assumes that you have fully completed last week's assignment for nT 0.2
+		* You need to have your loader.io account set up with log ins for all three team members
+		* You need to have at least 5 tests in your test suite
+		* You need to have Codeship.com configured, and have codeship in turn deploy to heroku
+	* Work should be done in your <%= link_to_intro :portfolio %>, directory `/nanotwitter`. When complete, submit it to github. You should use the same github repo but tag the previous version as 0.2 and the current version of 0.2. (See [Git Tagging](http://git-scm.com/book/tr/v2/Git-Basics-Tagging))
+  * Team Interim Report: Write a report describing process so far, and results of initial tests (from your lab notebook). Also nclude the results of Codeclimate run over your github repo.
+  * <%= team_deliverable "Team interim report, 1-2 pages, pdf, including completed nanoTwitter Version 0.3 github URL" %>
+
+#### Demos
+* Each team will be asked to demo their version of nT to the class by having everyone sign up for an account!
+
+#### Reading Discussion
+* Review Law of Demeter (shorthand)
+* Review DataMapper vs. ActiveRecord
+  * More about DM
+  * Which is simpler
+  * Applicability of each
+  * What is the entity manager?
+* Terms:
+  * PORO: Plain Old Ruby Object
+  * aggregate object: Any object that represents a collection of something (e.g. array etc.)
+  * Lazy loading (or lazy anything): Delaying actually doing the work until it is specifically required. (Compare to gem 'eager loading')
+  * side-effect: When a method changes something in it's environment. Compare: functional, where a method takes inputs and generate outputs but don't do anything outside of that,
+  * ORM: Object Relational Mapper
+  * Data Gateway pattern. Building block of a Data Mapper. (See [Table Data Gateway](http://martinfowler.com/eaaCatalog/tableDataGateway.html)
+* Why did some people mention PHP in their responses?
+
+#### Loader.io
+* Record Limit
+* Add your team name and team members to home page of your app
+* Target Verification, something similar to this to apps
+
+~~~
+get '/loaderio-bb5a35bfa0186405c4a48a10d3f67e60/' do
+  "loaderio-bb5a35bfa0186405c4a48a10d3f67e60"
+end
+~~~
+
+##### References
+* An example of a data mapper implementation: [Perpetuity Gem](https://github.com/jgaskins/perpetuity)
+* An example (no guarantees) of DataMapper inside Sinatra: [Sinatra DataMapper Example](https://github.com/tomaszj/sinatra-datamapper-sample/blob/master/app.rb)
+* [Getting Started with DataMapper](http://datamapper.org/getting-started.html)
+
+#### Design Patterns
+* Patterns in software (inspired by:[A Pattern Language, by Christopher Alexander](http://www.amazon.com/gp/product/0195019199))
+* Patterns and Anti-patterns
+* Anti-patterns vs. Code smells
+* Why do these buzz words matter anyway?
+
+#### "Meta patterns" or "just good design"
+* Knowledge should be in only one place (DRY)
+* Separate out things that change from those that stay the same
+* Tell don't ask
+* Prefer composition over inheritance
+* Delay, delay, delay \[YAGNI\]
+
+#### Examples we've already seen
+* MVC, Model View Controller
+* Template class and template method pattern
+* Factory class and factory method pattern
+* REST Pattern
+* ActiveRecord Pattern
+* Service Oriented Architecture
+
+#### What are the Major ones?
+* There are many catalogs
+* Some patterns are 'language dependent'
+  * e.g. dynamic vs. static typing, method overloading, multiple inheritance
+* Don't try to memorize them
+* Don't feel like you are more 'virtuous' if you do use them
+* But... DO learn about them and try to use them
+
+#### Some of my favorites
+* Template method pattern: [Ruby Design Patterns: The Template Method
+](http://sethpollack.net/blog/2015/01/11/ruby-design-patterns-the-template-method/)
+* Factory pattern: [Gang of Four Design Patterns: Factory](https://github.com/tutsplus/gof-design-patterns-ruby/tree/master/examples/factory/test)
+* Strategy pattern: [Gang of Four Design Patterns: Strategy](https://github.com/tutsplus/gof-design-patterns-ruby/tree/master/examples/strategy/lib/newsletter)
+* Builder pattern. My own code for "Coursegen": [bootstrap_markup](https://github.com/pitosalas/coursegen/blob/master/lib/coursegen/course/helpers/bootstrap_markup.rb)
+* Domain Specific Language Pattern: [Writing a DSL in Ruby](https://robots.thoughtbot.com/writing-a-domain-specific-language-in-ruby)
+* Delegator + Decorator Pattern: [Using Simple Delegator for your Decorators](http://hashrocket.com/blog/posts/using-simpledelegator-for-your-decorators)
+
+#### References
+* [Design Patterns in Ruby](http://www.amazon.com/Design-Patterns-Addison-Wesley-Professional-Series-ebook/dp/B0010SEN1S/ref=dp_kinw_strp_1)
+* Interesting repo with examples of patterns: [Ruby Patterns](https://github.com/TheBlasfem/ruby-patterns)
+* The original GoF Book, now a little dated IMO: [Desing Patterns](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)
+
+
+#### Next Class
+* Look at homework: <%= link_to_next_lecture %>

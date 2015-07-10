@@ -1,0 +1,71 @@
+---
+title: Review topics
+desc: Getting deeper into Object Oriented design
+homework: Teams complete nT 0.1; Read Chapter 5 of \\[POODR\\]
+---
+<%= homework_hdr %>
+* Study \[POODR\] Chapter 5. <%= ir "Points to understand:" %>
+  * Duck typing. How to use it. How it works. Notice how you need to think pretty carefully about the role of each class in your design to make sure you place a method. Can you explain what Duck typing is?
+  * There are almost always multiple classes where a certain bit of functionality could be placed. To be a good designer you have to first become aware of the possibilities and then reason about why it belongs in a certain place. What are some considerations for making that decision?
+* Think about this question: What is Duck typing, and exactly how is it different from Java. Try to answer the question: what specific feature in Java do you not need anymore if you have Duck Typing. <%= deliverable "Submit a response as a pdf. Explain your reasoning. It's a tricky question." %>
+* Complete nT functionality up to \[SINATRAAPP\]. Work should be done in your <%= link_to_intro :portfolio %>, directory "/nanotwitter". <%= team_deliverable "Completed nanoTwitter Version 0.1 github URL" %>
+
+#### Discussion
+* Homework
+  * Reminder: Please do your coding work in portfolio. For nanotwitter, call the directory nanotwitter.
+  * What is Duck Typing?
+* Article Discussion
+  * Read this [Twitter cuts Meercat from its social graph just as SXSW gets started](http://www.theverge.com/2015/3/13/8213255/twitter-cuts-meerkat-off-from-its-social-graph-just-as-sxsw-gets)
+  * How did Twitter do that? What is the impact of that change? Why did Twitter do that? Do you agree with what they did?
+  * 5 minutes: Read and think on your own about the answers to those questions
+  * 5 minutes: disucss with your neighbor
+
+#### Quick Review of Web Services (APIs) in Sinatra
+* Sinatra server returns JSON instead of HTML
+* Client is not a web browser, but another application
+* Purpose is so that one server can provide data/informationto antother even though:
+  * The two servers are totally separate pieces of software
+  * Potentially written and run by totally separate (competing) companies
+* Look at <%= link_to_topic :hands_on_sinatra_services %>
+
+#### Quick Review of Cloud Deployment on Heroku
+* Look at <%= link_to_topic :cloud_deployment %>
+* Look at <%= link_to_topic(:hands_on_herokusinatra) %>
+
+
+#### POODR Example
+* Look at and examine the sequence of examples from Chapter 5
+
+* Static vs. Dynamic Typing
+  * Java interfaces are like Classes without method bodies
+  * You can only call a method on the right type
+  * There is enough information in the text of the program
+  * Compile can catch errors and compiled code can be optimized for performance
+
+~~~~ java
+interface Animal {
+
+   public void eat();
+   public void travel();
+}
+Animal myAnimal = new Dog();
+myAnimal.eat();
+~~~~
+
+* Dynamic Typing
+  * Objects determine at run time whether they implement a message (method)
+  * Nothing in the syntax of the code limits what is possible at run time
+  * Compilation and exection are more tightly connected
+  * Opens up new and rich design options (Duck typing, meta programming)
+
+<%= include_topic :four_rules_simple_design %>
+
+#### Next Class
+* Look at homework: <%= link_to_next_lecture %>
+
+
+
+
+
+
+
