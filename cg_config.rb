@@ -4,16 +4,16 @@ require 'coursegen'
 COPYRIGHT_STRING = "Copyright (2014-2015) R. Pito Salas, pitosalas@gmail.com"
 
 # bucket for AWS Deployment of the course
-AWS_BUCKET = "cosi105-2015"
+AWS_BUCKET = "cosi105b-f2015"
 
 # Course short name
 COURSE_SHORT_NAME = "Cosi 105b"
-COURSE_LONG_NAME = "Software Engineering and Architecture at Scale"
+COURSE_LONG_NAME = "Software Engineering for Scalability "
 
 # Schedule information. Note that Monday is day 0
 LECTURES_SCHEDULE_CONFIG = ScheduleDef.new(
-    first_day: "aug-27-2015",
-    weekdays: [:tuesday, :thursday],
+    first_day: "september-1-2015",
+    weekdays: [:tuesday, :friday],
     number: 26,
     skips: [])
 
