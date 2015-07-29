@@ -1,0 +1,24 @@
+---
+title: NT Design and Architecture
+---
+
+#### nanoTwitter Design and Architecture
+
+The objective of the NT project is to give students hands-on experience designing a simple system which will expose and exercise issues of scale. 
+
+#### Architecture
+The "spec" for NanoTwitter doesn't dictate anything about the architecture other than it be reached via a url. It has two kinds of access, through a web browser (for human access) and as a REST service (for access from other applications).
+
+#### Deployment
+NT will be deployed as a service in the cloud. Our base case is to use Heroku but again there are other variations that are possible which are equally valid.
+
+#### Language and framework
+The base case would be to implement NT using Ruby and Sinatra. We will cover those in the class.
+
+But there are other languages and platforms that could be used as easily, for example Node.js with Express. There are others. We will discuss this possibility in class.
+
+#### Testing
+The NT code will have automated unit test that can be run at will to check for new bugs. The base case will be to use ruby's minitest package.
+
+#### Logging and performance
+The NT code will need to incporate instrumentation to be able to monitor its performance and detect bottlenecks and other problems. The base case will be to use newrelic.

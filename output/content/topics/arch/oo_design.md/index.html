@@ -1,0 +1,225 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <title>Object Oriented Concepts - Cosi 105b</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap/css/custom.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="/tipuesearch/tipuesearch_set.js"></script>
+    <script src="/tipuesearch/tipuesearch_content.js"></script>
+    <script src="/tipuesearch/tipuesearchmin.js"></script>
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.0.0rc2">
+  </head>
+  <body>
+
+    
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+  <div class="row">
+    <div class="col-xs-7">
+      <a class="navbar-brand" href="/">Cosi 105b - Software Engineering and Architecture at Scale</a>
+    </div>
+    <div class="col-xs-2">
+      <div class="btn-group">
+        
+          <a class="btn btn-mini" href="/content/topics/arch/nosql_mongodb.md/"><i class="glyphicon glyphicon-chevron-left" rel="tooltip" title="previous page"></i></a> <a class="btn btn-mini" href="/content/topics/arch/refactoring.md/"><i class="glyphicon glyphicon-chevron-right" rel="tooltip" title="next page"></i></a>
+        
+      </div>
+    </div>
+    <div class="col-xs-3">
+    <form role="form" class="form-inline" action="/tipuesearch_logic/search/index.html">
+      <div class="input-group input-group-sm">
+        <input type="text" class="form-control" placeholder="search..." name="q" id="tipue_search_input" autocomplete="off" required>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+        <h3>
+	Object Oriented Concepts
+	
+</h4>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-9">
+          <h5 id="what-is-software-design">What is software design?</h5>
+<ul>
+  <li>In software, “arranging code in a particular way”</li>
+  <li>YAGNI principle vs. BDOF</li>
+  <li>Finding the balance: effort and care proportional to cost over time!</li>
+</ul>
+
+<h5 id="patterns">Patterns</h5>
+<ul>
+  <li>Patterns in software (inspired by:<a href="http://www.amazon.com/gp/product/0195019199">A Pattern Language, by Christopher Alexander</a>)</li>
+  <li>Where do these ideas come from?</li>
+</ul>
+
+<h5 id="classes">Classes</h5>
+<ul>
+  <li>Classes: How do you decide what a class is and what it is not?
+    <ul>
+      <li>What is the domain or the problem space or the problem domain?</li>
+      <li>Look for Nouns</li>
+      <li>Use “CRC Cards”</li>
+      <li>Note: SRP: Single Responsibility Principle</li>
+      <li>Ask yourself: “What does this class represemt/do”</li>
+    </ul>
+  </li>
+</ul>
+
+<h5 id="objects">Objects</h5>
+<ul>
+  <li>Classes and objects are different!</li>
+  <li>Instance variables</li>
+  <li>Constructor (no destructor in Ruby!)</li>
+  <li>Methods: private/public</li>
+</ul>
+
+<h5 id="polymorphism">Polymorphism</h5>
+<ul>
+  <li>When the same interface can be used with objects of different classes
+    <ul>
+      <li>Example: In ruby, message #to_s can be sent to objects of different classes</li>
+      <li>Why is it useful?</li>
+    </ul>
+  </li>
+  <li>Ways to achieve this:
+    <ul>
+      <li>Inheritance</li>
+      <li>“Duck” Typing</li>
+    </ul>
+  </li>
+  <li>“Duck” typing.
+    <ul>
+      <li>Don’t rely on the class/type of a thing to know what it can do</li>
+      <li>Reverse it: based on what it can do, you can tell the type of a thing.</li>
+      <li>How is duck typing is an alternative/complement to inheritence?</li>
+      <li>And what about Java interfaces?</li>
+      <li>Consider a method like #talk in a gaming application</li>
+      <li>Here’s <a href="/content/topics/arch/duck_typing.md/">The classic Duck Typing Example</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h5 id="inheritance">Inheritance</h5>
+<ul>
+  <li>inheritence: rarely is this the best solution</li>
+  <li>composition and delegation: a better solution</li>
+</ul>
+
+
+        </div>
+        <div class="col-xs-3">
+          <div class="row well right-nav" style="color: rgb(158, 48, 48);padding-top: 4px;padding-bottom: 4px;padding-left: 8px;padding-right: 8px;margin-bottom: 8px;">
+            <div id="helpful" class="text-center">Was this helpful!?
+    <a id="yes-link">yes</a> / <a id="no-link">no</a>
+</div>
+          </div>
+          <div class="row well right-nav" style="padding: 5px;">
+            <ul>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Intro
+            </label><ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/code_reading_request.md/">Code Reading (By Request!)</a></li><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/course_toc.md/">List of lectures</a></li><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/portfolio.md/">Code Portfolio</a></li></ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Lectures
+            </label><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-plus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Software Design
+        </label>
+        <ul class="tree" style="display: none"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/01_welcome.md/">Welcome</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/02_warm_up_1.md/">Ruby Firehose Part 1</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/03_warm_up_2.md/">Ruby and Intro to Object Oriented</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/04_software_engineeringbasics.md/">Software Engineering</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/06_software_design.md/">Software Design</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-plus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          nano Twitter (nT)
+        </label>
+        <ul class="tree" style="display: none"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/01_serv_fund.md/">Server Fundamentals</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/02_database_fund.md/">Database Basics</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/03_sinatra_intro.md/">Introduction to Sinatra</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/04_twitter_case.md/">Twitter Case Study</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/05_more_sinatra.md/">Persistence and Web services</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-plus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Scaling Basics
+        </label>
+        <ul class="tree" style="display: none"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/01_scaling_intro.md/">Intro to Scaling</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/02_architecting_for_scale.md/">Architecting for scale</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/03_web_services.md/">Introduction to Web Services</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Building Software
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/01_review_topics.md/">Review topics</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/02_oo_inheritance.md/">OO - Inheritance</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/03_tdd.md/">TDD</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/04_testing.md/">Software Testing</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/05_patterns.md/">Design Patterns</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Design at Scale
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/01_scaling_patterns.md/">Scaling Patterns</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/02_scaling_patterns_continued.md/">Scaling Patterns</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/03_projects.md/">Projects Discussion</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/04_review.md/">Review and Discussion</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/05_realworld.md/">Real World Survival Kit</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/06_conclusion.md/">Last Class</a></li></ul>
+      </li>
+    </ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Background
+            </label><ul class="tree" style="display: block"><li class=""><a href="/content/background/grading.md/">Grading</a></li><li class=""><a href="/content/background/leveling.md/">Leveling exercise</a></li><li class=""><a href="/content/background/pa.md/">Programming Assignments</a></li><li class=""><a href="/content/background/prework.md/">Recommended Pre-Work</a></li></ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              NanoTwitter
+            </label><ul class="tree" style="display: block"><li class=""><a href="/content/nt/01_nt_functionality.md/">nano Twitter Functionality</a></li><li class=""><a href="/content/nt/02_nt_arch.md/">NT Design and Architecture</a></li><li class=""><a href="/content/nt/03_nt_outline.md/">Nano Twitter Project Outline</a></li><li class=""><a href="/content/nt/04_references.md/">Aggregated Twitter Bibliography</a></li></ul></li>
+              
+                
+              
+                
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <footer>Copyright (2014-2015) R. Pito Salas, pitosalas@gmail.com</footer>
+      </div>
+  </div>
+</div>
+
+
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="/bootstrap/js/custom.js"></script>
+    <script src="/chalkmark/chalkmark.js"></script>
+    <script> $(document).ready(function() {
+      $('#tipue_search_input').tipuesearch({'highlightEveryTerm': true, 'show': 8, 'showURL': false, 'descriptiveWords': 50});
+    });</script>
+  </body>
+</html>

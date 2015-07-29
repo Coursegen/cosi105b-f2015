@@ -1,0 +1,72 @@
+---
+title: Software Design
+desc: Software design is the study of how we arrange our code
+homework: Read AND DO POODR Chapter 4, think about specific questions; complete the final set of lessons in \\[RHW\\].
+---
+* Monday offline assignment instead of class: <%= link_to_topic :offline_smell %>. <%= deliverable "PDF from the 'study group' with responses to the questions posed." %>
+
+* Read \[POODR\] Chapter 4. <%= ir "Points to understand:" %>
+  * Research and figure out why they are called "messages" and not just "calls". What's the distinction and nuance?
+  * Bottom of page 67: "The problem is not that Customer should not send it, it's that Trip should not receive it." Why?
+  * In this chapter she uses talks about the **context** of a class. What does she mean?
+  * Can you explain the law of demeter? Or how do you recognize violations easily?
+  * *You are required to do all the examples, by typing them in yourself and getting them to work. Remember that your work should be happening inside your <%= link_to_intro :portfolio %>.*
+* Complete the last lessons of [Learn Ruby The Hard Way](http://learnrubythehardway.org/book/preface.html). Beyond lesson 45 things get a little more free form. You are asked to develop a game. You can do that as trivially or completely as you want. Do as much of the last lessons as you can. Remember that your work should be happening inside your <%= link_to_intro :portfolio %>.
+* Continue working on <%= link_to_topic :pa_movies_2 %> as usual, in a directory called movies-2 in your <%= link_to_intro :portfolio %>
+
+#### Post-it Note Exercise
+
+#### Homework Discussion
+* Look at some of the questions asked in \[POODR\] work
+  * Can we look at your code?
+* How did the Offline Smell work go? 
+  * Feedback please: work in groups? What other sources did you look at 
+  * Can we look at your code?
+  * Let me show you mine and explain what I did and why
+* Movies-1
+  * Quick code review from some volunteers?
+
+#### Design Fundamentals
+* Aesthetics/Beauty/Sweet Smelling code
+* Like a 'beautiful proof' or an 'elegant argument'
+* Programming in the small or large can be beautiful
+* Not an end to itself:
+  * Leads to: higher quality code
+  * Leads to: code that is easier to modify/adapt to new requirements
+  * Leads to: healthier code that doesn't get sick and decay as quickly
+
+##### Decomposition
+* A core **life** skill
+* I want to get into grad school: what are the steps? How do I decompose the problem?
+* You want to make an argument for something: what are the steps, how do I build a case?
+* Outlines, hierarchy, dependencies
+* For Software Design, decomposition is the central first step
+* **Example:**
+  * Class Bicycle might be better represented as Class Bicycle + Class Wheel
+
+##### Abstraction
+* Programming is all about abstraction
+* Understanding the important aspects of a problem, ignoring the rest
+* 'Leaky Abstractions'
+* Note, this does not always require inheritence!
+* **Example:**
+  * Class Invoice includes a collection of products with a price and a description
+  * We're abstracting away the difference between each product as long as they respond to messages
+
+##### Information hiding
+* "Inside" vs. "Outside", scales at many levels
+* "What you don't know can't hurt you"
+* Harden against future inevitable change
+* **Example:**
+  * Make everything possible `private`
+  * Example: Does anyone outside of Invoice need to know how the collection is represented?
+
+##### Decoupling
+* Related but not the same as decomposition
+* **Example:**
+  * Can I write Class Wheel so it knows nothing at all about class Bicycle?
+
+<%= include_topic :good_programming %>
+
+#### Next Class
+* Look at homework: <%= link_to_next_lecture %>

@@ -1,0 +1,257 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <title>Git and Github - Cosi 105b</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap/css/custom.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="/tipuesearch/tipuesearch_set.js"></script>
+    <script src="/tipuesearch/tipuesearch_content.js"></script>
+    <script src="/tipuesearch/tipuesearchmin.js"></script>
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.0.0rc2">
+  </head>
+  <body>
+
+    
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+  <div class="row">
+    <div class="col-xs-7">
+      <a class="navbar-brand" href="/">Cosi 105b - Software Engineering and Architecture at Scale</a>
+    </div>
+    <div class="col-xs-2">
+      <div class="btn-group">
+        
+          <a class="btn btn-mini" href="/content/topics/cribsheets/erb_crib.md/"><i class="glyphicon glyphicon-chevron-left" rel="tooltip" title="previous page"></i></a> <a class="btn btn-mini" href="/content/topics/cribsheets/heroku.md/"><i class="glyphicon glyphicon-chevron-right" rel="tooltip" title="next page"></i></a>
+        
+      </div>
+    </div>
+    <div class="col-xs-3">
+    <form role="form" class="form-inline" action="/tipuesearch_logic/search/index.html">
+      <div class="input-group input-group-sm">
+        <input type="text" class="form-control" placeholder="search..." name="q" id="tipue_search_input" autocomplete="off" required>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+        <h3>
+	Git and Github
+	
+</h4>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-9">
+          <h4 id="what-is-git">What is git?</h4>
+
+<p>Git is a <a href="http://git-scm.com/book/en/Getting-Started-About-Version-Control">version control system</a> that keeps track of changes to files, so that you can have a history of all the changes made to a file and you can revert to a specific version later on.</p>
+
+<p>Here are some features of Git:</p>
+
+<ul>
+  <li>Keep separate branches of development</li>
+  <li>Rollback to a previous version if a bug was found</li>
+  <li>Different versions for development and deployment; the deployment version should be a stable one</li>
+  <li>Merging branches into one branch</li>
+  <li>…</li>
+</ul>
+
+<h4 id="recommended-local-directory-structure">Recommended local directory structure:</h4>
+
+<pre><code>~/mydev
+    /pa1
+    /pa2
+    /project1
+    /etc.
+    ...
+</code></pre>
+
+<h4 id="top-5-commands">Top 5 commands</h4>
+
+<ul>
+  <li>Commands done only from your top level “mydev” directory
+    <ul>
+      <li>git clone (create a new directory from a repo on github)</li>
+    </ul>
+  </li>
+  <li>Commands done from inside an individual repos local directory
+    <ul>
+      <li>git add –all (add all changed files to staging)</li>
+      <li>git commit -m “message” (create a “commit” with all staged files)</li>
+      <li>git push (push all local commits up to github)</li>
+      <li>git pull (pull any changes made from github to look at it locally)</li>
+      <li>git status (see where things stand)</li>
+    </ul>
+  </li>
+  <li>NB: Don’t do a git clone from ‘inside’ a local repo directory</li>
+</ul>
+
+<h4 id="resources">Resources</h4>
+
+<p>There are tons of online resources available for learning git. Below is a list of some that you may find useful:</p>
+
+<ul>
+  <li><a href="http://git-scm.com/book">The Git Book</a></li>
+  <li><a href="http://rogerdudler.github.io/git-guide/">Easy Git</a></li>
+  <li>Github’s own Help to <a href="https://help.github.com/articles/set-up-git/">Set up Git</a> is quite good.</li>
+  <li>Also good is: <a href="http://rogerdudler.github.io/git-guide/">Easy Git</a></li>
+  <li><a href="http://www.sbf5.com/~cduan/technical/git/">Understanding Git Conceptually</a> (intermediate)</li>
+  <li>And maybe: <a href="http://mrchlblng.me/2014/09/practical-git-introduction/">A practical Git introduction</a></li>
+  <li><a href="http://mrchlblng.me/2014/09/practical-git-introduction/">A practical Git introduction</a>* <a href="http://try.github.com/">try.github.com</a> (beginner)</li>
+  <li><a href="http://www.ralfebert.de/tutorials/git/">Git Tutorial</a> (beginner)</li>
+  <li><a href="http://gitready.com/">Git Ready</a> (from beginner to advanced)</li>
+  <li><a href="http://pcottle.github.io/learnGitBranching/">Learn Git Branching</a> (beginner/intermediate)</li>
+</ul>
+
+<div class="row">
+  <div class="col-md-offset-2 col-md-8">
+    <img src="/content/topics/images/git_file_status_lifecycle.png" class="img-responsive img-thumbnail" />
+  </div>
+</div>
+
+<h3 id="what-is-github">What is Github?</h3>
+
+<p>Github is a web application that provides hosted version control services using Git. You can sign up and create public repositories for free, but you should pay to create private repositories. There are other similiar services among which are <a href="http://bitbucket.org">BitBucket</a> and <a href="https://gitent-scm.com">Gitent</a>.</p>
+
+<h5 id="discussion-points">Discussion points</h5>
+
+<ul>
+  <li>What are the main benefits of using GIT when developing a project by yourself?</li>
+  <li>What are the main benefits of using GIT when developing a project with a team of coders?</li>
+  <li>What are the reasons to create a branch?</li>
+  <li>When several team members commit different changes on their local repositories, how do the reconcile their different changes in the main github repository?</li>
+  <li>What are the advantages to having a staging area?</li>
+  <li>After discussing these “big picture” ideas, we’ll look at the internals to see what Git is actually doing when you branch, commit, etc.</li>
+</ul>
+
+<h5 id="some-of-the-basic-skills-youll-need-are">Some of the basic skills you’ll need are</h5>
+
+<ul>
+  <li>create a local repository (git init)</li>
+  <li>create a github repository and push your local repo to github</li>
+  <li>clone a github repository</li>
+  <li>create a temporary branch, make some edits, do some tests, merge it into your main branch, merge it into the team main branch</li>
+  <li>interrupt the work flow above to fix a critical bug by stashing your current work, checking out the main branch, creating a temp branch with the fix, merging it into main, switching back to your branch and applying your stashed work to get you back to where you were</li>
+  <li>pulling down someone else’s committed changes and resolving the inevitable conflicts that have arisen (by deleting theirs and using yours!) then pushing</li>
+  <li>making a temporary extension, and rebasing several times as other people are committing their changes to the main branch on the shared server</li>
+  <li>viewing your current status</li>
+  <li>checking out another branch</li>
+  <li>tagging the current version (e.g. v1.0 or v1.3 or v1.3.7)</li>
+  <li>cloning a tagged version</li>
+</ul>
+
+
+        </div>
+        <div class="col-xs-3">
+          <div class="row well right-nav" style="color: rgb(158, 48, 48);padding-top: 4px;padding-bottom: 4px;padding-left: 8px;padding-right: 8px;margin-bottom: 8px;">
+            <div id="helpful" class="text-center">Was this helpful!?
+    <a id="yes-link">yes</a> / <a id="no-link">no</a>
+</div>
+          </div>
+          <div class="row well right-nav" style="padding: 5px;">
+            <ul>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Intro
+            </label><ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/code_reading_request.md/">Code Reading (By Request!)</a></li><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/course_toc.md/">List of lectures</a></li><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/portfolio.md/">Code Portfolio</a></li></ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Lectures
+            </label><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-plus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Software Design
+        </label>
+        <ul class="tree" style="display: none"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/01_welcome.md/">Welcome</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/02_warm_up_1.md/">Ruby Firehose Part 1</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/03_warm_up_2.md/">Ruby and Intro to Object Oriented</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/04_software_engineeringbasics.md/">Software Engineering</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/06_software_design.md/">Software Design</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-plus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          nano Twitter (nT)
+        </label>
+        <ul class="tree" style="display: none"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/01_serv_fund.md/">Server Fundamentals</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/02_database_fund.md/">Database Basics</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/03_sinatra_intro.md/">Introduction to Sinatra</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/04_twitter_case.md/">Twitter Case Study</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/05_more_sinatra.md/">Persistence and Web services</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-plus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Scaling Basics
+        </label>
+        <ul class="tree" style="display: none"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/01_scaling_intro.md/">Intro to Scaling</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/02_architecting_for_scale.md/">Architecting for scale</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/03_web_services.md/">Introduction to Web Services</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Building Software
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/01_review_topics.md/">Review topics</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/02_oo_inheritance.md/">OO - Inheritance</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/03_tdd.md/">TDD</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/04_testing.md/">Software Testing</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/05_patterns.md/">Design Patterns</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Design at Scale
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/01_scaling_patterns.md/">Scaling Patterns</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/02_scaling_patterns_continued.md/">Scaling Patterns</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/03_projects.md/">Projects Discussion</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/04_review.md/">Review and Discussion</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/05_realworld.md/">Real World Survival Kit</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/06_conclusion.md/">Last Class</a></li></ul>
+      </li>
+    </ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Background
+            </label><ul class="tree" style="display: block"><li class=""><a href="/content/background/grading.md/">Grading</a></li><li class=""><a href="/content/background/leveling.md/">Leveling exercise</a></li><li class=""><a href="/content/background/pa.md/">Programming Assignments</a></li><li class=""><a href="/content/background/prework.md/">Recommended Pre-Work</a></li></ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              NanoTwitter
+            </label><ul class="tree" style="display: block"><li class=""><a href="/content/nt/01_nt_functionality.md/">nano Twitter Functionality</a></li><li class=""><a href="/content/nt/02_nt_arch.md/">NT Design and Architecture</a></li><li class=""><a href="/content/nt/03_nt_outline.md/">Nano Twitter Project Outline</a></li><li class=""><a href="/content/nt/04_references.md/">Aggregated Twitter Bibliography</a></li></ul></li>
+              
+                
+              
+                
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <footer>Copyright (2014-2015) R. Pito Salas, pitosalas@gmail.com</footer>
+      </div>
+  </div>
+</div>
+
+
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="/bootstrap/js/custom.js"></script>
+    <script src="/chalkmark/chalkmark.js"></script>
+    <script> $(document).ready(function() {
+      $('#tipue_search_input').tipuesearch({'highlightEveryTerm': true, 'show': 8, 'showURL': false, 'descriptiveWords': 50});
+    });</script>
+  </body>
+</html>

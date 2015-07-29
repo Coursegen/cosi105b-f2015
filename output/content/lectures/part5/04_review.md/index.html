@@ -1,0 +1,195 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <title>Review and Discussion - Cosi 105b</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap/css/custom.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="/tipuesearch/tipuesearch_set.js"></script>
+    <script src="/tipuesearch/tipuesearch_content.js"></script>
+    <script src="/tipuesearch/tipuesearchmin.js"></script>
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.0.0rc2">
+  </head>
+  <body>
+
+    
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+  <div class="row">
+    <div class="col-xs-7">
+      <a class="navbar-brand" href="/">Cosi 105b - Software Engineering and Architecture at Scale</a>
+    </div>
+    <div class="col-xs-2">
+      <div class="btn-group">
+        
+          <a class="btn btn-mini" href="/content/lectures/part5/03_projects.md/"><i class="glyphicon glyphicon-chevron-left" rel="tooltip" title="previous page"></i></a> <a class="btn btn-mini" href="/content/lectures/part5/05_realworld.md/"><i class="glyphicon glyphicon-chevron-right" rel="tooltip" title="next page"></i></a>
+        
+      </div>
+    </div>
+    <div class="col-xs-3">
+    <form role="form" class="form-inline" action="/tipuesearch_logic/search/index.html">
+      <div class="input-group input-group-sm">
+        <input type="text" class="form-control" placeholder="search..." name="q" id="tipue_search_input" autocomplete="off" required>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+        <h3>
+	Review and Discussion
+	
+		<small class="pull-right">(Tue Nov 10, lecture 22)</small>
+	
+</h4>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-9">
+          <h4 id="homework-due-for-today">Homework due for today</h4>
+<ul>
+  <li>I would like you to think back about your expectations and hopes about this course before you took it and what you know now. Write up a retrospective blog post thinking about questions such as:
+    <ul>
+      <li>To what extent has it lived up to them?</li>
+      <li>How have I changed my views on computer science and software engineers, and what it takes to be one?</li>
+      <li>Do I see a role for myself as an computer scientis, software engineer or entrepreneur in the future?</li>
+      <li>What have I learned about myself as a computer scientist?</li>
+      <li>How have I grown? In what way do I feel better prepared now?</li>
+      <li>In what way have I clarified what I want to do when I graduate? <em style="color: red">Deliverable:</em> <em>Write up your reflection as a post.</em></li>
+    </ul>
+  </li>
+</ul>
+
+<ul>
+  <li>Complete nT 0.5 functionality
+    <ul>
+      <li>See <a href="/content/nt/03_nt_outline.md/">Nano Twitter Project Outline</a>: “Performance Tuning (nt version 0.4)”</li>
+      <li>Of course this assumes that you have fully completed last week’s assignment for nT 0.4</li>
+      <li>Work should be done in your <a href="/content/intro/portfolio.md/">Code Portfolio</a>, directory <code>/nanotwitter</code>. When complete, submit it to github. You should use the same github repo but tag the previous version as 0.4 and the current version of 0.5. (See <a href="http://git-scm.com/book/tr/v2/Git-Basics-Tagging">Git Tagging</a>)</li>
+      <li>Team Interim Report: Write a report describing process so far, and results of initial tests (from your lab notebook).</li>
+      <li><em style="color: red">Team Deliverable:</em> <em>Team interim report, 1-2 pages, pdf, including completed nanoTwitter Version 0.3 github URL</em></li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="discussions">Discussions</h4>
+<ul>
+  <li>Update on nanoTwitter Projects</li>
+  <li>Discussion of using Redis, with Nick</li>
+  <li>Review of Elevator programming assignment requirements</li>
+  <li>Reminder: No “finals” meeting!</li>
+  <li>What should we do on last day of class?</li>
+</ul>
+
+        </div>
+        <div class="col-xs-3">
+          <div class="row well right-nav" style="color: rgb(158, 48, 48);padding-top: 4px;padding-bottom: 4px;padding-left: 8px;padding-right: 8px;margin-bottom: 8px;">
+            <div id="helpful" class="text-center">Was this helpful!?
+    <a id="yes-link">yes</a> / <a id="no-link">no</a>
+</div>
+          </div>
+          <div class="row well right-nav" style="padding: 5px;">
+            <ul>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Intro
+            </label><ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/code_reading_request.md/">Code Reading (By Request!)</a></li><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/course_toc.md/">List of lectures</a></li><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/portfolio.md/">Code Portfolio</a></li></ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Lectures
+            </label><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-plus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Software Design
+        </label>
+        <ul class="tree" style="display: none"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/01_welcome.md/">Welcome</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/02_warm_up_1.md/">Ruby Firehose Part 1</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/03_warm_up_2.md/">Ruby and Intro to Object Oriented</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/04_software_engineeringbasics.md/">Software Engineering</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/06_software_design.md/">Software Design</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-plus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          nano Twitter (nT)
+        </label>
+        <ul class="tree" style="display: none"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/01_serv_fund.md/">Server Fundamentals</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/02_database_fund.md/">Database Basics</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/03_sinatra_intro.md/">Introduction to Sinatra</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/04_twitter_case.md/">Twitter Case Study</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/05_more_sinatra.md/">Persistence and Web services</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-plus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Scaling Basics
+        </label>
+        <ul class="tree" style="display: none"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/01_scaling_intro.md/">Intro to Scaling</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/02_architecting_for_scale.md/">Architecting for scale</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/03_web_services.md/">Introduction to Web Services</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Building Software
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/01_review_topics.md/">Review topics</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/02_oo_inheritance.md/">OO - Inheritance</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/03_tdd.md/">TDD</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/04_testing.md/">Software Testing</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/05_patterns.md/">Design Patterns</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Design at Scale
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/01_scaling_patterns.md/">Scaling Patterns</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/02_scaling_patterns_continued.md/">Scaling Patterns</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/03_projects.md/">Projects Discussion</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/04_review.md/">Review and Discussion</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/05_realworld.md/">Real World Survival Kit</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/06_conclusion.md/">Last Class</a></li></ul>
+      </li>
+    </ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Background
+            </label><ul class="tree" style="display: block"><li class=""><a href="/content/background/grading.md/">Grading</a></li><li class=""><a href="/content/background/leveling.md/">Leveling exercise</a></li><li class=""><a href="/content/background/pa.md/">Programming Assignments</a></li><li class=""><a href="/content/background/prework.md/">Recommended Pre-Work</a></li></ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              NanoTwitter
+            </label><ul class="tree" style="display: block"><li class=""><a href="/content/nt/01_nt_functionality.md/">nano Twitter Functionality</a></li><li class=""><a href="/content/nt/02_nt_arch.md/">NT Design and Architecture</a></li><li class=""><a href="/content/nt/03_nt_outline.md/">Nano Twitter Project Outline</a></li><li class=""><a href="/content/nt/04_references.md/">Aggregated Twitter Bibliography</a></li></ul></li>
+              
+                
+              
+                
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <footer>Copyright (2014-2015) R. Pito Salas, pitosalas@gmail.com</footer>
+      </div>
+  </div>
+</div>
+
+
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="/bootstrap/js/custom.js"></script>
+    <script src="/chalkmark/chalkmark.js"></script>
+    <script> $(document).ready(function() {
+      $('#tipue_search_input').tipuesearch({'highlightEveryTerm': true, 'show': 8, 'showURL': false, 'descriptiveWords': 50});
+    });</script>
+  </body>
+</html>

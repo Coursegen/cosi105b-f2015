@@ -1,0 +1,319 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <title>Ruby and Intro to Object Oriented - Cosi 105b</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap/css/custom.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="/tipuesearch/tipuesearch_set.js"></script>
+    <script src="/tipuesearch/tipuesearch_content.js"></script>
+    <script src="/tipuesearch/tipuesearchmin.js"></script>
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.0.0rc2">
+  </head>
+  <body>
+
+    
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+  <div class="row">
+    <div class="col-xs-7">
+      <a class="navbar-brand" href="/">Cosi 105b - Software Engineering and Architecture at Scale</a>
+    </div>
+    <div class="col-xs-2">
+      <div class="btn-group">
+        
+          <a class="btn btn-mini" href="/content/lectures/part1/02_warm_up_1.md/"><i class="glyphicon glyphicon-chevron-left" rel="tooltip" title="previous page"></i></a> <a class="btn btn-mini" href="/content/lectures/part1/04_software_engineeringbasics.md/"><i class="glyphicon glyphicon-chevron-right" rel="tooltip" title="next page"></i></a>
+        
+      </div>
+    </div>
+    <div class="col-xs-3">
+    <form role="form" class="form-inline" action="/tipuesearch_logic/search/index.html">
+      <div class="input-group input-group-sm">
+        <input type="text" class="form-control" placeholder="search..." name="q" id="tipue_search_input" autocomplete="off" required>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+        <h3>
+	Ruby and Intro to Object Oriented
+	
+		<small class="pull-right">(Thu Sep 3, lecture 3)</small>
+	
+</h4>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-9">
+          <h4 id="homework-due-for-today">Homework due for today</h4>
+
+<ul>
+  <li>Continue with <a href="http://learnrubythehardway.org/book/preface.html">Learn Ruby The Hard Way</a>. You should be at least up to Lesson 36. You will learn more about files (which you can use for your programming assignment too. Also we get into functions and control flow. The section ends with thoughts about design. Remember that your work should be happening inside your <a href="/content/intro/portfolio.md/">Code Portfolio</a>.</li>
+  <li>Read “Practical Object Oriented Design in Ruby” [POODR] Chapter 1 and 2. Make sure you really understand the ruby syntax for defining classes and also try to answer for yourself what the “Single Responsibility Principle” is about, and why it is important. What are some ways in which you could check whether your class has a single responsibility? What do you think Sandi Metz means by “exemplary” code? What is her view of design? See if you can understand why she calls the “message” the foundation of Object Orientation. Do you know what she means by a “message”? Remember to do all the examples, by typing them in yourself and getting them to work. Remember that your work should be happening inside your <a href="/content/intro/portfolio.md/">Code Portfolio</a>.</li>
+  <li>Continue <a href="/content/topics/pa/pa_movies_1.md/">(PA) Movies Part 1</a> and remember to apply what you’ve learned so far from the reading so far. Remember that your work should be happening inside your <a href="/content/intro/portfolio.md/">Code Portfolio</a> for it to be graded.</li>
+</ul>
+
+<div class="well well-sm">
+<span class="label label-primary">REMINDER</span> Your portfolios will be reviewed and graded TODAY for progress.
+</div>
+
+<h4 id="homework-discussion">Homework discussion</h4>
+<ul>
+  <li>How did it go with the work? Who struggled, and what were some of the challenges?</li>
+  <li>Lets take a look at some of the Portfolio code, either [RTHW] or Movies-1</li>
+  <li>Does movie_data respect the single responsibility principle?</li>
+  <li>Why does she talk about a ‘message’ and what does that mean?</li>
+</ul>
+
+<h5 id="what-is-software-design">What is software design?</h5>
+<ul>
+  <li>In software, “arranging code in a particular way”</li>
+  <li>YAGNI principle vs. BDOF</li>
+  <li>Finding the balance: effort and care proportional to cost over time!</li>
+</ul>
+
+<h5 id="patterns">Patterns</h5>
+<ul>
+  <li>Patterns in software (inspired by:<a href="http://www.amazon.com/gp/product/0195019199">A Pattern Language, by Christopher Alexander</a>)</li>
+  <li>Where do these ideas come from?</li>
+</ul>
+
+<h5 id="classes">Classes</h5>
+<ul>
+  <li>Classes: How do you decide what a class is and what it is not?
+    <ul>
+      <li>What is the domain or the problem space or the problem domain?</li>
+      <li>Look for Nouns</li>
+      <li>Use “CRC Cards”</li>
+      <li>Note: SRP: Single Responsibility Principle</li>
+      <li>Ask yourself: “What does this class represemt/do”</li>
+    </ul>
+  </li>
+</ul>
+
+<h5 id="objects">Objects</h5>
+<ul>
+  <li>Classes and objects are different!</li>
+  <li>Instance variables</li>
+  <li>Constructor (no destructor in Ruby!)</li>
+  <li>Methods: private/public</li>
+</ul>
+
+<h5 id="polymorphism">Polymorphism</h5>
+<ul>
+  <li>When the same interface can be used with objects of different classes
+    <ul>
+      <li>Example: In ruby, message #to_s can be sent to objects of different classes</li>
+      <li>Why is it useful?</li>
+    </ul>
+  </li>
+  <li>Ways to achieve this:
+    <ul>
+      <li>Inheritance</li>
+      <li>“Duck” Typing</li>
+    </ul>
+  </li>
+  <li>“Duck” typing.
+    <ul>
+      <li>Don’t rely on the class/type of a thing to know what it can do</li>
+      <li>Reverse it: based on what it can do, you can tell the type of a thing.</li>
+      <li>How is duck typing is an alternative/complement to inheritence?</li>
+      <li>And what about Java interfaces?</li>
+      <li>Consider a method like #talk in a gaming application</li>
+      <li>Here’s <a href="/content/topics/arch/duck_typing.md/">The classic Duck Typing Example</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h5 id="inheritance">Inheritance</h5>
+<ul>
+  <li>inheritence: rarely is this the best solution</li>
+  <li>composition and delegation: a better solution</li>
+</ul>
+
+<h4 id="ruby-live-coding-demonstration-and-discussion">Ruby Live Coding Demonstration and discussion</h4>
+
+<div class="highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span style="color:#777">######## CLASS #######</span>
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span><span style="color:#777"># A very simple class</span>
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span><span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">School</span>
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>   <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">initialize</span>(name)
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>      <span style="color:#33B">@name</span> = name
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>   <span style="color:#080;font-weight:bold">end</span>
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span><span style="color:#080;font-weight:bold">end</span>
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span><span style="color:#777">##### INSTANCES #####</span>
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>my_school = <span style="color:#036;font-weight:bold">School</span>.new(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Brandeis</span><span style="color:#710">&quot;</span></span>)
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>my_school.class
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>your_school = <span style="color:#036;font-weight:bold">School</span>.new(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Olin College</span><span style="color:#710">&quot;</span></span>)
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span><span style="color:#777">##### INSTANCE VARIABLES #####</span>
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span><span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">School</span>
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>   attr_accessor <span style="color:#A60">:name</span>, <span style="color:#A60">:rank</span>
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>   <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">initialize</span>(name, rank)
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>      <span style="color:#33B">@name</span> = name
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>      <span style="color:#33B">@rank</span> = rank
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>   <span style="color:#080;font-weight:bold">end</span>
+<span class="line-numbers"><a href="#n27" name="n27">27</a></span>
+<span class="line-numbers"><a href="#n28" name="n28">28</a></span>   <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">to_s</span>
+<span class="line-numbers"><a href="#n29" name="n29">29</a></span>      <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span><span style="color:#33B">@name</span><span style="font-weight:bold;color:#666">}</span></span><span style="color:#D20"> is ranked </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span><span style="color:#33B">@rank</span><span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">&quot;</span></span>
+<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>   <span style="color:#080;font-weight:bold">end</span>
+<span class="line-numbers"><a href="#n31" name="n31">31</a></span><span style="color:#080;font-weight:bold">end</span>
+<span class="line-numbers"><a href="#n32" name="n32">32</a></span>
+<span class="line-numbers"><a href="#n33" name="n33">33</a></span>my_school = <span style="color:#036;font-weight:bold">School</span>.new(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Brandeis</span><span style="color:#710">&quot;</span></span>, <span style="color:#00D">30</span>)
+<span class="line-numbers"><a href="#n34" name="n34">34</a></span>your_school = <span style="color:#036;font-weight:bold">School</span>.new(<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Olin</span><span style="color:#710">&quot;</span></span>, <span style="color:#00D">50</span>)
+<span class="line-numbers"><a href="#n35" name="n35">35</a></span>
+<span class="line-numbers"><a href="#n36" name="n36">36</a></span><span style="color:#777">##### DUCK TYPING #####</span>
+<span class="line-numbers"><a href="#n37" name="n37">37</a></span>my_school.to_s
+<span class="line-numbers"><a href="#n38" name="n38">38</a></span>puts <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Inspecting my school: </span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">#{</span>my_school.inspect<span style="font-weight:bold;color:#666">}</span></span><span style="color:#710">&quot;</span></span>
+<span class="line-numbers"><a href="#n39" name="n39">39</a></span>my_school.respond_to? <span style="color:#A60">:inspect</span>
+<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span><span style="color:#60E">1.234</span>.respond_to? <span style="color:#A60">:inspect</span>
+<span class="line-numbers"><a href="#n41" name="n41">41</a></span>
+<span class="line-numbers"><a href="#n42" name="n42">42</a></span><span style="color:#777">##########################</span>
+<span class="line-numbers"><a href="#n43" name="n43">43</a></span><span style="color:#777"># Blocks are kind of like'anonymous methods'</span>
+<span class="line-numbers"><a href="#n44" name="n44">44</a></span>
+<span class="line-numbers"><a href="#n45" name="n45">45</a></span>numbers = [<span style="color:#00D">1</span>, <span style="color:#00D">20</span>, <span style="color:#00D">33</span>, <span style="color:#00D">-1</span>, <span style="color:#00D">11</span>]
+<span class="line-numbers"><a href="#n46" name="n46">46</a></span>numbers.sort
+<span class="line-numbers"><a href="#n47" name="n47">47</a></span>numbers.sample
+<span class="line-numbers"><a href="#n48" name="n48">48</a></span>numbers
+<span class="line-numbers"><a href="#n49" name="n49">49</a></span>
+<span class="line-numbers"><strong><a href="#n50" name="n50">50</a></strong></span>puts <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">first example:</span><span style="color:#710">&quot;</span></span>
+<span class="line-numbers"><a href="#n51" name="n51">51</a></span>numbers.each { |x| puts x}
+<span class="line-numbers"><a href="#n52" name="n52">52</a></span>
+<span class="line-numbers"><a href="#n53" name="n53">53</a></span>puts <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#b0b">\n</span><span style="color:#D20">Second example (the same!)</span><span style="color:#710">&quot;</span></span>
+<span class="line-numbers"><a href="#n54" name="n54">54</a></span>numbers.each <span style="color:#080;font-weight:bold">do</span>
+<span class="line-numbers"><a href="#n55" name="n55">55</a></span>   |x| puts x
+<span class="line-numbers"><a href="#n56" name="n56">56</a></span><span style="color:#080;font-weight:bold">end</span>
+<span class="line-numbers"><a href="#n57" name="n57">57</a></span>
+<span class="line-numbers"><a href="#n58" name="n58">58</a></span>numbers.map {|x| x * <span style="color:#00D">1000</span>}
+<span class="line-numbers"><a href="#n59" name="n59">59</a></span>
+<span class="line-numbers"><strong><a href="#n60" name="n60">60</a></strong></span>numbers.reduce { |accum, val| accum + val }
+<span class="line-numbers"><a href="#n61" name="n61">61</a></span>
+</pre></div>
+</div>
+</div>
+
+<h4 id="next-class">Next Class</h4>
+<ul>
+  <li>Look at homework: <a href="/content/lectures/part1/04_software_engineeringbasics.md.erb">Software Engineering</a></li>
+</ul>
+
+        </div>
+        <div class="col-xs-3">
+          <div class="row well right-nav" style="color: rgb(158, 48, 48);padding-top: 4px;padding-bottom: 4px;padding-left: 8px;padding-right: 8px;margin-bottom: 8px;">
+            <div id="helpful" class="text-center">Was this helpful!?
+    <a id="yes-link">yes</a> / <a id="no-link">no</a>
+</div>
+          </div>
+          <div class="row well right-nav" style="padding: 5px;">
+            <ul>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Intro
+            </label><ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/code_reading_request.md/">Code Reading (By Request!)</a></li><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/course_toc.md/">List of lectures</a></li><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/portfolio.md/">Code Portfolio</a></li></ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Lectures
+            </label><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-plus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Software Design
+        </label>
+        <ul class="tree" style="display: none"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/01_welcome.md/">Welcome</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/02_warm_up_1.md/">Ruby Firehose Part 1</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/03_warm_up_2.md/">Ruby and Intro to Object Oriented</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/04_software_engineeringbasics.md/">Software Engineering</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/06_software_design.md/">Software Design</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-plus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          nano Twitter (nT)
+        </label>
+        <ul class="tree" style="display: none"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/01_serv_fund.md/">Server Fundamentals</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/02_database_fund.md/">Database Basics</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/03_sinatra_intro.md/">Introduction to Sinatra</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/04_twitter_case.md/">Twitter Case Study</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/05_more_sinatra.md/">Persistence and Web services</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-plus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Scaling Basics
+        </label>
+        <ul class="tree" style="display: none"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/01_scaling_intro.md/">Intro to Scaling</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/02_architecting_for_scale.md/">Architecting for scale</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/03_web_services.md/">Introduction to Web Services</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Building Software
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/01_review_topics.md/">Review topics</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/02_oo_inheritance.md/">OO - Inheritance</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/03_tdd.md/">TDD</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/04_testing.md/">Software Testing</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/05_patterns.md/">Design Patterns</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Design at Scale
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/01_scaling_patterns.md/">Scaling Patterns</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/02_scaling_patterns_continued.md/">Scaling Patterns</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/03_projects.md/">Projects Discussion</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/04_review.md/">Review and Discussion</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/05_realworld.md/">Real World Survival Kit</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/06_conclusion.md/">Last Class</a></li></ul>
+      </li>
+    </ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Background
+            </label><ul class="tree" style="display: block"><li class=""><a href="/content/background/grading.md/">Grading</a></li><li class=""><a href="/content/background/leveling.md/">Leveling exercise</a></li><li class=""><a href="/content/background/pa.md/">Programming Assignments</a></li><li class=""><a href="/content/background/prework.md/">Recommended Pre-Work</a></li></ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              NanoTwitter
+            </label><ul class="tree" style="display: block"><li class=""><a href="/content/nt/01_nt_functionality.md/">nano Twitter Functionality</a></li><li class=""><a href="/content/nt/02_nt_arch.md/">NT Design and Architecture</a></li><li class=""><a href="/content/nt/03_nt_outline.md/">Nano Twitter Project Outline</a></li><li class=""><a href="/content/nt/04_references.md/">Aggregated Twitter Bibliography</a></li></ul></li>
+              
+                
+              
+                
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <footer>Copyright (2014-2015) R. Pito Salas, pitosalas@gmail.com</footer>
+      </div>
+  </div>
+</div>
+
+
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="/bootstrap/js/custom.js"></script>
+    <script src="/chalkmark/chalkmark.js"></script>
+    <script> $(document).ready(function() {
+      $('#tipue_search_input').tipuesearch({'highlightEveryTerm': true, 'show': 8, 'showURL': false, 'descriptiveWords': 50});
+    });</script>
+  </body>
+</html>

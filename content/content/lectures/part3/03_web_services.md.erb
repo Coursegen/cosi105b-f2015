@@ -1,0 +1,29 @@
+---
+title: Introduction to Web Services
+desc: What are web services? How do they tie into Service Oriented Architectures
+homework: Read articles about designing Web Services API
+---
+<%= homework_hdr %>
+* Read these articles
+	* [Dropbox starts using POST and why this is poor API design](http://evertpot.com/dropbox-post-api/)
+	* [Best Practices for Designing a Pragmatic RESTful API](http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api)
+* nanoTwitter
+	* Examine the routes that were proposed  in <%= link_to_section :nt, :nt_functionality %> for nT and evaluate them in the context of this reading.
+  * Do the \[ROUTES\] step in the Project Outline: Document in full detail all the routes that you will have to implement for nT, both for the "nT User Interface" and the "Web Services API". For each route (URI pattern) document the pattern, a description, whatever variable values there are (e.g. :email corresponds to the email for the registered user) and whatever status codes may be returned.
+  <%= team_deliverable "PDF with the API documentation." %>
+* nT implementation
+  * Teams continue working on nT. On Monday you should have the basic functionality working, i.e. up to \[SINATRAAPP\]
+
+#### Discussion
+* Discuss homework
+* Quick Quiz:
+  * What are some of the reasons why a product (like Facebook) would be divided up into "services"? Doing this is sometimes called a service oriented architecture. What is a service? What are some of the motivations for dividing a product into a set of services? 
+  * HTTP is a protocol used when one computer (the client) has to make a request of another computer (the server). The client makes a request, and the server responds to that request. What are the key parts or elements in the request? What are the key parts of building blocks of the response?
+
+#### Where we left off
+* <%= link_to_topic :architecting_for_scale %>, at "If Queries are a Problem"
+
+<%= include_topic :rest_web_services %>
+
+#### Next Class
+* Look at homework: <%= link_to_next_lecture %>

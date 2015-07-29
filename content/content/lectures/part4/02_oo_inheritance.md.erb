@@ -1,0 +1,75 @@
+---
+title: OO - Inheritance
+desc: A closer look at Inheritance and delegation
+homework: CRC Cards and POODR Chapter 6
+---
+<%= homework_hdr %>
+* Study [A library for OO thinking](http://c2.com/doc/oopsla89/paper.html). Consider a system to manage a small school's registration system. There are students, faculty, courses, registrations, semesters and so on. Design a set of CRC cards for that system. <%= deliverable "Take digital photos of your CRC cards, make sure they are legible, put them into a file with any explanations needed, and export to pdf. Submit it." %>
+* Read \[POODR\] Chapter 6.
+  * See if you can explain to yourself what she means with "Inheritance is at its core a mechanism for *automatic message delegation*. It defines a forwarding path for not-understood messages." Take your time.
+  * If you 'got' the previous chapter, you saw many places in which a message (=method call) is 'delegated' to another class. Do you see the similarity and how delegation is related to inheritance?
+  * The antipattern she mentions, putting a 'type' field in a class is a very common one. It is likely the first thing you think of. It is a major code smell telling you to look again at your design with the goal of eliminating the type. It's as bad as having a conditional checking if my class is "Mountain Bike", another major code smell.
+  * Study to make sure you understand what she means by "The best way to create an abstract class is by pushing code up from concrete subclasses."
+  * <%= deliverable "Write down three things that you didn't understand, and if you undertood it all, then three things you learned. Submit as pdf" %>
+* Teams: You should start working on the deliverable for Monday because it will take some time.
+
+#### [Longitudinal Self Assessment](https://docs.google.com/forms/d/1k6p0VS0aqfmSFqkKYUHNQobfcCDFyvJeksdH1-61I5o/viewform)
+
+#### Discussion
+* Homework
+  * What are the negative consequences of classes that have an instance variable (e.g. @kind_of_bike) to say what variant the class is? How do you spot that pattern. How do you remove it?
+  * Compare inheritance and delegation as ways for classes to share behavior
+  * Can you say what the "Template Method Pattern" is?
+
+#### Feedback on POST-it notes
+* SCALE
+  * If the course had more of a fous on things relating to scale and less things * relating to ruby/sinatra
+  * give us more info on scaling. more in depth.
+  * more talk about scaling
+  * get into the implementation of caching, load testing and making services * faster. I would really like to learn how to use Redis
+* OK
+  * I couldnt say I think the course is going well
+  * overall like that we can follow along with examples on our own machines and * think its very rewarding
+  * i'm not sure :(
+  * i have learned a lot in this class and cant think of anything that would be * more rewarding
+  * To be honest I have gotten the most out of speaking w Nick "post" class or * outside the class. Sessions describing the structure of assignments * explaining technical aspects greatly improved my understanding.
+* TIME
+  * workshops - getting the app done turned out to be very dificult and we * werent able to finish. While I like learning that way having regular * workshops/labs would be great
+  * More office hours
+  * built in lab time. Early in this course it could be used for workshops; * later in the course for group access to the TAs. The limiting factor for * figuring out this stuff is time.
+* CODING
+  * more small coding projects
+  * hints for an assingment as an initial push maybe
+  * i think maybe more build-up assignments and in class demonstreations before * jumping into nanotwitter. Twitterhack and user-service helped a lot but more * on databases and interacting with data
+  * i liked your sinatra persistence example. it was nice to see it gone through * step by step. I think doing this for more concepts, like duck typing for * example, would be nice
+  * a few more coding examples relative to the more abstrac theoretical lessons * in the class
+* MISC
+  * add answers to deliverables afer the submission deadline
+  * review how to use sqlite and postgre
+  * For me learning these skills to create web applications is already rewarding * enough. I just have to make sure to try helping with both the HTML and * SInatra parts
+  * maybe share some more useful tools and more examples of good code style
+  * more heroku guidance
+  * no written summary turn-in
+
+#### Inheritence
+* Lets tour the code for [Chapter 5 of POODR](https://github.com/skmetz/poodr/blob/master/chapter_6.rb)
+* Refactoring as a tool
+  * Here to discover, uncover code sharing opportunities
+  * Unusally we don't attempt refactoring without supporting tests
+  * Technically I wouldn't call this refactoring, I would call this design
+  * Liskoff Substitution Principle (!!)
+    * Google it, you will see lots of hits
+    * Part of the SOLID principles of OO Design (google that too)
+    * Code that works correctly with objects of class P should continue to work correcty with objects of class C (where C < P, C )
+    * Or: Code that works correctly with Bicycle should work exactly the same with RoadBike or MountainBike. (Think of the Mechanic doing a "prepare bike")
+
+#### Here's my example
+* [Inheritance Demo](https://github.com/Cosi-105/inheritance-demo)
+
+#### Practice design CRC Cards
+* Work with your neigbor. 10 minutes.
+* Design the CRC cards for:
+  * A system to reserve tickets at a venue, dealing with seats being free or assigned, what section they are in, allowing for different venues to have different layouts, representing performances using a venue etc
+ 
+  #### Next Class
+* Look at homework: <%= link_to_next_lecture %>
