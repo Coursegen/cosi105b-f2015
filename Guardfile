@@ -5,4 +5,5 @@ guard :shell do
   clearing :on
   directories %w(. /mydev/cg-topics)
   watch(/.erb/) { |m| `cg compile` }
+  watch(/.rb/) { |m| `cg compile` }
 end
