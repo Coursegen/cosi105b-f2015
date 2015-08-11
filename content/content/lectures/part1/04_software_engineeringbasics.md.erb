@@ -1,32 +1,21 @@
 ---
-title: Software Engineering
+title: Software Engineering Basics
 desc: What is software engineering, how does it relate to Computer Science?
-homework: Because of snow days, the homework for today is what was due for the last two cancelled classes. [RTHW] to 45; Response to video and article about failure in software; Finish Movies-1; [POODR] Ch 3; Identify smells in movies-1.
+homework: 1) Complete [RTHW] to 44; 2) Write and submit a response to video and article about failure in software; 3) Finish Movies-1
 ---
-<%= callout("Snow Day Note", " These notes are actually the combination of what was on the pallete last week on Monday and Wednesday. The homeworks, which were due last week, are the same here. So today, Monday, there's no new homework, just what was due last week.") %>
 
-#### Homework from last Monday:
+<%= homework_hdr %>
 
-<%= include_topic :hw_rthw_45 %>
+<%= include_topic :hw_rthw_44 %>
+
 * Reading and Watching: As you read the article and watch the video try to figure out what some of the reasons are for failures in software projects. Are they failings of human nature or failings of science and methodology? Do the authors believe that in the future failure due to software will eventually be eliminated? How do those lessons apply to what happened with the original healthcare.gov web site? Were the problems fundamental computer science related or were they caused by easily avoided human error? Do you think software systems like that are fundamentally more complex and in fact exceed the ability of any individual to grasp?
   * Read [R.Charette, “Why Software Fails - IEEE Spectrum.”](http://bit.ly/1x5YG1n)
   * Watch [Healthcare.gov failure: Analysis and discussion](http://youtu.be/Rl5WFz6Gi28) ([also available here...](http://www.frequency.com/video/cs169-v13-w8l2s7/132108449))
   * <%= deliverable "Write a 1-page response to the questions I posed above. Support your arguments with references to the paper or other sources. PDFs only accepted." %>
-* You have to complete link_to_topic <%= link_to_topic :pa_movies_1 %> by today. If you are stuck, ask one of our wonderful TAs for assistance. Up to now you have been coding inside your own <%= link_to_intro :portfolio %>
+* You have to complete link_to_topic <%= link_to_topic :pa_movies_1 %> by today. If you are stuck, ask one of our wonderful TAs for assistance. Up to now you have been coding inside your own <%= link_to_intro :portfolio %>, directory `movies-1`.
 
-#### Homework from last Wednesday:
-
-<%= include_topic :hw_poodr_3 %>
-* Read about [Code Smells](http://martinfowler.com/bliki/CodeSmell.html) and [Code Smell](http://en.wikipedia.org/wiki/Code_smell) in wikipedia. Don't stop there. Google for Code Smells and find the most important and common ones. Examine your own <%= link_to_topic :pa_movies_1 %> and <%= deliverable "Point out two code smells." %>
-* Begin working on <%= link_to_topic :pa_movies_2 %> in your <%= link_to_intro :portfolio %> like you did before
-
-<%= callout("REMINDER", " Your portfolios will be reviewed and graded TODAY for progress.") %>
-
-<%= callout("Post It Note", " We will do a Post-it note exercise.") %>
+#### Discussions
+* Post-it-note exercise
+* Based on the readings and video lets discuss common and not so common for software failure.
 
 <%= include_topic :software_engineering %>
-
-<%= include_topic :good_programming %>
-
-#### Next Class
-* Look at homework: <%= link_to_next_lecture %>
