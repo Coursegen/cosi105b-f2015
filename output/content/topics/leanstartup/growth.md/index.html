@@ -1,0 +1,323 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <title>Scaling techniques - Cosi 105b</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap/css/custom.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="/tipuesearch/tipuesearch_set.js"></script>
+    <script src="/tipuesearch/tipuesearch_content.js"></script>
+    <script src="/tipuesearch/tipuesearchmin.js"></script>
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.0.0rc2">
+  </head>
+  <body>
+
+    
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+  <div class="row">
+    <div class="col-xs-7">
+      <a class="navbar-brand" href="/">Cosi 105b - Software Engineering for Scalability </a>
+    </div>
+    <div class="col-xs-2">
+      <div class="btn-group">
+        
+          <a class="btn btn-mini" href="/content/topics/leanstartup/getting_conversions/"><i class="glyphicon glyphicon-chevron-left" rel="tooltip" title="previous page"></i></a> <a class="btn btn-mini" href="/content/topics/leanstartup/growth_models.md/"><i class="glyphicon glyphicon-chevron-right" rel="tooltip" title="next page"></i></a>
+        
+      </div>
+    </div>
+    <div class="col-xs-3">
+    <form role="form" class="form-inline" action="/tipuesearch_logic/search/index.html">
+      <div class="input-group input-group-sm">
+        <input type="text" class="form-control" placeholder="search..." name="q" id="tipue_search_input" autocomplete="off" required>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+        <h3>
+	Scaling techniques
+	
+</h4>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-9">
+          <p>Article by Jason Calacanis about Scaling</p>
+
+<p>It’s much easier to sit in a room and dream about the killer feature that will save your startup. I’m going through this right now with Inside.com, and I see my other startups work on this as well. It’s fine to explore new features, test things, and even “build for yourself.”</p>
+
+<p>In fact, one of the best things to do is “build for yourself.” However, there is a point in time where you’ve created 5, 6, 7, or 10 features for your product and it’s time to say “enough” and start studying the metrics, doing user interviews, and testing.</p>
+
+<p>As far as I’m concerned this happens at 1,000 daily users for a consumer product and 250 daily users for an enterprise product. At that point you have enough users to solicit feedback and break people into two groups to do A/B tests.</p>
+
+<p>We are getting thousands of daily users at Inside.com and we are very focused on two things: a) figuring out what behaviors increase people’s time in the App and b) figuring out how to get new people into the product.</p>
+
+<h4 id="founders-dont-invest-in-metrics--community">Founders don’t invest in metrics &amp; community</h4>
+
+<p>In order to really grow a startup you need to increase your knowledge of how your product is being used. There are two basic ways to do this: study people’s behavior and talk to your users.</p>
+
+<p>In terms of metrics you need to figure out how people are using your product with analytics packages like Localytics (mobile), Google Analytics (web), Chartbeat (live web; disclosure, I’m an investor) and Mailchimp/Sendgrid/Dyn (mail open rates, conversions, etc.).</p>
+
+<p>In terms of talking to users I created three groups for Inside (alpha, beta, and delta) in the early months using a Google Group for each. I solicited members for these groups from inside the Inside.com app (literally said “email us to join our beta group to talk about new features!”). Everyone on our team joined these lists and listened. It was eye-opening: our users were wildly more sophisticated than we thought! They were really interested in very, very specific features and they were super loyal to us. Huge win.</p>
+
+<h4 id="founders-dont-budget-properly">Founders don’t budget properly</h4>
+
+<p>I don’t know what the proper budget is for startups, but I actually think growth should be at least 25% of your budget after the product is completed – perhaps 50%.</p>
+
+<p>The problem is that you need this huge group of people to launch a product, and after the product is done you need half that amount to maintain it.</p>
+
+<p>Of course, hiring 15 people for six months of building the 1.0 and then shifting gears and firing five in order to put that money to work on buying installs, ads, and doing marketing is really not practical – it’s mercenary and would kill your culture.</p>
+
+<p>So what most folks do is they burn $150k a month on 15 team members and an office, and once the product is in market they say “we have no budget left for marketing this awesome product!”</p>
+
+<p>Then they look at their resources, the team they do have, and they default back to the “feature race,” adding more features.</p>
+
+<p>A startup should basically fund itself with an expectation that they will spend 2/3rds of the eventual monthly budget building (say $100k) and then pop in the $50k a month in marketing in month seven when they launch and learn how to spend it effectively (or if they even should market the product – they might not want to if it’s a dog!).</p>
+
+<h4 id="founder-paralysis-search-for-a-pulse">Founder paralysis: search for a pulse</h4>
+
+<p>Founders get really scared right after their products launch because of the very typical “launch bump” and the eventual “pit of despair” when the press and social media stop caring about you.</p>
+
+<p>You have to fight the urge to be paralyzed and “search for a pulse.” Is there a “sign of life” in your product? Do folks like it enough that they can’t live without it?</p>
+
+<p>There is an easy way to find out: ask them. One way to phrase it is: “how much would it cost to replace my product – in time or money – if we didn’t exist”? Another way is to say “What would you replace us with?” or “How did you solve this before you found us?”</p>
+
+<p>If the product was, say, Thumbtack.com (I’m an investor) it would be something like, “Well, I would have to spend five hours: first calling 10 house painters, then getting five to call me back, three to visit and two to give me quotes.”</p>
+
+<p>That answer means, “f@#k, life without Thumbtack.com would really suck.”</p>
+
+<p>With a consumer product, this can be hard to judge sometimes: questions like “what would life be like without Calm.com or Vine.com?” might elicit the answers:</p>
+
+<p>“Well, I wouldn’t meditate regularly, if at all, without my Calm.com App,” or, “I wouldn’t laugh as much without Vine – I would miss it!”</p>
+
+<p>Those are valid answers, but it’s sometimes hard to put a cost on something that is just delightful. What’s the cost of losing the funniest guy at your poker game? Well, you have a boring game and folks say “I wish Pollak were here!”</p>
+
+<h4 id="no-dedicated-growth-positions">No dedicated growth positions</h4>
+
+<p>Sure, everyone should be thinking about growth, but do you need a specific person in each company focused on this? When I have a growth person at one of my companies, they are solely responsible for seeking the truth around the brutal inevitabilities all founders face: “why are we not growing?” or “why is growth slowing?” or “why are we shrinking?”</p>
+
+<p>In order to plan for growth you need to have someone build that plan, execute that plan and study the results so the next plan can be 20% better. You need someone obsessed with this.</p>
+
+<p>Worse than this is a startup that does have growth positions, or positions with growth responsibility, but they are not given the authority to “grow.” Second guessing folks who you’ve hired to grow the product is worse than not having growth people – because you’re getting all of the costs and none of the benefits. Listening to the growth team is as critical as having them.</p>
+
+<h4 id="what-techniques-are-there-to-scale">What techniques are there to scale?</h4>
+<p>See <a href="https://docs.google.com/spreadsheets/d/1KFffyXkYcSea1-yECXGOxfOdzyqJi_A6gh9Jo4W7L-I/edit#gid=0">More Scaling Ideas</a></p>
+
+<ul>
+  <li>How can I increase email open rates?</li>
+  <li>How do I select my startup’s next market?</li>
+  <li>How do I handle traffic spikes after media exposure?</li>
+  <li>How do I keep my architecture stable at scale?</li>
+  <li>How do I simplify my API?</li>
+  <li>How do I create a brand voice for my startup?</li>
+  <li>How do I attract service professionals to my marketplace?</li>
+  <li>How can I increase month-to-month retention for my app?</li>
+  <li>Which press outlets drive downloads?</li>
+  <li>Are byline articles in Pando, Business Insider, TechCrunch, and LinkedIn worth my time?</li>
+  <li>What do I do when a customer is unhappy?</li>
+  <li>How do I recruit senior designers and developers with limited funding?</li>
+  <li>How do I speed up my release cycle?</li>
+  <li>How do I price my product for maximum growth?</li>
+  <li>How do I know when to pivot my business model?</li>
+  <li>How do I reduce customer churn for my SaaS company?</li>
+  <li>How do I make my hardware and software work seamlessly?</li>
+  <li>How do I build a push notification CMS?</li>
+  <li>How do I market to a younger demographic?</li>
+  <li>How can I quickly build an effective referral program?</li>
+  <li>How can I scale my user acquisition with FB ads?</li>
+  <li>How do I maintain a sense of community with my users while scaling?</li>
+  <li>How do I get my crowdfunding campaign featured?</li>
+  <li>Are infographics expensive to build? Do they drive business &amp; how do I measure their * effectiveness ?</li>
+  <li>How do I incr ease my rank in the app store?</li>
+  <li>How do I write tweets that increase app installs?</li>
+  <li>How can I identify new sales people that fit my culture – and won’t quit in 6 months?</li>
+  <li>How do I reduce churn in my sales team?</li>
+  <li>How do I streamline my manufacturing?</li>
+  <li>How do I avoid liability and lawsuits?</li>
+  <li>How do I onboard independent contractors?</li>
+  <li>How do I test marketing techniques with a small user base?</li>
+  <li>How do I best use remote workers?</li>
+  <li>How do I train my devs on both ios and android?</li>
+  <li>How do I recruit senior designers and devs with limited funding?</li>
+  <li>Do I need to hire a growth team?</li>
+  <li>How do I get actionable feedback from my users?</li>
+  <li>How do I manage beta groups to test new features?</li>
+  <li>How do I teach new users how to use my app?</li>
+  <li>When do I censor my startup’s community?</li>
+  <li>How do I take market share from a bigger competitor?</li>
+  <li>Should every part of my team grow equally when scaling?</li>
+  <li>When’s the right time to get acquired?</li>
+  <li>How much should user feedback change my product?</li>
+  <li>Where can I find testers in the very early stages of a minimum viable product?</li>
+  <li>How do I get featured by Apple and Google in the App and Play stores?</li>
+  <li>Should I focus my limited resources on pleasing existing customers or gaining new ones?</li>
+  <li>Who should my first hire be when scaling?</li>
+  <li>Should new hires have experience scaling?</li>
+  <li>How quickly can I scale from one new market to the next?</li>
+  <li>How do I develop strategic relationships in new markets?</li>
+  <li>How do I find mentors for my startup?</li>
+  <li>How do I source leads on Linkedin?</li>
+  <li>How do I source candidates on Linkedin?</li>
+  <li>How can I create tweets that convert to sales?</li>
+  <li>How do I create brand loyalty through email?</li>
+  <li>How do I acquire users in a new market?</li>
+  <li>How can I prepare for seasonal spikes in traffic?</li>
+  <li>How do I partition services to limit risk of a security breach?</li>
+  <li>How do I transition new features from test to production environments?</li>
+  <li>How do I develop strategic relationships in new markets?</li>
+  <li>How do I hire a city manager capable of running a new market?</li>
+  <li>How should I organize my engineering team?</li>
+  <li>How do I prevent my website from crashing from too much traffic?</li>
+  <li>How do I maximize my marketing budget?</li>
+  <li>How can I use data as marketing material?</li>
+  <li>How can I increase month to month retention for my app?</li>
+  <li>How do I push notifications to millions of users?</li>
+  <li>How can I increase high quality influencers on my twitter handle?</li>
+  <li>How do I use AdWords to market my startup?</li>
+  <li>What are the most scalable channels for customer acquisition?</li>
+  <li>How do I find early customers that could become champions of my product?</li>
+  <li>How do I make an awesome product video?</li>
+  <li>How do I get good Yelp reviews for my startup?</li>
+  <li>How do I train my devs on both ios and android?</li>
+  <li>How do I limit excess inventory in manufacturing?</li>
+  <li>How do I manage a remote team?</li>
+  <li>How do I quickly implement user feedback into my next release?</li>
+  <li>How do I develop a windows app?</li>
+  <li>How do I create new apps while maintaining the quality of my core app?</li>
+  <li>How do I get my revenue model right?</li>
+  <li>How do I expand internationally?</li>
+  <li>How transparent should I make reviews of my users?</li>
+  <li>How do I take advantage of the economic environment?</li>
+  <li>Should I scale on multiple platforms at once, or focus solely on my strongest?</li>
+  <li>Should I try to scale as quickly as possible?</li>
+  <li>How do I monetize free users?</li>
+  <li>How do I get press for my app in a crowded market?</li>
+  <li>Should new hires have experience scaling?</li>
+  <li>How do I keep users’ credit card info private?</li>
+  <li>How do I prevent DDoS attacks?</li>
+  <li>How do I market to the college demographic?</li>
+  <li>How do I build an effective street team?</li>
+  <li>How do I get people to comment on my pins?</li>
+  <li>How do I email users content they actually want?</li>
+  <li>How do I get users to stay on my site longer?</li>
+  <li>What percentage of my marketing budget should go towards advertising?</li>
+  <li>How do I get a celebrity to talk about my product on Twitter or YouTube?</li>
+  <li>How do I leverage Vine, Instagram and other short video apps to scale my products?</li>
+  <li>How can I reduce the number of 1 star reviews for my app?</li>
+</ul>
+
+        </div>
+        <div class="col-xs-3">
+          <div class="row well right-nav" style="color: rgb(158, 48, 48);padding-top: 4px;padding-bottom: 4px;padding-left: 8px;padding-right: 8px;margin-bottom: 8px;">
+            <div id="helpful" class="text-center">Was this helpful!?
+    <a id="yes-link">yes</a> / <a id="no-link">no</a>
+</div>
+
+          </div>
+          <div class="row well right-nav" style="padding: 5px;">
+            <ul>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Intro
+            </label><ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/course_toc.md/">List of lectures</a></li><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/portfolio.md/">Code Portfolio</a></li><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/prework.md/">Recommended Pre-Work</a></li></ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Lectures
+            </label><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Software Design
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/01_welcome.md/">Welcome</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/02_ruby_firehose.md/">Ruby Firehose Part 1</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/03_intro_oo.md/">Ruby and Intro to Object Oriented</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/04_software_engineeringbasics.md/">Software Engineering</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/05_good_programming_practices.md/">Good Programming Practices</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/06_software_design.md/">Software Design</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          nano Twitter (nT)
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/01_serv_fund.md/">Server Fundamentals</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/02_database_fund.md/">Database Basics</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/03_sinatra_intro.md/">Introduction to Sinatra</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/04_twitter_case.md/">Twitter Case Study</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/05_more_sinatra.md/">Persistence and Web services</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Scaling Basics
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/01_scaling_intro.md/">Intro to Scaling</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/02_architecting_for_scale.md/">Architecting for scale</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/03_web_services.md/">Introduction to Web Services</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Building Software
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/01_review_topics.md/">Review topics</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/02_oo_inheritance.md/">OO - Inheritance</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/03_tdd.md/">TDD</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/04_testing.md/">Software Testing</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/05_patterns.md/">Design Patterns</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/06_practice.md/">Practice</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Design at Scale
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/01_scaling_patterns.md/">Scaling Patterns</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/02_scaling_patterns_continued.md/">Scaling Patterns</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/03_projects.md/">Projects Discussion</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/04_review.md/">Review and Discussion</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/05_realworld.md/">Real World Survival Kit</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/06_conclusion.md/">Last Class</a></li></ul>
+      </li>
+    </ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Background
+            </label><ul class="tree" style="display: block"><li class=""><a href="/content/background/grading.md/">Grading</a></li><li class=""><a href="/content/background/leveling.md/">Leveling exercise</a></li><li class=""><a href="/content/background/pa.md/">Programming Assignments</a></li></ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              NanoTwitter
+            </label><ul class="tree" style="display: block"><li class=""><a href="/content/nt/01_nt_functionality.md/">nano Twitter Functionality</a></li><li class=""><a href="/content/nt/02_nt_arch.md/">NT Design and Architecture</a></li><li class=""><a href="/content/nt/03_nt_outline.md/">Nano Twitter Project Outline</a></li><li class=""><a href="/content/nt/04_references.md/">Aggregated Twitter Bibliography</a></li></ul></li>
+              
+                
+              
+                
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <footer>Copyright (2014-2015) R. Pito Salas, pitosalas@gmail.com</footer>
+      </div>
+  </div>
+</div>
+
+
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="/bootstrap/js/custom.js"></script>
+    <script src="/chalkmark/chalkmark.js"></script>
+    <script> $(document).ready(function() {
+      $('#tipue_search_input').tipuesearch({'highlightEveryTerm': true, 'show': 8, 'showURL': false, 'descriptiveWords': 50});
+    });</script>
+  </body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <title>Unix Shell - Cosi 105b</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap/css/custom.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="/tipuesearch/tipuesearch_set.js"></script>
+    <script src="/tipuesearch/tipuesearch_content.js"></script>
+    <script src="/tipuesearch/tipuesearchmin.js"></script>
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.0.0rc2">
+  </head>
+  <body>
+
+    
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+  <div class="row">
+    <div class="col-xs-7">
+      <a class="navbar-brand" href="/">Cosi 105b - Software Engineering for Scalability </a>
+    </div>
+    <div class="col-xs-2">
+      <div class="btn-group">
+        
+          <a class="btn btn-mini" href="/content/topics/cribsheets/twitter_bootstrap.md/"><i class="glyphicon glyphicon-chevron-left" rel="tooltip" title="previous page"></i></a> <a class="btn btn-mini" href="/content/topics/cribsheets/vagrant_setup.md/"><i class="glyphicon glyphicon-chevron-right" rel="tooltip" title="next page"></i></a>
+        
+      </div>
+    </div>
+    <div class="col-xs-3">
+    <form role="form" class="form-inline" action="/tipuesearch_logic/search/index.html">
+      <div class="input-group input-group-sm">
+        <input type="text" class="form-control" placeholder="search..." name="q" id="tipue_search_input" autocomplete="off" required>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+        <h3>
+	Unix Shell
+	
+</h4>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-9">
+          <h4 id="what-is-unix-shell">What is Unix Shell?</h4>
+
+<p>Unix shell is a command-line interface (shell) for Unix-like operating systems through which user enters commands as text. The command-line interpreter then executes the command and returns the results. The most common shells in Unix were Bourne shell and C shell, and then Bash (Bourne-Again Shell) was developed as the original Unix shell.</p>
+
+<p>We will talk about most useful Bash commands but here are some very good free resources for you to learn more about shell and command line:</p>
+
+<ul>
+  <li><a href="http://linuxcommand.org/learning_the_shell.php">Learning the Shell</a>: an introduction to shell and basic commands</li>
+  <li><a href="http://cli.learncodethehardway.org/book/">The Command Line Crash Course</a>: a super fast course in using command line for FREE</li>
+  <li><a href="http://mywiki.wooledge.org/BashGuide">BashGuide</a>: a Bash guide for learning more about commands and writing shell scripts</li>
+  <li><a href="http://www.gnu.org/software/bash/manual/bashref.html">Bash Reference Manual</a>: Bash reference manual</li>
+</ul>
+
+<p>And here are some great books:</p>
+
+<ul>
+  <li><a href="http://www.amazon.com/Practical-Guide-Commands-Editors-Programming/dp/013308504X/ref%3Dsr_1_1?s%3Dbooks&amp;ie%3DUTF8&amp;qid%3D1358418389&amp;sr%3D1-1&amp;keywords%3Dsobell%2Blinux">A Practical Guide to Linux Commands, Editors, and Shell Programming</a></li>
+  <li><a href="http://www.amazon.com/Linux-System-Administration-Handbook-Edition/dp/0131480057/ref%3Dpd_sim_b_3">UNIX and Linux System Administration Handbook</a>: a comprehensive book for anyone who wants to know about Linux system administration <br />
+<br /></li>
+</ul>
+
+<h4 id="unix-file-system">Unix File System</h4>
+
+<p>File system is an essential part of every operating system, and Unix is no exception. Unix file system is a tree like structure that supports three kinds of files: regular files, directories and special files that are files like Unix sockets and symbolic links. Everything in Unix is considered a file if is not a process. Even physical drives are considered as files, which should be mounted by the operating system for read/write access. The root of this structure is ‘/’, and each file under the root is identified by its path, name and a unique identifier (inode).</p>
+
+<p>Unix support file extensions (e.g. .txt or .png) and also hidden files as other operating systems. The difference is that names of the hidden files start with ‘.’ and most of the times is used for configurations. For example, if you use git and you add global configurations, it will create a file named ‘.gitconfig’ in your home directory, which is hidden and is used by git to store the user’s configurations. <br />
+<br /></p>
+
+<h4 id="shell-commands-and-streams">Shell Commands and Streams</h4>
+
+<p>Shell commands in Unix-like operating systems are executable through a command-line interface. They accept arguments and options, and the most obvious difference between them is that options start with ‘-‘. For example, many commands has a help option which gives information about the command and its arguments and options, and is specified by ‘-h’ or ‘–help’.</p>
+
+<p>There are three kinds of streams that Bash commands work with: STDIN, STDOUT and STDERR. STDIN stands for ‘standard input’ and is the stream that a command accept to get input. It can be binary, text or even keyboard input. A command can write its outputs to STDOUT (standard output) which is the default stream that is printed out to the screen or STDERR (standard error), the error stream which is also printed to the screen by default.<br />
+<br /></p>
+
+<h4 id="most-useful-commands">Most Useful Commands</h4>
+
+<ul>
+  <li>List files: <strong>ls</strong></li>
+</ul>
+<pre>
+ls         #lists files in the current directory (same as 'ls .')
+ls -l      #lists files in the current directory with details
+ls -la     #lists all the files (even hidden files) in the current directory
+ls --help  #prints help information about ls command
+</pre>
+
+<ul>
+  <li>Change directory: <strong>cd</strong></li>
+</ul>
+<pre>
+cd ~       #go to home directory (same as 'cd' without arguments)  
+cd ../     #go to the parent directory
+</pre>
+
+<ul>
+  <li>Copy files: <strong>cp</strong></li>
+</ul>
+<pre>
+cp source.txt dest.txt   
+cp -r mydir ~/               #copy the directory 'mydir' recursively to my home directory  
+cd -i source.txt dest.txt    #prompt before overwritting
+</pre>
+
+<ul>
+  <li>Move files: <strong>mv</strong></li>
+</ul>
+<pre>
+mv source.txt dest.txt
+mv mydir ~/                  #move the directory 'mydir' recursively to my home directory  
+mv -i source.txt dest.txt    #prompt before overwritting
+</pre>
+
+<ul>
+  <li>Remove files: <strong>rm</strong></li>
+</ul>
+<pre>
+rm source.txt   
+rm -r mydir       #remove directory 'mydir' recursively
+rm -i *.txt       #remove all files with .txt extension but ask before removing 
+</pre>
+
+<ul>
+  <li>Symbolic link: <strong>ln</strong></li>
+</ul>
+<pre>
+ln -s /directory/foo.txt                  #make a symbolic link with the same name in the current directory
+ln -s /directory/foo.txt myfile.txt       #make a symbolic link with another name (myfile.txt)
+</pre>
+
+<ul>
+  <li>Current directory: <strong>pwd</strong></li>
+</ul>
+<pre>
+pwd     #prints the current working directory
+</pre>
+
+<ul>
+  <li>Create a directory: <strong>mkdir</strong></li>
+</ul>
+<pre>
+mkdir mydir   #create a directory named "mydir" in the current working directory
+</pre>
+
+<ul>
+  <li>Manual: <strong>man</strong></li>
+</ul>
+<pre>
+man ls        #show manual page for ls command
+</pre>
+
+<ul>
+  <li>Run a command as the root: <strong>sudo</strong></li>
+</ul>
+<pre>
+sudo rm -rf /tmp/foo.txt        #execute the rm command as the root user
+</pre>
+
+        </div>
+        <div class="col-xs-3">
+          <div class="row well right-nav" style="color: rgb(158, 48, 48);padding-top: 4px;padding-bottom: 4px;padding-left: 8px;padding-right: 8px;margin-bottom: 8px;">
+            <div id="helpful" class="text-center">Was this helpful!?
+    <a id="yes-link">yes</a> / <a id="no-link">no</a>
+</div>
+
+          </div>
+          <div class="row well right-nav" style="padding: 5px;">
+            <ul>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Intro
+            </label><ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/course_toc.md/">List of lectures</a></li><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/portfolio.md/">Code Portfolio</a></li><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/prework.md/">Recommended Pre-Work</a></li></ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Lectures
+            </label><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Software Design
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/01_welcome.md/">Welcome</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/02_ruby_firehose.md/">Ruby Firehose Part 1</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/03_intro_oo.md/">Ruby and Intro to Object Oriented</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/04_software_engineeringbasics.md/">Software Engineering</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/05_good_programming_practices.md/">Good Programming Practices</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/06_software_design.md/">Software Design</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          nano Twitter (nT)
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/01_serv_fund.md/">Server Fundamentals</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/02_database_fund.md/">Database Basics</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/03_sinatra_intro.md/">Introduction to Sinatra</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/04_twitter_case.md/">Twitter Case Study</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/05_more_sinatra.md/">Persistence and Web services</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Scaling Basics
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/01_scaling_intro.md/">Intro to Scaling</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/02_architecting_for_scale.md/">Architecting for scale</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/03_web_services.md/">Introduction to Web Services</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Building Software
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/01_review_topics.md/">Review topics</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/02_oo_inheritance.md/">OO - Inheritance</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/03_tdd.md/">TDD</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/04_testing.md/">Software Testing</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/05_patterns.md/">Design Patterns</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/06_practice.md/">Practice</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Design at Scale
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/01_scaling_patterns.md/">Scaling Patterns</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/02_scaling_patterns_continued.md/">Scaling Patterns</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/03_projects.md/">Projects Discussion</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/04_review.md/">Review and Discussion</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/05_realworld.md/">Real World Survival Kit</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/06_conclusion.md/">Last Class</a></li></ul>
+      </li>
+    </ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Background
+            </label><ul class="tree" style="display: block"><li class=""><a href="/content/background/grading.md/">Grading</a></li><li class=""><a href="/content/background/leveling.md/">Leveling exercise</a></li><li class=""><a href="/content/background/pa.md/">Programming Assignments</a></li></ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              NanoTwitter
+            </label><ul class="tree" style="display: block"><li class=""><a href="/content/nt/01_nt_functionality.md/">nano Twitter Functionality</a></li><li class=""><a href="/content/nt/02_nt_arch.md/">NT Design and Architecture</a></li><li class=""><a href="/content/nt/03_nt_outline.md/">Nano Twitter Project Outline</a></li><li class=""><a href="/content/nt/04_references.md/">Aggregated Twitter Bibliography</a></li></ul></li>
+              
+                
+              
+                
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <footer>Copyright (2014-2015) R. Pito Salas, pitosalas@gmail.com</footer>
+      </div>
+  </div>
+</div>
+
+
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="/bootstrap/js/custom.js"></script>
+    <script src="/chalkmark/chalkmark.js"></script>
+    <script> $(document).ready(function() {
+      $('#tipue_search_input').tipuesearch({'highlightEveryTerm': true, 'show': 8, 'showURL': false, 'descriptiveWords': 50});
+    });</script>
+  </body>
+</html>

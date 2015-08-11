@@ -4,29 +4,28 @@ require 'coursegen'
 COPYRIGHT_STRING = "Copyright (2014-2015) R. Pito Salas, pitosalas@gmail.com"
 
 # bucket for AWS Deployment of the course
-AWS_BUCKET = "cosi105-2015"
+AWS_BUCKET = "cosi105b-f2015"
 
 # Course short name
 COURSE_SHORT_NAME = "Cosi 105b"
-COURSE_LONG_NAME = "Software Engineering and Architecture at Scale"
+COURSE_LONG_NAME = "Software Engineering for Scalability "
 
 # Schedule information. Note that Monday is day 0
 LECTURES_SCHEDULE_CONFIG = ScheduleDef.new(
-    first_day: "jan-12-2015", 
-    weekdays: [:monday, :wednesday],
+    first_day: "august-28-2015",
+    weekdays: [:tuesday, :friday],
     number: 26,
-    skips: ["jan-19-2015", "jan-26-2015", "jan-28-2015", 
-            "feb-16-2015", "feb-18-2015", "apr-6-2015", "apr-8-2015"])
+    skips: ["september-15-2015", "september-29-2015", "november-27-2015"])
 
 
 # Sections in the right hand margin of the page
 SECTION_CONFIG = [
-  SectionDef.new("Intro", "intro", type: :section, bullet: :star),	
+  SectionDef.new("Intro", "intro", type: :section, bullet: :star),
 	SectionDef.new("Lectures", "lectures", type: :lecture, schedule: LECTURES_SCHEDULE_CONFIG, bullet: :dash),
   SectionDef.new("Background", "background", type: :section),
   SectionDef.new("NanoTwitter", "nt", type: :section),
 	SectionDef.new("Topics", "topics", hidden: true, type: :section),
-  SectionDef.new("Hidden", "hidden", hidden: true, type: :section)
+  SectionDef.new("Extras", "extras", hidden: true, type: :section)
 ]
 
 # Options are:

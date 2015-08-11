@@ -1,0 +1,371 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <title>Software Testing - Cosi 105b</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap/css/custom.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="/tipuesearch/tipuesearch_set.js"></script>
+    <script src="/tipuesearch/tipuesearch_content.js"></script>
+    <script src="/tipuesearch/tipuesearchmin.js"></script>
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.0.0rc2">
+  </head>
+  <body>
+
+    
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+  <div class="row">
+    <div class="col-xs-7">
+      <a class="navbar-brand" href="/">Cosi 105b - Software Engineering for Scalability </a>
+    </div>
+    <div class="col-xs-2">
+      <div class="btn-group">
+        
+          <a class="btn btn-mini" href="/content/lectures/part4/03_tdd.md/"><i class="glyphicon glyphicon-chevron-left" rel="tooltip" title="previous page"></i></a> <a class="btn btn-mini" href="/content/lectures/part4/05_patterns.md/"><i class="glyphicon glyphicon-chevron-right" rel="tooltip" title="next page"></i></a>
+        
+      </div>
+    </div>
+    <div class="col-xs-3">
+    <form role="form" class="form-inline" action="/tipuesearch_logic/search/index.html">
+      <div class="input-group input-group-sm">
+        <input type="text" class="form-control" placeholder="search..." name="q" id="tipue_search_input" autocomplete="off" required>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+        <h3>
+	Software Testing
+	
+		<small class="pull-right">(Tue Nov 3, lecture 18)</small>
+	
+</h4>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-9">
+          <h4 id="homework-due-for-today">Homework due for today</h4>
+<ul>
+  <li>Reading
+    <ul>
+      <li><a href="http://www.cs.ou.edu/~fagg/classes/empirical_methods_2006/papers/ShouldComputerScientistsExperimentMore.pdf">Should Computer Scientists Experiment More?</a></li>
+      <li><a href="http://disciplinas.stoa.usp.br/pluginfile.php/17266/mod_resource/content/1/ieee_computer_mbroy.pdf">Can Practitioners neglect theory and Theoreticians neglect practice?</a></li>
+      <li><a href="http://www.fastcompany.com/28121/they-write-right-stuff">They write right stuff</a></li>
+      <li>Read these three papers. Write a brief reflection (~1 page) summarizing your response key points that these papers. What did you learn? What is the value of formal studeies and research in Computer Science to the overall enterprise of software engineering at scale – if any?” <em style="color: red">Deliverable:</em> <em>Reflections, as pdf, ~1-2 pages</em></li>
+    </ul>
+  </li>
+  <li>Watch this video <a href="https://www.youtube.com/ watch?v=URSWYvyc42M">The Magic Tricks of Testing</a></li>
+  <li>Sign up and experiment a little with <a href="https://www.hirefire.io">HireFire</a>. <em style="color: red">Deliverable:</em> <em>Specifically what does Hirefire do. How exactly could you use Hirefire for your projects? - brief pdf</em></li>
+</ul>
+
+<h4 id="discussion">Discussion</h4>
+<ul>
+  <li>Where did the word “bug” come from?</li>
+</ul>
+
+<h4 id="load-testing-of-nanotwitter">Load testing of nanoTwitter</h4>
+<ul>
+  <li><a href="/content/topics/nt/nt_load_testing.md/">Load Testing nanoTwitter</a></li>
+</ul>
+
+<h4 id="evolution-of-software-testing---in-brief">Evolution of Software Testing - in brief</h4>
+
+<ul>
+  <li>
+    <p><a href="http://en.wikipedia.org/wiki/Grace_Hopper#mediaviewer/File:H96566k.jpg">The Original “Bug” found by Grace Hopper</a></p>
+  </li>
+  <li>Industrial or Manufacturing model
+    <ul>
+      <li>Quality Assurance: Make sure that the product we ship works as advertised</li>
+      <li>Factory cranks parts, random sample is sent back to the lab and ‘tested’</li>
+      <li>Statistics used to deterime whether the quality was at the desired level</li>
+    </ul>
+  </li>
+  <li>Software Quality Assurance
+    <ul>
+      <li>Realize that software was different</li>
+      <li>Required a detailed functional spec</li>
+      <li>Believed in an adverserial relationship between QA and Development team</li>
+      <li>Written test plans</li>
+      <li>Most testing was manual</li>
+    </ul>
+  </li>
+  <li>Automated Analysis as a Computer Science persuit
+    <ul>
+      <li>Read code and detect the errors?</li>
+      <li>“Executable” specifications</li>
+      <li>Automatic measures of code complexity to predict location of errors</li>
+    </ul>
+  </li>
+  <li>Introduction of test automation
+    <ul>
+      <li>Required some rearchitecture of the software</li>
+      <li>Turned the ‘manual’ test plans into something that could be ‘executed’</li>
+    </ul>
+  </li>
+  <li>Beginning of merging of QA with Dev
+    <ul>
+      <li>We see that finding a bug early in cycle saves big bucks</li>
+      <li>We see that software can be designed to be testable</li>
+      <li>Titles startreflecting this “Quality Engineer” – QE not QA</li>
+      <li>‘Testing’ function is integrated into the development team</li>
+    </ul>
+  </li>
+  <li>Agile methodology
+    <ul>
+      <li>Whole concept of shipping a product begins disappearing</li>
+      <li>Rapid release cycles, even continuous delivery</li>
+      <li>Holy grail is 100% automated testing. Manual testing disappears</li>
+      <li>Agile’s emphasis on refactoring demands finer grained unit tests</li>
+    </ul>
+  </li>
+  <li>Present era
+    <ul>
+      <li>Contunous testing, integration and testing</li>
+      <li>The notion of a release or a version totally gone</li>
+      <li>Feature switches allow individual features to be released and un-released</li>
+      <li>Cloud computing means that deployment happens to faraway servers</li>
+      <li>Further integration of “operations” into software development: Rise of Devops.</li>
+    </ul>
+  </li>
+  <li>Here’s a longer version: <a href="http://www.testingreferences.com/testinghistory.php">History of Software Testing</a></li>
+</ul>
+
+<h4 id="the-context">The Context</h4>
+
+<h6 id="credit-some-of-this-is-directly-quoting-poodrhttpwwwpoodrcom">Credit: Some of this is directly quoting <a href="http://www.poodr.com">POODR</a></h6>
+
+<ul>
+  <li>Testing and Agile
+    <ul>
+      <li>Notion of a ‘release’ is gone</li>
+      <li>Notion of a ‘spec’ is gone</li>
+      <li>Cycles are much faster</li>
+      <li>Automation becomes a requirement</li>
+    </ul>
+  </li>
+  <li>Testing and Design
+    <ul>
+      <li>Insight (not shared by all) that TDD supports design</li>
+      <li>Insist on looking at the class/module/unit first as a black box that delivers services</li>
+      <li>Good design delays all decisions that can be delayed until further requirements are nailed down.</li>
+      <li>Refactoring is how new requirements are incorporated</li>
+      <li>Good test suites is what gives you the confidence to refactor</li>
+    </ul>
+  </li>
+  <li>Testing and Refactoring:
+    <ul>
+      <li>Recall: <em>Refactoring is a controlled technique for improving the design of an existing code base. Its essence is applying a series of small behavior-preserving transformations, each of which ‘too small to be worth doing’</em></li>
+      <li>So you always should have solid tests before you start refactoring</li>
+      <li>Each small change is verified to not have changed behavior</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="good-testingqualitytestability">Good Testing/Quality/Testability</h4>
+<ul>
+  <li>Fundamental motivation for testing: reduce costs
+    <ul>
+      <li>Writing tests should over the lifetime of the code cost less</li>
+      <li>Otherwise it’s not worth doing</li>
+      <li>How does it reduce costs?</li>
+    </ul>
+  </li>
+  <li>Breaking it down: Why Test?
+    <ul>
+      <li>Finding bugs early</li>
+      <li>Reducing errors</li>
+      <li>Making assumptions explicit - documenting code with code [how do test do that?]</li>
+      <li>Make refactoring possible and safe [how safe?]</li>
+      <li>Driving design decisions (TDD?)</li>
+      <li>Discover bad design decisions [how?]</li>
+    </ul>
+  </li>
+  <li>Philosophy of Commenting
+    <ul>
+      <li>Believe or not, it’s controversial</li>
+      <li>Comments should not duplicate what the code clearly says</li>
+      <li>Of course, “clearly says” is in the eyes of the beholder</li>
+      <li>One philosophy: If you feel the need to put in a block comment, extract that section into a method with an intention revealing name</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="four-rules-of-simple-design">Four Rules of Simple Design</h4>
+
+<ul>
+  <li>What are rules like this good for?
+    <ul>
+      <li>They condense highly abstract ideas into easier to follow and remember rules of thumb</li>
+      <li>Why do we care about “simple design”? What’s the driving force?</li>
+      <li>Context matters: Are you writing throwaway code or software that someone will rely on?</li>
+    </ul>
+  </li>
+  <li>What is “good design”?
+    <ul>
+      <li>It’s an aesthetic judgement, in a way</li>
+      <li>According to Sandi Metz, good design is: T.R.U.E.
+        <ul>
+          <li><strong>Transparent:</strong> The opposite of “clever”. Is it easy to understand? Can a programmer anticipate the consquences of a change?</li>
+          <li><strong>Reasonable:</strong> How easy is it to make a simple change? Do you have to rewrite a whole class? Simple changes should be simple, and deeper changes should be possible.</li>
+          <li><strong>Usable:</strong> One sign of good design is if it shows itself to be usable in new ways for new purposes that were not necessarily apparent originally.</li>
+          <li><strong>Exemplary:</strong> Are you proud to show it off? Would you want someone to use your code as an example?</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Four Rules of Simple Design
+    <ol>
+      <li>Tests Pass!
+        <ul>
+          <li>Yes, you have to learn how to write tests and make it part of your practice</li>
+        </ul>
+      </li>
+      <li>Expresses Intent:
+        <ul>
+          <li>Yes, naming matters a lot.</li>
+          <li>Often as or more important than documentation</li>
+        </ul>
+      </li>
+      <li>No Duplication (DRY)
+        <ul>
+          <li>In the simplest sense, no textual duplication of lines of code</li>
+          <li>More important: No duplication of concepts or knowledge</li>
+        </ul>
+      </li>
+      <li>Small
+        <ul>
+          <li>Partly YAGNI</li>
+          <li>But also: code paths, classes, test data, examples, abstractions that are no longer used.</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li>Reference:
+    <ul>
+      <li><a href="https://leanpub.com/4rulesofsimpledesign">Understanding the four rules of Simple Design</a></li>
+      <li><a href="https://blog.thesoftwarecraft.com/2014/04/book-review-understanding-4-rules-of.html">Book Review Understanding the 4 Rules of Simple Design</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="next-class">Next Class</h4>
+<ul>
+  <li>Look at homework: <a href="/content/lectures/part4/05_patterns.md/">Design Patterns</a></li>
+</ul>
+
+        </div>
+        <div class="col-xs-3">
+          <div class="row well right-nav" style="color: rgb(158, 48, 48);padding-top: 4px;padding-bottom: 4px;padding-left: 8px;padding-right: 8px;margin-bottom: 8px;">
+            <div id="helpful" class="text-center">Was this helpful!?
+    <a id="yes-link">yes</a> / <a id="no-link">no</a>
+</div>
+
+          </div>
+          <div class="row well right-nav" style="padding: 5px;">
+            <ul>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Intro
+            </label><ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/course_toc.md/">List of lectures</a></li><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/portfolio.md/">Code Portfolio</a></li><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/prework.md/">Recommended Pre-Work</a></li></ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Lectures
+            </label><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Software Design
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/01_welcome.md/">Welcome</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/02_ruby_firehose.md/">Ruby Firehose Part 1</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/03_intro_oo.md/">Ruby and Intro to Object Oriented</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/04_software_engineeringbasics.md/">Software Engineering</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/05_good_programming_practices.md/">Good Programming Practices</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/06_software_design.md/">Software Design</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          nano Twitter (nT)
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/01_serv_fund.md/">Server Fundamentals</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/02_database_fund.md/">Database Basics</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/03_sinatra_intro.md/">Introduction to Sinatra</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/04_twitter_case.md/">Twitter Case Study</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/05_more_sinatra.md/">Persistence and Web services</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Scaling Basics
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/01_scaling_intro.md/">Intro to Scaling</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/02_architecting_for_scale.md/">Architecting for scale</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/03_web_services.md/">Introduction to Web Services</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Building Software
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/01_review_topics.md/">Review topics</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/02_oo_inheritance.md/">OO - Inheritance</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/03_tdd.md/">TDD</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/04_testing.md/">Software Testing</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/05_patterns.md/">Design Patterns</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/06_practice.md/">Practice</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Design at Scale
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/01_scaling_patterns.md/">Scaling Patterns</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/02_scaling_patterns_continued.md/">Scaling Patterns</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/03_projects.md/">Projects Discussion</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/04_review.md/">Review and Discussion</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/05_realworld.md/">Real World Survival Kit</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/06_conclusion.md/">Last Class</a></li></ul>
+      </li>
+    </ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Background
+            </label><ul class="tree" style="display: block"><li class=""><a href="/content/background/grading.md/">Grading</a></li><li class=""><a href="/content/background/leveling.md/">Leveling exercise</a></li><li class=""><a href="/content/background/pa.md/">Programming Assignments</a></li></ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              NanoTwitter
+            </label><ul class="tree" style="display: block"><li class=""><a href="/content/nt/01_nt_functionality.md/">nano Twitter Functionality</a></li><li class=""><a href="/content/nt/02_nt_arch.md/">NT Design and Architecture</a></li><li class=""><a href="/content/nt/03_nt_outline.md/">Nano Twitter Project Outline</a></li><li class=""><a href="/content/nt/04_references.md/">Aggregated Twitter Bibliography</a></li></ul></li>
+              
+                
+              
+                
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <footer>Copyright (2014-2015) R. Pito Salas, pitosalas@gmail.com</footer>
+      </div>
+  </div>
+</div>
+
+
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="/bootstrap/js/custom.js"></script>
+    <script src="/chalkmark/chalkmark.js"></script>
+    <script> $(document).ready(function() {
+      $('#tipue_search_input').tipuesearch({'highlightEveryTerm': true, 'show': 8, 'showURL': false, 'descriptiveWords': 50});
+    });</script>
+  </body>
+</html>

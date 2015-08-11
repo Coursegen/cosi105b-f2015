@@ -1,0 +1,335 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <title>Database Basics - Cosi 105b</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap/css/custom.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="/tipuesearch/tipuesearch_set.js"></script>
+    <script src="/tipuesearch/tipuesearch_content.js"></script>
+    <script src="/tipuesearch/tipuesearchmin.js"></script>
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.0.0rc2">
+  </head>
+  <body>
+
+    
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+  <div class="row">
+    <div class="col-xs-7">
+      <a class="navbar-brand" href="/">Cosi 105b - Software Engineering for Scalability </a>
+    </div>
+    <div class="col-xs-2">
+      <div class="btn-group">
+        
+          <a class="btn btn-mini" href="/content/lectures/part2/01_serv_fund.md/"><i class="glyphicon glyphicon-chevron-left" rel="tooltip" title="previous page"></i></a> <a class="btn btn-mini" href="/content/lectures/part2/03_sinatra_intro.md/"><i class="glyphicon glyphicon-chevron-right" rel="tooltip" title="next page"></i></a>
+        
+      </div>
+    </div>
+    <div class="col-xs-3">
+    <form role="form" class="form-inline" action="/tipuesearch_logic/search/index.html">
+      <div class="input-group input-group-sm">
+        <input type="text" class="form-control" placeholder="search..." name="q" id="tipue_search_input" autocomplete="off" required>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+        <h3>
+	Database Basics
+	
+		<small class="pull-right">(Fri Sep 25, lecture 8)</small>
+	
+</h4>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-9">
+          <h4 id="homework-due-for-today">Homework due for today</h4>
+<ul>
+  <li>Read [SODRR] Chapter 1 and attempt to get it to work on your computer.
+    <ul>
+      <li>This chapter builds on the basics we covered at the last lecture. It covers much of the same ground as the last tutorial, but goes a little further. Try to develop an understanding of:
+        <ul>
+          <li>What a web server is and how Sinatra helps you create one</li>
+          <li>Meaning of the URL</li>
+          <li>ActiveRecord as the bridge between Ruby and the relational database</li>
+          <li>The relationship between the client and the server</li>
+          <li>How Unit testing is done with Rspec</li>
+          <li>The idea of Test Driven Development</li>
+          <li>HTTP and it’s different Verbs like GET, PUT, POST etc.</li>
+        </ul>
+      </li>
+      <li>
+        <p>To help your reading and doing, here’s a video of the first 18 pages of that chapter with extensive commentary and conceptual explanations:</p>
+
+        <iframe width="400" height="225" src="https://www.youtube.com/embed/zPaG-g-d6sY?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen=""></iframe>
+      </li>
+      <li>Because the book is a couple of years old, there are some changes you need to keep in mind in order to get it to work on your own computer. They are all mentioned in the video but here they are again:
+        <ol>
+          <li>gem is called <code>active_record</code> (not activerecord)</li>
+          <li>No need to require ‘rubygems’ anymore (since Ruby 2.0)</li>
+          <li>The first few lines of service_spec.rb change a lot. <a href="https://raw.githubusercontent.com/pitosalas/sotl-user-service/master/spec/service_spec.rb">Click here to see a working example</a></li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div class="well well-sm">
+<span class="label label-primary">NOTE</span> In addition to just reading the chapter and watching the video, I would like you to get it to work on your own computer in your portfolio in a new top level directory called `cs105b_yourname/user-service.
+</div>
+
+<h4 id="please-spend-5-minutes-on-this">Please spend 5 minutes on this</h4>
+<p><a href="https://docs.google.com/forms/d/1k6p0VS0aqfmSFqkKYUHNQobfcCDFyvJeksdH1-61I5o/viewform">Self Assessment Grid</a></p>
+
+<h3 id="from-monday">From Monday</h3>
+<h4 id="how-a-web-server-works">How a web server works</h4>
+<ul>
+  <li>Review of some basic concepts
+    <ul>
+      <li>Client and Server</li>
+      <li>Client asks for a page; server sends a page</li>
+      <li>Web server receives the request and creates the page and sends it back</li>
+    </ul>
+  </li>
+  <li>A level deeper:
+    <ul>
+      <li>Server (usually) looks inside a database for information</li>
+      <li>And runs an algorithm on that to create the output</li>
+      <li>And that’s what gets sent back.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="todays-original-plan">Today’s Original Plan</h3>
+
+<h4 id="homework">Homework</h4>
+<ul>
+  <li>Let’s review the user-service.rb and related files to talk again about what they do.</li>
+</ul>
+
+<h4 id="data-modeling-background">Data Modeling Background</h4>
+<ul>
+  <li>What does the term ‘Data Modeling’ mean?</li>
+  <li>How Relational Databases work</li>
+  <li>Tables, Columns, Databases, Joins</li>
+  <li>“3d Normal Form”</li>
+  <li>Different approaches</li>
+  <li>Key question is how you correlate the tables in a database with the attributes of a class</li>
+</ul>
+
+<h4 id="data-modeling">Data Modeling</h4>
+<ul>
+  <li>Crucial step in design</li>
+  <li>SQL vs. NOSQL databases</li>
+  <li>SQL Databases
+    <ul>
+      <li>Schema</li>
+      <li>Tables</li>
+      <li>Fields</li>
+      <li>Joins</li>
+    </ul>
+  </li>
+  <li>Relationships
+    <ul>
+      <li>One to One (Student &lt;-&gt; Transcript)</li>
+      <li>One to Many (Student -&gt; Car)</li>
+      <li>Many to Many (Student &lt;-&gt; Courses)</li>
+    </ul>
+  </li>
+  <li>Careful analysis of the product requirements</li>
+</ul>
+
+<h4 id="exercise">Exercise</h4>
+<ul>
+  <li>Team up with one other person</li>
+  <li>Design the data model for a music library management application like iTunes</li>
+  <li>15 Minutes, ask questions</li>
+</ul>
+
+<h4 id="steps">Steps</h4>
+<ol>
+  <li>What are the entities?</li>
+  <li>Is something contained in something else?</li>
+  <li>How many X’s are there for each Y?</li>
+  <li>What kinds of facts do we need to know about each entity?</li>
+  <li>What are the datatypes of those facts? Are there any ‘arrays’?</li>
+  <li>Possibly identify other entities</li>
+  <li>Repeat until done</li>
+</ol>
+
+<h4 id="activerecord-db-mechanics">ActiveRecord DB Mechanics</h4>
+<ul>
+  <li>ActiveRecord
+    <ul>
+      <li>Library from Ruby on Rails which is the connection between the rails application and the underlying database</li>
+      <li>For advanced designs, there are options other than Activerecord</li>
+      <li>ActiveRecord is also often used by itself, especially in Sinatra</li>
+    </ul>
+  </li>
+  <li>Naming
+    <ul>
+      <li>Model.rb file is named singular, e.g. User</li>
+      <li>Corresponding db table is plural and lower case, e.g. users</li>
+    </ul>
+  </li>
+  <li>Correspondences
+    <ul>
+      <li>Each instance of the class (e.g. User) corresponds to a single record in the dabase</li>
+      <li>When a query returns a bunch of records, you get a collection of instances of the class</li>
+      <li>(this is classic Active Record model)</li>
+    </ul>
+  </li>
+  <li>Attributes
+    <ul>
+      <li>Rails will automagically create the methods to access each field of the record in the database</li>
+    </ul>
+  </li>
+  <li>Different database ‘servers’
+    <ul>
+      <li>Sqllite - local database, no need for a server</li>
+      <li>MySql - Standard industrial strength database, free</li>
+      <li>Postgress - Becoming very popular with Rails community</li>
+    </ul>
+  </li>
+  <li>Datatypes supported by ActiveRecord
+    <ul>
+      <li><a href="/content/topics/cribsheets/db_types.md/">DB datatypes for Rails 4</a></li>
+    </ul>
+  </li>
+  <li>
+    <p>Queries and other ways to access the database</p>
+  </li>
+  <li>Validations
+    <ul>
+      <li><a href="/content/topics/cribsheets/rails_validations.md/">Rails Validations</a></li>
+    </ul>
+  </li>
+  <li>Tools and notes
+    <ul>
+      <li>Check out <a href="http://www.desertsandsoftware.com/?page_id=17">MesaSQLite</a></li>
+      <li>Handy Rake Info: <a href="/content/topics/cribsheets/rake_commands.md/">Rake “tasks” (commands)</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="next-class">Next Class</h4>
+<ul>
+  <li>Look at homework: <a href="/content/lectures/part2/03_sinatra_intro.md/">Introduction to Sinatra</a></li>
+</ul>
+
+        </div>
+        <div class="col-xs-3">
+          <div class="row well right-nav" style="color: rgb(158, 48, 48);padding-top: 4px;padding-bottom: 4px;padding-left: 8px;padding-right: 8px;margin-bottom: 8px;">
+            <div id="helpful" class="text-center">Was this helpful!?
+    <a id="yes-link">yes</a> / <a id="no-link">no</a>
+</div>
+
+          </div>
+          <div class="row well right-nav" style="padding: 5px;">
+            <ul>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Intro
+            </label><ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/course_toc.md/">List of lectures</a></li><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/portfolio.md/">Code Portfolio</a></li><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/prework.md/">Recommended Pre-Work</a></li></ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Lectures
+            </label><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Software Design
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/01_welcome.md/">Welcome</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/02_ruby_firehose.md/">Ruby Firehose Part 1</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/03_intro_oo.md/">Ruby and Intro to Object Oriented</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/04_software_engineeringbasics.md/">Software Engineering</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/05_good_programming_practices.md/">Good Programming Practices</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/06_software_design.md/">Software Design</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          nano Twitter (nT)
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/01_serv_fund.md/">Server Fundamentals</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/02_database_fund.md/">Database Basics</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/03_sinatra_intro.md/">Introduction to Sinatra</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/04_twitter_case.md/">Twitter Case Study</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/05_more_sinatra.md/">Persistence and Web services</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Scaling Basics
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/01_scaling_intro.md/">Intro to Scaling</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/02_architecting_for_scale.md/">Architecting for scale</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/03_web_services.md/">Introduction to Web Services</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Building Software
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/01_review_topics.md/">Review topics</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/02_oo_inheritance.md/">OO - Inheritance</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/03_tdd.md/">TDD</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/04_testing.md/">Software Testing</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/05_patterns.md/">Design Patterns</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/06_practice.md/">Practice</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Design at Scale
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/01_scaling_patterns.md/">Scaling Patterns</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/02_scaling_patterns_continued.md/">Scaling Patterns</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/03_projects.md/">Projects Discussion</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/04_review.md/">Review and Discussion</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/05_realworld.md/">Real World Survival Kit</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/06_conclusion.md/">Last Class</a></li></ul>
+      </li>
+    </ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Background
+            </label><ul class="tree" style="display: block"><li class=""><a href="/content/background/grading.md/">Grading</a></li><li class=""><a href="/content/background/leveling.md/">Leveling exercise</a></li><li class=""><a href="/content/background/pa.md/">Programming Assignments</a></li></ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              NanoTwitter
+            </label><ul class="tree" style="display: block"><li class=""><a href="/content/nt/01_nt_functionality.md/">nano Twitter Functionality</a></li><li class=""><a href="/content/nt/02_nt_arch.md/">NT Design and Architecture</a></li><li class=""><a href="/content/nt/03_nt_outline.md/">Nano Twitter Project Outline</a></li><li class=""><a href="/content/nt/04_references.md/">Aggregated Twitter Bibliography</a></li></ul></li>
+              
+                
+              
+                
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <footer>Copyright (2014-2015) R. Pito Salas, pitosalas@gmail.com</footer>
+      </div>
+  </div>
+</div>
+
+
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="/bootstrap/js/custom.js"></script>
+    <script src="/chalkmark/chalkmark.js"></script>
+    <script> $(document).ready(function() {
+      $('#tipue_search_input').tipuesearch({'highlightEveryTerm': true, 'show': 8, 'showURL': false, 'descriptiveWords': 50});
+    });</script>
+  </body>
+</html>

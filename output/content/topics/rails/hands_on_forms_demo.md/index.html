@@ -1,0 +1,381 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <title>Hands On Forms Demo - Cosi 105b</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap/css/custom.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="/tipuesearch/tipuesearch_set.js"></script>
+    <script src="/tipuesearch/tipuesearch_content.js"></script>
+    <script src="/tipuesearch/tipuesearchmin.js"></script>
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.0.0rc2">
+  </head>
+  <body>
+
+    
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+  <div class="row">
+    <div class="col-xs-7">
+      <a class="navbar-brand" href="/">Cosi 105b - Software Engineering for Scalability </a>
+    </div>
+    <div class="col-xs-2">
+      <div class="btn-group">
+        
+          <a class="btn btn-mini" href="/content/topics/rails/forms_views.md/"><i class="glyphicon glyphicon-chevron-left" rel="tooltip" title="previous page"></i></a> <a class="btn btn-mini" href="/content/topics/rails/hands_on_tiny_rails_demo.md/"><i class="glyphicon glyphicon-chevron-right" rel="tooltip" title="next page"></i></a>
+        
+      </div>
+    </div>
+    <div class="col-xs-3">
+    <form role="form" class="form-inline" action="/tipuesearch_logic/search/index.html">
+      <div class="input-group input-group-sm">
+        <input type="text" class="form-control" placeholder="search..." name="q" id="tipue_search_input" autocomplete="off" required>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+        <h3>
+	Hands On Forms Demo
+	
+</h4>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-9">
+          <h4 id="set-up-and-modify-gem-file">Set up and modify gem file</h4>
+
+<pre><code>rails new forms demo
+
+gem 'pry'
+gem 'pry-byebug'
+gem 'better_errors'
+
+bundle
+</code></pre>
+
+<h4 id="make-models-and-define-associations">Make models and define associations</h4>
+
+<pre><code>rails generate scaffold items title:string  description:string owner:text category_id:integer
+rails generate scaffold categories title:string description:string
+rails generate scaffold comments from:string message:string item_id:integer
+
+\[category.rb\] 
+has_many :items
+
+\[item.rb\]
+belongs_to :category
+has_many :comments
+</code></pre>
+
+<h4 id="create-seed-data-seedsrb">Create seed data (seeds.rb)</h4>
+<ul>
+  <li>Notice an interesting way to create test data</li>
+</ul>
+
+<pre><code>puts "creating categories"
+Category.destroy_all
+
+books = Category.create(title: "book", description: "Books, Magazines etc.")
+electronics = Category.create(title: "electronics", description: "Computer, Cellphone, etc")
+clothing = Category.create(title: "clothing", description: "Shoes, Jackets, Belts, etc")
+jewelry = Category.create(title: "jewelry", description: "Rings, watches, necklaces, etc")
+
+owners = \["Jane Smith", "Ira Levin", "George Benson"\]
+colors = \["red", "brown", "green", "white", "tiny"\]
+clothingnames = \["shoes", "wallet", "belt"\]
+adjective = \["My favorite", "The perfect", "A great"\]
+
+puts "creating sample clothing"
+15.times do
+  title = colors.sample + " " + clothingnames.sample
+  description = adjective.sample + " " + title
+  Item.create(title: title, description: description, owner: owners.sample, category: clothing)
+end
+</code></pre>
+
+<h4 id="add-bootstrap">Add Bootstrap</h4>
+<ul>
+  <li>Notice not using a gem, to keep it simple</li>
+  <li>Reference: http://getbootstrap.com/getting-started/</li>
+  <li>Add this to application.html.erb</li>
+</ul>
+
+<pre><code>&lt;!-- Latest compiled and minified CSS --&gt;
+&lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"&gt;
+
+&lt;!-- Optional theme --&gt;
+&lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"&gt;
+
+&lt;!-- Latest compiled and minified JavaScript --&gt;
+&lt;script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<ul>
+  <li>And put the right bootstrap tags in place in application.html.erb</li>
+</ul>
+
+<pre><code>&lt;div class="container"&gt;
+  &lt;div class="row"&gt;
+    &lt;%= "yield" %&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+#### Lets update the routes
+* Notice: how the scategories resource stays flat
+* Notice how items &gt; comments is a nested resource
+* Notice how the collection is set up
+
+~~~
+Formdemo::Application.routes.draw do
+  resources :samples
+
+  resources :categories
+
+  resources :items do
+    collection do
+      get 'search'
+      get 'do_search'
+    end
+    resources :comments, only: \[:index, :new, :create\]
+  end
+
+  root 'items#index'
+~~~
+
+#### Define the search form search.html.erb
+~~~
+&lt;div&gt;
+  &lt;h1&gt;Search&lt;/h1&gt;
+    &lt;%= form_tag(do_search_items_path, method: "get") do %&gt;
+      &lt;div&gt;
+        &lt;label&gt;Title&lt;/label&gt;
+        &lt;%= text_field_tag(:title, "") %&gt;
+      &lt;/div&gt;
+
+      &lt;%= submit_tag("Search") %&gt;
+    &lt;% end %&gt;
+&lt;/div&gt;
+~~~
+
+#### And it's corresponding actions
+* Why does search have two actions?
+* What controller do these actions go in?
+* Notice how to do "like" in order to allow close matches
+* Notice how we factor out the index page so we get a parital
+
+</code></pre>
+<p># [items_controller.rb]
+  def search
+  end</p>
+
+<p>def do_search
+    @items = Item.where(“title LIKE ?”, “%#{params[:title]}%”)
+  end</p>
+
+<h1 id="viewsitemsindexhtmlerb">[views/items/_index.html.erb]</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Owner</th>
+      <th>Category</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    &lt;% @items.each do |item| %&gt;
+      <tr>
+        <td>&lt;%= item.title %&gt;</td>
+        <td>&lt;%= item.description %&gt;</td>
+        <td>&lt;%= item.owner %&gt;</td>
+        <td>&lt;%= item.category_id %&gt;</td>
+        <td>&lt;%= link_to 'Show', item %&gt;</td>
+        <td>&lt;%= link_to 'Edit', edit_item_path(item) %&gt;</td>
+        <td>&lt;%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %&gt;</td>
+      </tr>
+    &lt;% end %&gt;
+  </tbody>
+</table>
+
+<h1 id="viewsitemsindexhtmlerb-1">[views/items/index.html.erb]</h1>
+<h1>Listing items</h1>
+
+<p>&lt;%= render “index” %&gt;
+<br /></p>
+
+<p>&lt;%= link_to ‘New Item’, new_item_path %&gt;
+~~~~~</p>
+
+<h4 id="lets-add-some-bootstrap">Let’s add some Bootstrap</h4>
+<ul>
+  <li>Bootstrap is already “included” in layouts/application.html.erb</li>
+  <li>We bring it to life by adding classes to strategic spots</li>
+</ul>
+
+<pre><code># \[/views/items/index.html.erb\]
+&lt;h1&gt;Listing items&lt;/h1&gt;
+
+&lt;%= render "index" %&gt;
+&lt;br&gt;
+&lt;div class=btb-group %&gt;
+  &lt;%= link_to 'New Item', new_item_path, class: "btn btn-default" %&gt;
+  &lt;%= link_to 'Search', search_items_path, class: "btn btn-default" %&gt;
+&lt;/div&gt;
+
+# \[search.html.erb\]
+&lt;div class="col-md-offset-1 col-md-4"&gt;
+  &lt;h1&gt;Search&lt;/h1&gt;
+    &lt;%= form_tag(do_search_items_path, method: "get", class: "form") do %&gt;
+
+      &lt;div class="form-group"&gt;
+        &lt;label&gt;Title&lt;/label&gt;
+        &lt;%= text_field_tag(:title, "", class: "form-control") %&gt;
+      &lt;/div&gt;
+
+      &lt;%= submit_tag("Search", class: "btn btn-default") %&gt;
+    &lt;% end %&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h4 id="now-lets-add-some-additional-controls">Now lets add some additional controls</h4>
+<ul>
+  <li>A drop down control which will allow user to pick search options</li>
+</ul>
+
+<pre><code># \[views/items/search.html.erb\]
+    &lt;div class="form-group"&gt;
+      &lt;label&gt;Return matching or non-matching items&lt;/label&gt;
+      &lt;%= select_tag(:match_no_match, 
+            options_for_select(
+            \[['only matching', "match"\], 
+             \['only non matching', "nomatch"\]
+            ]), class: "form-control") %&gt;
+    &lt;/div&gt;
+
+# \[controllers/items_controller.rb, in do_search\]
+def do_search
+  match_no_match = params.fetch(:match_no_match)
+  negation = match_no_match == "match" ? "" : " NOT "
+  query_string = negation + "title LIKE ?"
+  @items = Item.where(query_string, "%#{params\[:title\]}%")
+end
+</code></pre>
+
+
+        </div>
+        <div class="col-xs-3">
+          <div class="row well right-nav" style="color: rgb(158, 48, 48);padding-top: 4px;padding-bottom: 4px;padding-left: 8px;padding-right: 8px;margin-bottom: 8px;">
+            <div id="helpful" class="text-center">Was this helpful!?
+    <a id="yes-link">yes</a> / <a id="no-link">no</a>
+</div>
+
+          </div>
+          <div class="row well right-nav" style="padding: 5px;">
+            <ul>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Intro
+            </label><ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/course_toc.md/">List of lectures</a></li><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/portfolio.md/">Code Portfolio</a></li><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/prework.md/">Recommended Pre-Work</a></li></ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Lectures
+            </label><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Software Design
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/01_welcome.md/">Welcome</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/02_ruby_firehose.md/">Ruby Firehose Part 1</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/03_intro_oo.md/">Ruby and Intro to Object Oriented</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/04_software_engineeringbasics.md/">Software Engineering</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/05_good_programming_practices.md/">Good Programming Practices</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/06_software_design.md/">Software Design</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          nano Twitter (nT)
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/01_serv_fund.md/">Server Fundamentals</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/02_database_fund.md/">Database Basics</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/03_sinatra_intro.md/">Introduction to Sinatra</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/04_twitter_case.md/">Twitter Case Study</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/05_more_sinatra.md/">Persistence and Web services</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Scaling Basics
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/01_scaling_intro.md/">Intro to Scaling</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/02_architecting_for_scale.md/">Architecting for scale</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/03_web_services.md/">Introduction to Web Services</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Building Software
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/01_review_topics.md/">Review topics</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/02_oo_inheritance.md/">OO - Inheritance</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/03_tdd.md/">TDD</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/04_testing.md/">Software Testing</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/05_patterns.md/">Design Patterns</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/06_practice.md/">Practice</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Design at Scale
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/01_scaling_patterns.md/">Scaling Patterns</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/02_scaling_patterns_continued.md/">Scaling Patterns</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/03_projects.md/">Projects Discussion</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/04_review.md/">Review and Discussion</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/05_realworld.md/">Real World Survival Kit</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/06_conclusion.md/">Last Class</a></li></ul>
+      </li>
+    </ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Background
+            </label><ul class="tree" style="display: block"><li class=""><a href="/content/background/grading.md/">Grading</a></li><li class=""><a href="/content/background/leveling.md/">Leveling exercise</a></li><li class=""><a href="/content/background/pa.md/">Programming Assignments</a></li></ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              NanoTwitter
+            </label><ul class="tree" style="display: block"><li class=""><a href="/content/nt/01_nt_functionality.md/">nano Twitter Functionality</a></li><li class=""><a href="/content/nt/02_nt_arch.md/">NT Design and Architecture</a></li><li class=""><a href="/content/nt/03_nt_outline.md/">Nano Twitter Project Outline</a></li><li class=""><a href="/content/nt/04_references.md/">Aggregated Twitter Bibliography</a></li></ul></li>
+              
+                
+              
+                
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <footer>Copyright (2014-2015) R. Pito Salas, pitosalas@gmail.com</footer>
+      </div>
+  </div>
+</div>
+
+
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="/bootstrap/js/custom.js"></script>
+    <script src="/chalkmark/chalkmark.js"></script>
+    <script> $(document).ready(function() {
+      $('#tipue_search_input').tipuesearch({'highlightEveryTerm': true, 'show': 8, 'showURL': false, 'descriptiveWords': 50});
+    });</script>
+  </body>
+</html>

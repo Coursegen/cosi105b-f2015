@@ -1,0 +1,438 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <title>Scaling Patterns - Cosi 105b</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap/css/custom.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="/tipuesearch/tipuesearch_set.js"></script>
+    <script src="/tipuesearch/tipuesearch_content.js"></script>
+    <script src="/tipuesearch/tipuesearchmin.js"></script>
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.0.0rc2">
+  </head>
+  <body>
+
+    
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+  <div class="row">
+    <div class="col-xs-7">
+      <a class="navbar-brand" href="/">Cosi 105b - Software Engineering for Scalability </a>
+    </div>
+    <div class="col-xs-2">
+      <div class="btn-group">
+        
+          <a class="btn btn-mini" href="/content/lectures/part5/01_scaling_patterns.md/"><i class="glyphicon glyphicon-chevron-left" rel="tooltip" title="previous page"></i></a> <a class="btn btn-mini" href="/content/lectures/part5/02_scaling_patterns_continued.md/"><i class="glyphicon glyphicon-chevron-right" rel="tooltip" title="next page"></i></a>
+        
+      </div>
+    </div>
+    <div class="col-xs-3">
+    <form role="form" class="form-inline" action="/tipuesearch_logic/search/index.html">
+      <div class="input-group input-group-sm">
+        <input type="text" class="form-control" placeholder="search..." name="q" id="tipue_search_input" autocomplete="off" required>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+        <h3>
+	Scaling Patterns
+	
+		<small class="pull-right">(Fri Nov 13, lecture 21)</small>
+	
+</h4>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-9">
+          <h4 id="homework-due-for-today">Homework due for today</h4>
+<ul>
+  <li>Watch and Read
+    <ul>
+      <li>Watch: <a href="https://youtu.be/W6pFKihvqH4">Basics of Database Sharding</a>. Quick explanation: Sharding is way to break a database that is getting too big into two (or n). Each is called a “shard”, and has the same schema. A certain record is sent to one or the other shard based on some value, e.g. their last name or employee id.</li>
+      <li>Read: <a href="http://mikepackdev.com/blog_posts/40-5-early-lessons-from-rapid-high-availability-scaling-with-rails">5 Early Lessons from Rapid High Availability Scaling</a>. Don’t be concerned that it mentions “Rails”, the lessons are equally applicable (almost) to Sinatra</li>
+      <li>Think about and answer these questions:
+        <ul>
+          <li>What is meant by denormalization and what does it has to do with scalability?</li>
+          <li>Can you clarify why the article says that you are screwed if you don’t create an index early?</li>
+          <li>What’s the SSD that is mentioned in the context of the sharing article and why does it matter?</li>
+          <li>What 1 or 2 important things from the reading/listening did you not undertand; and if you understood it all, then what 1 or 2 important things were most insightful/useful/valuable to you.</li>
+        </ul>
+      </li>
+      <li><em style="color: red">Deliverable:</em> <em>BY MIDNIGHT THE NIGHT BEFORE: the answers to these questions, as a pdf, 1 page max</em></li>
+    </ul>
+  </li>
+  <li>Teams, continue to work on nanoTwitter. This is your primary deliverable at this point.</li>
+</ul>
+
+<h4 id="discussion">Discussion</h4>
+<ul>
+  <li>Points Raised in the reading
+    <ul>
+      <li>Multiple questions about denormalization</li>
+      <li>Sharding
+        <ul>
+          <li>Why would anyone ever use anything other than Hash lookup</li>
+          <li>How to apply it to nanoTwitter</li>
+          <li>Is it always a good idea?</li>
+          <li>How does consistent hashing even work?</li>
+        </ul>
+      </li>
+      <li>Terms
+        <ul>
+          <li>Chokepoint</li>
+          <li>Indexing: Note the uniqueness argument too</li>
+          <li>Universal User: What?</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="some-background">Some Background</h4>
+
+<ul>
+  <li><a href="/content/lectures/part3/02_architecting_for_scale.md/">Architecting for scale</a></li>
+  <li><a href="/content/topics/nt/nt_load_testing.md/">Load Testing nanoTwitter</a></li>
+  <li><a href="/content/topics/scaling/scaling_techniques.md/">Techniques for Scaling</a></li>
+</ul>
+
+<h4 id="what-is-scaling">What is scaling?</h4>
+<ul>
+  <li>Measuring performance:
+    <ul>
+      <li>How many Xs per second?</li>
+      <li>and/orhow long does it take to Y?</li>
+    </ul>
+  </li>
+  <li>Analysis
+    <ul>
+      <li>Instrumentation (basically logging)</li>
+      <li>Deep thought</li>
+      <li>Identify the bottle neck</li>
+    </ul>
+  </li>
+  <li>Action
+    <ul>
+      <li>Remove the bottle neck</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="scalability-pattern-database-caching">Scalability Pattern: Database Caching</h3>
+
+<h4 id="example-social-graph">Example, Social Graph</h4>
+<ul>
+  <li>Classic Relational Approach
+    <ul>
+      <li>Schema (like all of you have)
+        <ul>
+          <li>People(id, name)</li>
+          <li>Follow(id, follower, following)</li>
+        </ul>
+      </li>
+      <li>Nicely normalized
+        <ul>
+          <li>First, Second and Third Normal form</li>
+          <li>Origins of the relational database</li>
+        </ul>
+      </li>
+      <li>Queries like:
+        <ul>
+          <li>How many people are following user X</li>
+          <li>Who is following user Y</li>
+        </ul>
+      </li>
+      <li>But to display each and every user, a join is needed!</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="measurement">Measurement</h4>
+<ul>
+  <li>Ask database system to analyze SQL queries that are slow
+    <ul>
+      <li>e.g. <code>heroku pg:outliers</code></li>
+      <li>Discover that the social graph access was very slow</li>
+    </ul>
+  </li>
+  <li>Solution: Caching
+    <ul>
+      <li>Use Network scale caching (Redis) to store and share across servers</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="caching-with-redis">Caching with “Redis”</h4>
+<ul>
+  <li>Analogous to other network scale caching solutions (e.g. cached)</li>
+  <li>Typical structure is a key-value store</li>
+  <li>A nosql database. But in memory</li>
+  <li>It has some interesting characteristics
+    <ul>
+      <li>ATOMIC operations, e.g. “INCR” operation</li>
+      <li>keys that expire (TTL)</li>
+      <li>Supports other values: lists, sets, hashes</li>
+      <li>And many many more</li>
+    </ul>
+  </li>
+  <li>Ruby bindings <a href="https://github.com/nateware/redis-objects"><code>gem redis-objects</code></a></li>
+  <li>Wait, where’s the data actually stored?
+    <ul>
+      <li>A redis host, accessible by tcp/ip: dns name + port number</li>
+      <li>You can run it</li>
+      <li>Heroku can run it for you with <a href="https://devcenter.heroku.com/articles/redistogo">Redis to go</a>. Nano size is free!</li>
+      <li>In all cases, if the host dies, the data is gone</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="putting-the-two-together">Putting the two together</h4>
+<ul>
+  <li>“Store the social graph, denormalized, in a cache”</li>
+  <li>Means, more or less:
+    <ul>
+      <li>All user information is stored as before in the relational database</li>
+      <li>In addition, a denormalized copy of the key facts are stored in Redis</li>
+    </ul>
+  </li>
+  <li>Redis is accessed
+    <ul>
+      <li>Whenever ui needs to show count of followings or followers</li>
+      <li>Whenever a new follow command is issued, it is updated</li>
+      <li>Under certain circumstances, Redis is refreshed with good data</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="scalability-pattern-database-partitioning">Scalability Pattern: Database Partitioning</h3>
+<ul>
+  <li>Conflicting definitions
+    <ul>
+      <li>When you divide a big database into several smaller ones</li>
+      <li>Partitioning: Horizontal and Vertical</li>
+      <li>Sharding; Horizontal Partitioning</li>
+    </ul>
+  </li>
+  <li>What’s the problem?
+    <ul>
+      <li>When the database is the bottleneck</li>
+      <li>Add a second database server</li>
+      <li>What to do with the data?</li>
+    </ul>
+  </li>
+  <li>Some options
+    <ul>
+      <li>Replication: Put a complete copy of the data on the second db server</li>
+      <li>Pay attention to read vs. write</li>
+      <li>What to do about data consistency?</li>
+      <li>Parition</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="example">Example</h4>
+<ul>
+  <li>User Database
+    <ul>
+      <li>Happens to often be a monster</li>
+      <li>Lots of records</li>
+      <li>Each record with lots of information</li>
+      <li>Accessed a lot</li>
+    </ul>
+  </li>
+  <li>Schema
+    <ul>
+      <li>User: (id, name, email, biography, hobbies, college, last_login, encrypted_pw, profile_photo_jpg, …)</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="vertical-partition">Vertical partition</h4>
+<ul>
+  <li>Often associated with an SOA</li>
+  <li>Divide the User table into three different database servers:
+User: (id, name, biography, email)
+Autentication: (id, last_login, encrypted_pw)
+Photos: (id, profile_photo_jpg)</li>
+  <li>How it changes your application
+    <ul>
+      <li>Pretty basic rearchitecture into separate services</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="sharding-horizontal-partition">Sharding (Horizontal partition)</h4>
+<ul>
+  <li>“buckets” of users (== shards)</li>
+  <li>How? Create multiple database servers with
+    <ul>
+      <li>the same schema</li>
+      <li>different subset or clump of records</li>
+    </ul>
+  </li>
+  <li>Need a way to direct requests to the right “shard”
+    <ul>
+      <li>inspect something about the record</li>
+      <li>determine what shard to look in</li>
+      <li>Three common flavors to decide what bucket gets a record
+        <ul>
+          <li>Range Based: Range of some scalar value (record id, first letter of name, etc.)</li>
+          <li>List Based: Take some other property (e.g. zipcode, department)</li>
+          <li>Hash Based: Compute a hash on some value</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>How it changes your application
+    <ul>
+      <li>Whenever you either read, write, or search</li>
+      <li>Require to include enough information to pick the right shard</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="pros-and-cons">Pros and Cons</h4>
+<ul>
+  <li>Joins become a problem
+    <ul>
+      <li>What was once one db is now spread over more than one db</li>
+      <li>Can lead to denormalization</li>
+    </ul>
+  </li>
+  <li>Data Integrity
+    <ul>
+      <li>Foreign keys might now point to another database</li>
+      <li>Databases can get out of sync</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="well well-sm">
+<span class="label label-primary">NB</span> Both kinds of sharding are advanced techniques and you should only use them when you have quantitative reasons to believe they will improve a measured performance issue.
+</div>
+
+<h4 id="references">References</h4>
+<ul>
+  <li><a href="http://www.25hoursaday.com/weblog/2009/01/16/BuildingScalableDatabasesProsAndConsOfVariousDatabaseShardingSchemes.aspx">Building Scalable Databases: Pros and Cons of Sharding</a></li>
+</ul>
+
+<h4 id="next-class">Next Class</h4>
+<ul>
+  <li>Look at homework: <a href="/content/lectures/part5/02_scaling_patterns_continued.md/">Scaling Patterns</a></li>
+</ul>
+
+        </div>
+        <div class="col-xs-3">
+          <div class="row well right-nav" style="color: rgb(158, 48, 48);padding-top: 4px;padding-bottom: 4px;padding-left: 8px;padding-right: 8px;margin-bottom: 8px;">
+            <div id="helpful" class="text-center">Was this helpful!?
+    <a id="yes-link">yes</a> / <a id="no-link">no</a>
+</div>
+
+          </div>
+          <div class="row well right-nav" style="padding: 5px;">
+            <ul>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Intro
+            </label><ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/course_toc.md/">List of lectures</a></li><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/portfolio.md/">Code Portfolio</a></li><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/prework.md/">Recommended Pre-Work</a></li></ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Lectures
+            </label><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Software Design
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/01_welcome.md/">Welcome</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/02_ruby_firehose.md/">Ruby Firehose Part 1</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/03_intro_oo.md/">Ruby and Intro to Object Oriented</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/04_software_engineeringbasics.md/">Software Engineering</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/05_good_programming_practices.md/">Good Programming Practices</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/06_software_design.md/">Software Design</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          nano Twitter (nT)
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/01_serv_fund.md/">Server Fundamentals</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/02_database_fund.md/">Database Basics</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/03_sinatra_intro.md/">Introduction to Sinatra</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/04_twitter_case.md/">Twitter Case Study</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/05_more_sinatra.md/">Persistence and Web services</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Scaling Basics
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/01_scaling_intro.md/">Intro to Scaling</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/02_architecting_for_scale.md/">Architecting for scale</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/03_web_services.md/">Introduction to Web Services</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Building Software
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/01_review_topics.md/">Review topics</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/02_oo_inheritance.md/">OO - Inheritance</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/03_tdd.md/">TDD</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/04_testing.md/">Software Testing</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/05_patterns.md/">Design Patterns</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/06_practice.md/">Practice</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Design at Scale
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/01_scaling_patterns.md/">Scaling Patterns</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/02_scaling_patterns_continued.md/">Scaling Patterns</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/03_projects.md/">Projects Discussion</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/04_review.md/">Review and Discussion</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/05_realworld.md/">Real World Survival Kit</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/06_conclusion.md/">Last Class</a></li></ul>
+      </li>
+    </ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Background
+            </label><ul class="tree" style="display: block"><li class=""><a href="/content/background/grading.md/">Grading</a></li><li class=""><a href="/content/background/leveling.md/">Leveling exercise</a></li><li class=""><a href="/content/background/pa.md/">Programming Assignments</a></li></ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              NanoTwitter
+            </label><ul class="tree" style="display: block"><li class=""><a href="/content/nt/01_nt_functionality.md/">nano Twitter Functionality</a></li><li class=""><a href="/content/nt/02_nt_arch.md/">NT Design and Architecture</a></li><li class=""><a href="/content/nt/03_nt_outline.md/">Nano Twitter Project Outline</a></li><li class=""><a href="/content/nt/04_references.md/">Aggregated Twitter Bibliography</a></li></ul></li>
+              
+                
+              
+                
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <footer>Copyright (2014-2015) R. Pito Salas, pitosalas@gmail.com</footer>
+      </div>
+  </div>
+</div>
+
+
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="/bootstrap/js/custom.js"></script>
+    <script src="/chalkmark/chalkmark.js"></script>
+    <script> $(document).ready(function() {
+      $('#tipue_search_input').tipuesearch({'highlightEveryTerm': true, 'show': 8, 'showURL': false, 'descriptiveWords': 50});
+    });</script>
+  </body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <title>TDD demo - Cosi 105b</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap/css/custom.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="/tipuesearch/tipuesearch_set.js"></script>
+    <script src="/tipuesearch/tipuesearch_content.js"></script>
+    <script src="/tipuesearch/tipuesearchmin.js"></script>
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc 4.0.0rc2">
+  </head>
+  <body>
+
+    
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+  <div class="row">
+    <div class="col-xs-7">
+      <a class="navbar-brand" href="/">Cosi 105b - Software Engineering for Scalability </a>
+    </div>
+    <div class="col-xs-2">
+      <div class="btn-group">
+        
+          <a class="btn btn-mini" href="/content/topics/testing/mocking.md/"><i class="glyphicon glyphicon-chevron-left" rel="tooltip" title="previous page"></i></a> <a class="btn btn-mini" href="/content/topics/testing/tdd_intro.md/"><i class="glyphicon glyphicon-chevron-right" rel="tooltip" title="next page"></i></a>
+        
+      </div>
+    </div>
+    <div class="col-xs-3">
+    <form role="form" class="form-inline" action="/tipuesearch_logic/search/index.html">
+      <div class="input-group input-group-sm">
+        <input type="text" class="form-control" placeholder="search..." name="q" id="tipue_search_input" autocomplete="off" required>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+        <h3>
+	TDD demo
+	
+</h4>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-9">
+          
+<h4 id="how-you-might-unit-test-by-hand">How you might unit test “by hand”</h4>
+<ul>
+  <li><em style="color: green">NB: This example is using minitest/spec</em></li>
+</ul>
+
+<div class="highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">fact</span>(n)
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>   <span style="color:#080;font-weight:bold">if</span> n == <span style="color:#00D">1</span>
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>      <span style="color:#00D">1</span>
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>   <span style="color:#080;font-weight:bold">else</span> 
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>      fact(n-<span style="color:#00D">1</span>) * n
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>   <span style="color:#080;font-weight:bold">end</span>
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span><span style="color:#080;font-weight:bold">end</span>
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span><span style="color:#080;font-weight:bold">if</span> (fact(<span style="color:#00D">1</span>) != <span style="color:#00D">1</span>)
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>   puts <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Error when calling Factorial with 1</span><span style="color:#710">&quot;</span></span>
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span><span style="color:#080;font-weight:bold">elsif</span> fact(<span style="color:#00D">2</span>) != <span style="color:#00D">2</span>
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>   puts <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Error when calling Factorial with 2</span><span style="color:#710">&quot;</span></span>
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span><span style="color:#080;font-weight:bold">else</span>
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>   puts <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Factorial function works.</span><span style="color:#710">&quot;</span></span>
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span><span style="color:#080;font-weight:bold">end</span>
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>
+</pre></div>
+</div>
+</div>
+
+<hr />
+
+<h4 id="how-can-you-automate-this-with-tools">How can you automate this with tools</h4>
+
+<ul>
+  <li>There are a huge variety of tools and techniques to avoid repetitious coding</li>
+  <li>We will be using the built-in unit testing framework called “minitest”</li>
+  <li>For this course focus ONLY on unit testing</li>
+</ul>
+
+<hr />
+
+<h4 id="a-cosi101-factorial-function-using-minitest">A Cosi101 Factorial Function using minitest</h4>
+
+<div class="highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">minitest/autorun</span><span style="color:#710">'</span></span>
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span><span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">fact</span>(n)
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>   <span style="color:#080;font-weight:bold">if</span> n == <span style="color:#00D">1</span>
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>      <span style="color:#00D">1</span>
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>   <span style="color:#080;font-weight:bold">else</span> 
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>      fact(n-<span style="color:#00D">1</span>) * n
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>   <span style="color:#080;font-weight:bold">end</span>
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span><span style="color:#080;font-weight:bold">end</span>
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>describe <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">factorials</span><span style="color:#710">&quot;</span></span> <span style="color:#080;font-weight:bold">do</span>
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>   it <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">works for 1</span><span style="color:#710">&quot;</span></span> <span style="color:#080;font-weight:bold">do</span>
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>      fact(<span style="color:#00D">1</span>).must_equal <span style="color:#00D">1</span>
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>   <span style="color:#080;font-weight:bold">end</span>
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>   it <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">works for 2</span><span style="color:#710">&quot;</span></span> <span style="color:#080;font-weight:bold">do</span>
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>      fact(<span style="color:#00D">2</span>).must_equal <span style="color:#00D">2</span>
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>   <span style="color:#080;font-weight:bold">end</span>
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>   it <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">works for 20</span><span style="color:#710">&quot;</span></span> <span style="color:#080;font-weight:bold">do</span>
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>      fact(<span style="color:#00D">20</span>).must_equal <span style="color:#00D">2432902008176640000</span>
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>   <span style="color:#080;font-weight:bold">end</span>
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>   it <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">works for zero</span><span style="color:#710">&quot;</span></span> <span style="color:#080;font-weight:bold">do</span>
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>      fact(<span style="color:#00D">0</span>).must_equal <span style="color:#00D">0</span>
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>   <span style="color:#080;font-weight:bold">end</span>
+<span class="line-numbers"><a href="#n27" name="n27">27</a></span><span style="color:#080;font-weight:bold">end</span>
+<span class="line-numbers"><a href="#n28" name="n28">28</a></span>
+</pre></div>
+</div>
+</div>
+
+<hr />
+
+<h4 id="notes">Notes</h4>
+<ul>
+  <li>What other tests can we do to test this Factorial class?</li>
+</ul>
+<hr />
+
+<h4 id="testing-a-full-ruby-class">Testing a full ruby class</h4>
+
+<div class="highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>require <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">minitest/autorun</span><span style="color:#710">'</span></span>
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span><span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">PlayingCard</span>
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>   attr_reader <span style="color:#A60">:rank</span>, <span style="color:#A60">:suit</span>
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>   <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">initialize</span> <span style="color:#606">suit</span>:<span style="color:#069">nil</span>, <span style="color:#606">rank</span>:<span style="color:#069">nil</span>
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>      <span style="color:#33B">@suit</span> = suit
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>      <span style="color:#33B">@rank</span> = rank
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>   <span style="color:#080;font-weight:bold">end</span>
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>   <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">random</span>
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>      <span style="color:#33B">@suit</span> = [<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">hearts</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">spades</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">diamonds</span><span style="color:#710">&quot;</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">clubs</span><span style="color:#710">&quot;</span></span>].sample
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>      <span style="color:#33B">@rank</span> = rand(<span style="color:#00D">13</span>)
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>      <span style="color:#069">self</span>
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>   <span style="color:#080;font-weight:bold">end</span>
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>   <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">to_s</span>
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>      card_to_english
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>   <span style="color:#080;font-weight:bold">end</span>
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>   <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">card_to_engish</span>
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>      rank_to_english + <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20"> of </span><span style="color:#710">&quot;</span></span> + <span style="color:#33B">@suit</span>
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>   <span style="color:#080;font-weight:bold">end</span>
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>   <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">valid?</span>
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>      <span style="color:#33B">@rank</span> &gt;= <span style="color:#00D">1</span> &amp;&amp; <span style="color:#33B">@rank</span> &lt;= <span style="color:#00D">13</span> &amp;&amp; !<span style="color:#33B">@suit</span>.nil?
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>   <span style="color:#080;font-weight:bold">end</span>
+<span class="line-numbers"><a href="#n27" name="n27">27</a></span>
+<span class="line-numbers"><a href="#n28" name="n28">28</a></span>   private
+<span class="line-numbers"><a href="#n29" name="n29">29</a></span>
+<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>   <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">rank_to_english</span>
+<span class="line-numbers"><a href="#n31" name="n31">31</a></span>      <span style="color:#080;font-weight:bold">if</span> <span style="color:#33B">@rank</span> == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">1</span><span style="color:#710">&quot;</span></span>
+<span class="line-numbers"><a href="#n32" name="n32">32</a></span>         <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Ace</span><span style="color:#710">&quot;</span></span>
+<span class="line-numbers"><a href="#n33" name="n33">33</a></span>      <span style="color:#080;font-weight:bold">elsif</span> <span style="color:#33B">@rank</span> &gt; <span style="color:#00D">1</span> &amp;&amp; <span style="color:#33B">@rank</span> &lt; <span style="color:#00D">11</span>
+<span class="line-numbers"><a href="#n34" name="n34">34</a></span>         number_to_english(<span style="color:#33B">@rank</span>)
+<span class="line-numbers"><a href="#n35" name="n35">35</a></span>      <span style="color:#080;font-weight:bold">elsif</span> <span style="color:#33B">@rank</span> == <span style="color:#00D">11</span>
+<span class="line-numbers"><a href="#n36" name="n36">36</a></span>         <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Jack</span><span style="color:#710">&quot;</span></span>
+<span class="line-numbers"><a href="#n37" name="n37">37</a></span>      <span style="color:#080;font-weight:bold">elsif</span> <span style="color:#33B">@rank</span> == <span style="color:#00D">12</span>
+<span class="line-numbers"><a href="#n38" name="n38">38</a></span>         <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Queen</span><span style="color:#710">&quot;</span></span>
+<span class="line-numbers"><a href="#n39" name="n39">39</a></span>      <span style="color:#080;font-weight:bold">elsif</span> <span style="color:#33B">@rank</span> == <span style="color:#00D">13</span>
+<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>         <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">King</span><span style="color:#710">&quot;</span></span>
+<span class="line-numbers"><a href="#n41" name="n41">41</a></span>      <span style="color:#080;font-weight:bold">end</span>
+<span class="line-numbers"><a href="#n42" name="n42">42</a></span>   <span style="color:#080;font-weight:bold">end</span>
+<span class="line-numbers"><a href="#n43" name="n43">43</a></span>
+<span class="line-numbers"><a href="#n44" name="n44">44</a></span>   <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">number_to_english</span> val
+<span class="line-numbers"><a href="#n45" name="n45">45</a></span>      <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">%w(</span><span style="color:#D20">fail0 fail1 two three four five six seven eight nine ten</span><span style="color:#710">)</span></span>[val]
+<span class="line-numbers"><a href="#n46" name="n46">46</a></span>   <span style="color:#080;font-weight:bold">end</span>
+<span class="line-numbers"><a href="#n47" name="n47">47</a></span><span style="color:#080;font-weight:bold">end</span>
+<span class="line-numbers"><a href="#n48" name="n48">48</a></span>
+<span class="line-numbers"><a href="#n49" name="n49">49</a></span>describe <span style="color:#036;font-weight:bold">PlayingCard</span> <span style="color:#080;font-weight:bold">do</span>
+<span class="line-numbers"><strong><a href="#n50" name="n50">50</a></strong></span>   before <span style="color:#080;font-weight:bold">do</span>
+<span class="line-numbers"><a href="#n51" name="n51">51</a></span>      <span style="color:#33B">@a_card</span> = <span style="color:#036;font-weight:bold">PlayingCard</span>.new.random
+<span class="line-numbers"><a href="#n52" name="n52">52</a></span>   <span style="color:#080;font-weight:bold">end</span>
+<span class="line-numbers"><a href="#n53" name="n53">53</a></span>
+<span class="line-numbers"><a href="#n54" name="n54">54</a></span>   it <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">creates a valid card</span><span style="color:#710">&quot;</span></span> <span style="color:#080;font-weight:bold">do</span>
+<span class="line-numbers"><a href="#n55" name="n55">55</a></span>      <span style="color:#33B">@a_card</span>.valid?.must_equal <span style="color:#069">true</span>
+<span class="line-numbers"><a href="#n56" name="n56">56</a></span>   <span style="color:#080;font-weight:bold">end</span>
+<span class="line-numbers"><a href="#n57" name="n57">57</a></span>   
+<span class="line-numbers"><a href="#n58" name="n58">58</a></span><span style="color:#080;font-weight:bold">end</span>
+</pre></div>
+</div>
+</div>
+
+<hr />
+
+<h4 id="notes-1">Notes</h4>
+<ul>
+  <li>What other tests can we do to test this PlayingCard class?</li>
+</ul>
+
+        </div>
+        <div class="col-xs-3">
+          <div class="row well right-nav" style="color: rgb(158, 48, 48);padding-top: 4px;padding-bottom: 4px;padding-left: 8px;padding-right: 8px;margin-bottom: 8px;">
+            <div id="helpful" class="text-center">Was this helpful!?
+    <a id="yes-link">yes</a> / <a id="no-link">no</a>
+</div>
+
+          </div>
+          <div class="row well right-nav" style="padding: 5px;">
+            <ul>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Intro
+            </label><ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/course_toc.md/">List of lectures</a></li><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/portfolio.md/">Code Portfolio</a></li><li class=""><span class="glyphicon glyphicon-star" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/intro/prework.md/">Recommended Pre-Work</a></li></ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Lectures
+            </label><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Software Design
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/01_welcome.md/">Welcome</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/02_ruby_firehose.md/">Ruby Firehose Part 1</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/03_intro_oo.md/">Ruby and Intro to Object Oriented</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/04_software_engineeringbasics.md/">Software Engineering</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/05_good_programming_practices.md/">Good Programming Practices</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part1/06_software_design.md/">Software Design</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          nano Twitter (nT)
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/01_serv_fund.md/">Server Fundamentals</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/02_database_fund.md/">Database Basics</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/03_sinatra_intro.md/">Introduction to Sinatra</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/04_twitter_case.md/">Twitter Case Study</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part2/05_more_sinatra.md/">Persistence and Web services</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Scaling Basics
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/01_scaling_intro.md/">Intro to Scaling</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/02_architecting_for_scale.md/">Architecting for scale</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part3/03_web_services.md/">Introduction to Web Services</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Building Software
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/01_review_topics.md/">Review topics</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/02_oo_inheritance.md/">OO - Inheritance</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/03_tdd.md/">TDD</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/04_testing.md/">Software Testing</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/05_patterns.md/">Design Patterns</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part4/06_practice.md/">Practice</a></li></ul>
+      </li>
+    </ul><ul class="tree">
+      <li>
+        <label class="tree-toggler level2">
+          <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span> 
+          Design at Scale
+        </label>
+        <ul class="tree" style="display: block"><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/01_scaling_patterns.md/">Scaling Patterns</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/02_scaling_patterns_continued.md/">Scaling Patterns</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/03_projects.md/">Projects Discussion</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/04_review.md/">Review and Discussion</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/05_realworld.md/">Real World Survival Kit</a></li><li class=""><span class="glyphicon glyphicon-minus" style="font-size: 60%; width: 10px; color: grey"></span><a href="/content/lectures/part5/06_conclusion.md/">Last Class</a></li></ul>
+      </li>
+    </ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              Background
+            </label><ul class="tree" style="display: block"><li class=""><a href="/content/background/grading.md/">Grading</a></li><li class=""><a href="/content/background/leveling.md/">Leveling exercise</a></li><li class=""><a href="/content/background/pa.md/">Programming Assignments</a></li></ul></li>
+              
+                <li>
+            <label class="tree-toggler level1">
+              <span class="glyphicon glyphicon-minus-sign" style="font-size: 60%; width: 10px; color: grey"></span>
+              NanoTwitter
+            </label><ul class="tree" style="display: block"><li class=""><a href="/content/nt/01_nt_functionality.md/">nano Twitter Functionality</a></li><li class=""><a href="/content/nt/02_nt_arch.md/">NT Design and Architecture</a></li><li class=""><a href="/content/nt/03_nt_outline.md/">Nano Twitter Project Outline</a></li><li class=""><a href="/content/nt/04_references.md/">Aggregated Twitter Bibliography</a></li></ul></li>
+              
+                
+              
+                
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <footer>Copyright (2014-2015) R. Pito Salas, pitosalas@gmail.com</footer>
+      </div>
+  </div>
+</div>
+
+
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="/bootstrap/js/custom.js"></script>
+    <script src="/chalkmark/chalkmark.js"></script>
+    <script> $(document).ready(function() {
+      $('#tipue_search_input').tipuesearch({'highlightEveryTerm': true, 'show': 8, 'showURL': false, 'descriptiveWords': 50});
+    });</script>
+  </body>
+</html>

@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+<<<<<<< HEAD
 # A few helpful tips about the Rules file:
 #
 # * The string given to #compile and #route are matching patterns for
@@ -13,12 +14,15 @@
 #   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
 #   because “*” matches zero or more characters.
 
+=======
+>>>>>>> 1d25ed31a25b829346f1b3a2e6fd90f0b7c9dd6b
 require './cg_config.rb'
 
 preprocess do
   Toc.instance.prepare @items, SECTION_CONFIG
 end
 
+<<<<<<< HEAD
 compile '/bootstrap/*' do
   nil
 end
@@ -40,15 +44,45 @@ compile "/tipuesearch_logic/tipuesearch_content" do
 end
 
 compile '*' do
+=======
+compile '/bootstrap/**/*' do
+  nil
+end
+
+compile '/content/scripts/**/*' do
+  nil
+end
+
+compile '/chalkmark/**/*' do
+  nil
+end
+
+compile '/tipuesearch/**/*' do
+  nil
+end
+
+compile "/tipuesearch_logic/tipuesearch_content.*" do
+  filter :erb
+end
+
+compile '/**/*' do
+>>>>>>> 1d25ed31a25b829346f1b3a2e6fd90f0b7c9dd6b
   if item.binary? || item[:status] == "hidden"
     nil
   elsif item[:status] == "hidden"
     nil
   elsif item[:type] == "subsection"
+<<<<<<< HEAD
     nil    
   elsif item[:extension] == "haml"
     filter :haml;
     layout 'course'
+=======
+    nil
+  elsif item[:extension] == "haml"
+    filter :haml;
+    layout '/course.*'
+>>>>>>> 1d25ed31a25b829346f1b3a2e6fd90f0b7c9dd6b
   else
     item[:extension].split('.').reverse.each do
       |f|
@@ -59,6 +93,7 @@ compile '*' do
         filter :erb
       end
     end
+<<<<<<< HEAD
     layout 'course'
   end
 end
@@ -72,10 +107,26 @@ route '/tipuesearch/*' do
 end
 
 route "/tipuesearch_logic/tipuesearch_content/" do
+=======
+    layout '/course.*'
+  end
+end
+
+route '/bootstrap/**/*' do
+  @item.identifier.to_s
+end
+
+route '/tipuesearch/**/*' do
+  @item.identifier.to_s
+end
+
+route "/tipuesearch_logic/tipuesearch_content.*" do
+>>>>>>> 1d25ed31a25b829346f1b3a2e6fd90f0b7c9dd6b
   '/tipuesearch/tipuesearch_content.js'
 end
 
 
+<<<<<<< HEAD
 route '/chalkmark/*' do
   @item.identifier.chop + '.' + @item[:extension]
 end
@@ -85,6 +136,17 @@ route '/content/' do
 end
 
 route '*' do
+=======
+route '/chalkmark/**/*' do
+  @item.identifier.to_s
+end
+
+route '/content/*' do
+  '/index.html'
+end
+
+route '/**/*' do
+>>>>>>> 1d25ed31a25b829346f1b3a2e6fd90f0b7c9dd6b
   if item[:extension].nil?
     raise RuntimeError, "Missing required extension: \".#{item.identifier}\""
   elsif item.binary?
@@ -97,6 +159,7 @@ route '*' do
   elsif item[:type] == "subsection"
     nil
   elsif item[:extension] != "css"
+<<<<<<< HEAD
     # Write item with identifier /foo/ to /foo/index.html
     item.identifier + 'index.html'
   end
@@ -104,3 +167,11 @@ end
 
 layout '*', :erb
 
+=======
+    item.identifier.without_ext + '/index.html'
+
+  end
+end
+
+layout '/**/*', :erb
+>>>>>>> 1d25ed31a25b829346f1b3a2e6fd90f0b7c9dd6b
