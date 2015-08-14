@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-
 require './cg_config.rb'
 
 preprocess do
@@ -24,6 +23,10 @@ compile '/tipuesearch/**/*' do
 end
 
 compile "/tipuesearch_logic/tipuesearch_content.*" do
+  filter :erb
+end
+
+compile "/content/**/*.ical.erb" do
   filter :erb
 end
 
@@ -68,7 +71,18 @@ route '/chalkmark/**/*' do
   @item.identifier.to_s
 end
 
-route '/content/*' do
+# Output the search page
+route '/tipuesearch_logic/search.md.erb' do
+  '/tipuesearch_logic/search/index.html'
+end
+
+route '/**/*.ical.erb' do
+  @item.identifier.without_ext
+end
+
+
+# Select which .md.erb becomes the home page of the site
+route '/content/index.md.erb' do
   '/index.html'
 end
 
@@ -76,8 +90,7 @@ route '/**/*' do
   if item[:extension].nil?
     raise RuntimeError, "Missing required extension: \".#{item.identifier}\""
   elsif item.binary?
-    # Write item with identifier /foo/ to /foo.ext
-    item.identifier.chop + '.' + item[:extension] rescue fail "in route * in Rules"
+    item.identifier.to_s
   elsif item.identifier == "/search_logic/tipuesearch_content/"
       item.identifier.chop + '.' + item[:extension] rescue fail "in route * in Rules"
   elsif item[:status] == "hidden"
