@@ -1,18 +1,18 @@
 ---
 title: Intro to Scaling
 desc: General concepts to help understand scaling and scaling problems
-homework: Read and do [SODDR] Chapter 3. Teams design the schema
+homework: 1) Study in depth [SODDR] Chapter 3, and submit warmup questions in Latte; 2) Teams design the schema for nanoTwitter.
 ---
 <%= homework_hdr %>
-* Read \[SODRR\] Chapter 3.
+1. Read \[SODRR\] Chapter 3.
   * This chapter introduces a running example of this book. It is a social feed reader. It's analogous but different from our nanoTwitter. You should get lots of good ideas from this chapter to use in nT.
   * In this chapter you learn what all the database tables (and therefore what the Models are.) Based on what we've covered so far you should be able to follow it.
   * This chapter mentions Rails. Rails is a bigger sort-of-superset of Sinatra. They are both Ruby libraries. In this class we will be using Sinatra (not Rails)
   * Don't get confused: We **are** using ActiveRecord which is a separable Rails library which is also used in Sinatra. It is the "Object Relational Mapper."
   * It is most important that you take the time to understand the overall set of tables, why they exist and how they relate to each other and apply them to the next step of the homework.
-* Start your design of nanoTwitter.
+1. Start your design of nanoTwitter.
   * All nanoTwitter work should happen in your <%= link_to_intro :portfolio %>, directory `/nanotwitter`
-  * **<%= link_to_section :nt, :nt_outline %>:\[DBSCHEMA\]** Work on the model. Create a neat diagram of all the tables and the relationships between them. Use lines to connect the tables to each other for each has_many, belongs_to etc. relationship. <%= team_deliverable "the diagram as a pdf" %>
+  * <%= link_to_section :nt, :nt_outline %>: section \[DBSCHEMA\]. Work on the model. Create a neat diagram of all the tables and the relationships between them. Use lines to connect the tables to each other for each has_many, belongs_to etc. relationship. <%= team_deliverable "the diagram as a pdf" %>
 
 #### Discussion
 * Finish up example of associations from previous lecture
