@@ -4,7 +4,7 @@ title: Cosi105b - Software Engineering for Scalability
 <% tbh = TableHelper.new(:normal) %>
 <% tbh.headers("", "") %>
 <% tbh.row("Instructors", "Pito Salas") %>
-<% tbh.row("Class Times", "Tuesday and Friday, 11:00am to 12:20pm
+<% tbh.row("Class Times", "Tuesday and Friday, 11:00am to 12:20pm\<br\>
 Most students will also need to attend a weekly workshop, Fridays 2:00pm to 4:00pm") %>
 <% tbh.row("Location", "TBD") %>
 <% tbh.row("Office Hours", "TBD") %>
@@ -16,8 +16,6 @@ Most students will also need to attend a weekly workshop, Fridays 2:00pm to 4:00
 
 #### Course Description
 
-
-
 What happens when systems have programs in multiple languages, hundreds of modules and classes, developed by teams of engineers? We need to approach programming in a whole new way, paying attention to good design, patterns, testing, source code management and other basics. In addition when software is developed in teams there are ways of approaching organization of the project, leadership, planning and scheduling.
 
 How do you design a system that is meant to support millions of users? How will it perform? You certainly can’t just get a bigger and bigger computer. This is most certainly an evolving space with new work happening both in academia and industry. Yet there are well established and tested fundamentals of architecture which we will look at to better understand this fascinating and important space.
@@ -26,3 +24,9 @@ How do you design a system that is meant to support millions of users? How will 
 1. Software Design: We want to look at programming beyond just 'getting it to work.' In large systems one thinks a lot about what happens to the program once its written. Software that's used in the real world will always get revised, often. We will look at foundational principles of design such as the Single Responsibility Principle, Inheritance vs. Delegation tradeoffs, the importance of good naming, Test driven design, and many others.
 1. Architecture for Scale: We also want to examine how to design systems which will scale under major load, whether it be many users, many transactions, lots of data, etc. Each of these are different kinds of scale challenges and will require different kinds of strategies. We will also of course look at generating synthetic load and measuring scale correctly.
 1. Major development project: There will be multiple programming assignments where students will work individually or in teams to modify and enhance parts of the NanoTwitter software. Students will have to build and test on their own computers and then deploy software to servers in the cloud. We will subject the software to artificial loads to see how they behave and then see how changes affect performance.
+
+#### Crucial other Links
+* <%= link_to_intro :course_toc %>
+* <%= link_to_background :grading %>
+* <%= link_to_background :prework %>
+* <%= link_to_background :goals_cosi105 %>
