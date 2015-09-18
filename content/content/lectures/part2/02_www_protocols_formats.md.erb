@@ -1,0 +1,22 @@
+---
+title: World Wide Web Formats and Protocols
+desc: HTTP and Web Services -- formats and protocols
+homework: 1) Read [SODDR] Chapter 1, and do the Warmups in Latte; 1) Implement the code in [SODRR] Chapter 1.
+---
+
+<%= homework_hdr %>
+
+1. Study Service Oriented Design in Ruby and Rails \[SODDR\] Chapter 1. Do the warmup questions in Latte. This chapter builds on the basics we covered at the last lecture. It covers much of the same ground as the last tutorial, but goes a little further.
+1. Implement the code in \[SODRR\] Chapter 1 and get it to work. **Please attend to these specific details**:
+  * Attempt to get the code to work, **but importantly, stop when you get to "Implementing the client library".**
+  * Do coding on your own computer in your <%= link_to_intro :portfolio %> in a new top level directory called `user-service`
+  * Because the book is a couple of years old, there are some changes you need to keep in mind in order to get it to work on your own computer. They are all mentioned in the video but here they are again:
+    1. gem is called `active_record` (not activerecord)
+    1. No need to require 'rubygems' anymore (since Ruby 2.0)
+    1. The first few lines of service_spec.rb change a lot. [Click here to see a working example](https://raw.githubusercontent.com/Cosi-105/sotl-user-service/master/spec/service_spec.rb)
+* To help your reading and doing, here's a video of the first 18 pages of that chapter with extensive commentary and conceptual explanations:
+        <iframe width="400" height="225" src="https://www.youtube.com/embed/zPaG-g-d6sY?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+
+#### Homework Discussion
+* Let's review the user-service.rb and related files to talk again about what they do.
+<%= include_topic :web_formats_protocols %>
