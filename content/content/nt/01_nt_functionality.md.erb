@@ -27,24 +27,38 @@ title: nano Twitter Functionality
   * Retrieve the firehose of all tweets by all users
   * Retrieve the firehose for one specific user
 
+#### nT Authentication
+* First just fake authentication
+  * Build in (through seed data and Faker) a series of fake users
+  * Make it easy to rebuild the database with a set collection of users.
+  * Add the following two urls
+    * log in user :x (/login/:x)
+    * log out current user (/logout)
+* Later in the term, as time permits implement more real authentication.
+  * Users can register for an account by supplying an email a name and a password
+  * Users are never deleted
+  * Add the following urls
+    * Display the user registration page (/user/register)
+    * Display user login prompt, and check for correct password (/login)
+    * Logout (/logout)
+
 #### nT User Interface
 * Very basic bootstrappy html interface
 * Non-logged-in root page (/)
-  * Login link (/login)
-  * Register for account link (/user/register)
-  * List of the most recent 50 tweets, with link to tweeter's page
+  * List of the most recent 50 tweets from any user, with link to tweeter's page
 * Logged-in root page (/)
-  * Logout link (/logout)
-  * Box to submit a tweet (/tweet)
-  * List of most recent 'n' tweets, with link to the tweeter's page
+  * Exactly the same as /user/1234 when user 1234 is logged in
 * Specific user's page (/user/name or /user/1234)
-  * List of users tweets
-  * Button to follow that user (available only if logged in)
-  * If this is logged in users page, then also ability to tweet (i.e. equiv to /)
-* Users' own profile page (/user/profile) 
-  * Only when logged in, only for yourself
-  * Your name, email
-  * List of followed users
+  * If this is logged in users own page
+    * Equiv to logged in root
+    * ability to tweet (i.e. equiv to /)
+    * Top 50 tweets of followed users
+  * If this is not logged in users own page, but user is logged in
+    * Button to follow that user (available only if logged in)
+  * In all cases, also:
+    * User's profile
+    * Link to list of users followed
+    * Link to list of tweets made by this user
 
 #### nT Web Services API
 * REST-y API
@@ -61,26 +75,17 @@ title: nano Twitter Functionality
     "created": jan-11-2015
 }`
   * User: `{"id": name": Pito Salas}`
-  * List of tweets: `\[<tweet>, <tweet>,...\]`
-  * Follow list: `\["user_id": 22, "user_id": 23, ...\]`
+  * List of tweets: `[<tweet>, <tweet>,...]`
+  * Follow list: `["user_id": 22, "user_id": 23, ...]`
 
-
-#### New for Fall 2015
-* /user/name or /user/1234, has
-  * profile info
-  * link to followed users (/user/x/follows)
-  * Link to users own tweets (/user/x/tweets)
-
-* Test Interface
-  * /test/reset
-    * if needed creates a new test user called "testuser"
-    * if needed deletes all tweets that the "testuser" ever created
-    * if needed delets all follows of the "testuser"
-  * /test/tweets/1234
-    * user testuser genereates 1234 new fake tweets
-  * /test/follow/1234
-    * 1234 randomly selected users follow user 1234
-
-
-
-
+#### Test Interface
+* /test/reset
+  * if needed creates a new test user called "testuser"
+  * if needed deletes all tweets that the "testuser" ever created
+  * if needed deletes all follows of the "testuser"
+* /test/seed/1234
+  * create 1234 fake users
+* /test/tweets/1234
+  * user testuser genereates 1234 new fake tweets
+* /test/follow/1234
+  * 1234 randomly selected users follow user 1234
