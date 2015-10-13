@@ -5,17 +5,29 @@ title: Nano Twitter Project Outline
 
 Each step in this recipe has a name which I use to refer to it elsehwee in this course.
 
-##### Foundation (nT version 0.1)
+##### nanoTwitter 0.1: Foundation
 
 * **\[DBSCHEMA\]** Design relational database schema (i.e. one for the whole app.) Decide what tables you will have, what the attributes (columns) are for each table, what the primary and foreign keys are, and what the associations are (i.e. one to many, many to one, many to many.)
-* **\[HTMLUI\]** Design html, forms, and user interface. Start with a paper sketch for each page. Remember to note where there are links and buttons, and what the various text boxes are. You may use a tool like Balsamiq.com as well. No need to immitate the real twitter. Do whatever you want but make sure the User Interface functionality that is listed in <%= link_to_section :nt, :nt_functionality %> is covered.
-* **\[ROUTES\]** Before coding up the sinatra app, sit down and design all urls that you will have to implement in the code. <%= link_to_section :nt, :nt_functionality %> gives you the outline, but here you need to describe all of them. Do this before you code.
-* **\[SINATRAAPP\]** nanoTwitter version 0.1: Implement Sinatra front end application for ui. Use ActiveRecord and Sqlite3 for development (local) db. You will use the sketches from \[HTMLUI\] to implement .html.erb files that in a view directory to display the views. Later when you deploy to heroku you will enable Postgress for your production (heroku) db. You should have all the functionality working described as "nT User Interface" in <%= link_to_section :nt, :nt_functionality %>
+* **\[UIDESIGN\]** Design/layoutuser interface of NT. Key screens and forms. Develop it as a paper prototype and/or using Balsamiq.com. Start with a paper sketch for each page. Remember to note where there are links and buttons, and what the various text boxes are. No need to immitate the real twitter. Do whatever you want but make sure the User Interface functionality that is listed in <%= link_to_section :nt, :nt_functionality %> is covered.
+* **\[ROUTES\]** Before coding up the sinatra app, sit down and design all urls that you will have to implement in the code. <%= link_to_section :nt, :nt_functionality %> gives you the outline, but here you need to describe all of them. Do this before you code. Document them in the Readme. For now you can ignore the REST Api routes.
+* **\[nanoTwitter 0.1\]** Use ActiveRecord and Sqlite3 for development (local) db. Build migrations for the User table. Add some fake users. Use the actual sketches from from \[UIDESIGN\] to implement .html.erb files for that view in the view directory to display the views. Make sure the basic flows work: db:migrate, launch the server, display users, etc.
 
-##### Testing and Deployment (nT version 0.2)
+##### nanoTwitter 0.2: First Minimal Implementation
 
-* **\[TESTSUITE\]** Write complete set of unit tests with automation. Also include a few integration tests. You should have at least 5 tests!
-* **\[SEEDDATA\]** Implement a large body of seed data with automation. For each table in your database you want to populate it with real looking data. You can use the faker gem to give you real looking data.
+* **\[MIGRATIONS\]** Write and validate the complete set of migrations for the **\[DBSCHEMA\]** you designed above.
+* **\[SEEDDATA\]** Implement a large body of seed data with automation. For each table in your database you want to populate it with real looking data. You can use the faker gem to give you real looking data. Tie it to Rake db:seed.
+* **\[UNITTESTS\]** Write set of unit tests with automation. Focus on the models. Also include a few integration tests. You should have at least 5 tests!
+* **\[APP 0.2\]** Clean up the directory to get rid of any random files. Write a readme.md in the root directory. Create a github repo (one for all team members) and push APP 0.2 up to Github\]
+
+##### nanoTwitter 0.3: Core functionality
+
+* **\[TESTINTERFACE\]** Implement complete test interface from the <%= link_to_section :nt, :nt_functionality %>
+* **\[AUTHENTICATION\]** Implement "fake" authentication test from the <%= link_to_section :nt, :nt_functionality %>
+* **\[TESTING\]** Implement more unit and other tests to validate more of the functionality.
+* **\[APP 0.3\]** Clean up the directory to get rid of any random files. Write a readme.md in the root directory. Update your repo (one for all team members) with nanoTwitter 0.3 and tag the release.
+
+##### Testing and Deployment
+
 * **\[CODESHIP\]** Deploy to Codeship for automatic running of tests
 * **\[HEROKU\]** Have Codeship deploy to Heroku. Make sure tests still run.
 * **\[MANUALTEST\]** Once nT is up on heroku, try having all three team members log into it at the same time and do some tweeting.
