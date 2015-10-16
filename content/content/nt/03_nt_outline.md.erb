@@ -3,14 +3,14 @@ title: Nano Twitter Project Outline
 ---
 #### Approximate Recipe
 
-Each step in this recipe has a name which I use to refer to it elsehwee in this course.
+Each step in this outline has a name which I use to refer to it elsehwere in this course. Notice that you will probably jump around or be working on more than one step at a time. So this is not a precise recipe, more like an outline to help you find your way in the project.
 
 ##### nanoTwitter 0.1: Foundation
 
 * **\[DBSCHEMA\]** Design relational database schema (i.e. one for the whole app.) Decide what tables you will have, what the attributes (columns) are for each table, what the primary and foreign keys are, and what the associations are (i.e. one to many, many to one, many to many.)
 * **\[UIDESIGN\]** Design/layoutuser interface of NT. Key screens and forms. Develop it as a paper prototype and/or using Balsamiq.com. Start with a paper sketch for each page. Remember to note where there are links and buttons, and what the various text boxes are. No need to immitate the real twitter. Do whatever you want but make sure the User Interface functionality that is listed in <%= link_to_section :nt, :nt_functionality %> is covered.
 * **\[ROUTES\]** Before coding up the sinatra app, sit down and design all urls that you will have to implement in the code. <%= link_to_section :nt, :nt_functionality %> gives you the outline, but here you need to describe all of them. Do this before you code. Document them in the Readme. For now you can ignore the REST Api routes.
-* **\[nanoTwitter 0.1\]** Use ActiveRecord and Sqlite3 for development (local) db. Build migrations for the User table. Add some fake users. Use the actual sketches from from \[UIDESIGN\] to implement .html.erb files for that view in the view directory to display the views. Make sure the basic flows work: db:migrate, launch the server, display users, etc.
+* **\[nanoTwitter 0.1\]** Use ActiveRecord and Sqlite3 for development (local) db. Build migrations for the User table. Add some fake users. Use the one (or two) of the actual sketches from from \[UIDESIGN\] to implement .html.erb files for that view in the view directory to display the views. Make sure the basic flows work: db:migrate, launch the server, display users, etc.
 
 ##### nanoTwitter 0.2: First Minimal Implementation
 
