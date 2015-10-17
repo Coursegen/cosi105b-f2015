@@ -4,15 +4,10 @@ desc: 1) Read about REST; 2) Based on reading about routes in nanoTwitter, submi
 homework: Read articles about designing Web Services API
 ---
 <%= homework_hdr %>
-1. Read these articles
-	* [Dropbox starts using POST and why this is poor API design](http://evertpot.com/dropbox-post-api/)
-	* [Best Practices for Designing a Pragmatic RESTful API](http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api)
-1. nanoTwitter
-	* Examine the routes that were proposed  in <%= link_to_section :nt, :nt_functionality %> for nT and evaluate them in the context of this reading.
-  * Document in full detail all the routes that you will have to implement for nT, both for the "nT User Interface" and the "Web Services API". For each route (URI pattern) document the pattern, a description, whatever variable values there are (e.g. :email corresponds to the email for the registered user) and whatever status codes may be returned.
+1. Read these article. It's long but important: [Best Practices for Designing a Pragmatic RESTful API](http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api). <%= deliverable "Locate and respond to the warmups in Latte" %>
+1. Examine the routes that were proposed in <%= link_to_section :nt, :nt_functionality %> for nT and evaluate them in the context of this reading. You're welcome to improve them so they follow more pragmatic REST principles. Now, write "API Documentation" for the nanoTwitter service api. Look for examples on the web for how web APIs are documented for what you think is a good format. Remember that you have to state the url's "syntax" and the format of the input and output data (JSON). Your documentation should be good enough for a programmer who doesn't know anything about your app to properly access the API.
   <%= team_deliverable "PDF with the API documentation." %>
-1. nanoTwitter implementation
-  * Teams continue working on nT 0.1, focusing on the \[ROUTES\] as described in <%= link_to_section :nt, :nt_outline %>. You should almost have the basic functionality working.
+1. nanoTwitter implementation: Teams begin working on nanoTwitter 0.2 in your portfolios, completing at least \[MIGRATIONS\] and \[AUTHENTICATION\]. See: <%= link_to_section :nt, :nt_outline %>.
 
 #### Discussion
 * Discuss homework
@@ -21,7 +16,7 @@ homework: Read articles about designing Web Services API
   * HTTP is a protocol used when one computer (the client) has to make a request of another computer (the server). The client makes a request, and the server responds to that request. What are the key parts or elements in the request? What are the key parts of building blocks of the response?
 
 #### Where we left off
-* <%= link_to_topic :architecting_for_scale %>, at "If Queries are a Problem"
+* <%= link_to_topic :architecting_for_scale %>, at "If App/Web server seem to be a Problem"
 
 <%= include_topic :rest_web_services %>
 

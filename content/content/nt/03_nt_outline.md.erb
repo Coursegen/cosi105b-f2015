@@ -14,16 +14,15 @@ Each step in this outline has a name which I use to refer to it elsehwere in thi
 
 ##### nanoTwitter 0.2: First Minimal Implementation
 
-* **\[MIGRATIONS\]** Write and validate the complete set of migrations for the **\[DBSCHEMA\]** you designed above.
-* **\[SEEDDATA\]** Implement a large body of seed data with automation. For each table in your database you want to populate it with real looking data. You can use the faker gem to give you real looking data. Tie it to Rake db:seed.
-* **\[UNITTESTS\]** Write set of unit tests with automation. Focus on the models. Also include a few integration tests. You should have at least 5 tests!
+* **\[MIGRATIONS\]** Write and validate the complete set of migrations for the **\[DBSCHEMA\]** you designed above. You should have all the tables built in the database.
+* **\[AUTHENTICATION\]** Implement "fake" authentication test from the <%= link_to_section :nt, :nt_functionality %>
+* **\[SEEDDATA\]** Implement a large body of seed data with automation. For each table in your database you want to populate it with real looking data. You can use the faker gem to give you real looking data. Generate fake users, tweets, follows, and everything else. Notice that generating fake follows is a little tricky logically because a user cannot follow themselves. Tie your code to Rake db:seed
 * **\[APP 0.2\]** Clean up the directory to get rid of any random files. Write a readme.md in the root directory. Create a github repo (one for all team members) and push APP 0.2 up to Github\]
 
 ##### nanoTwitter 0.3: Core functionality
 
+* **\[UNITTESTS\]** Write set of unit tests with automation. Focus on the models. Also include a few integration tests. You should have at least 5 tests!
 * **\[TESTINTERFACE\]** Implement complete test interface from the <%= link_to_section :nt, :nt_functionality %>
-* **\[AUTHENTICATION\]** Implement "fake" authentication test from the <%= link_to_section :nt, :nt_functionality %>
-* **\[TESTING\]** Implement more unit and other tests to validate more of the functionality.
 * **\[APP 0.3\]** Clean up the directory to get rid of any random files. Write a readme.md in the root directory. Update your repo (one for all team members) with nanoTwitter 0.3 and tag the release.
 
 ##### Testing and Deployment
