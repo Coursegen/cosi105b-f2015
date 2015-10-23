@@ -4,7 +4,7 @@ desc: Queueing and Concurrency
 homework: nT Version 0.4
 ---
 <%= homework_hdr %>
-* Complete nT 0.4 functionality 
+* Complete nT 0.4 functionality
   * See <%= link_to_section :nt, :nt_outline %>: "Performance Tuning (nt version 0.4)"
   * Of course this assumes that you have fully completed last week's assignment for nT 0.3
   * Work should be done in your <%= link_to_intro :portfolio %>, directory `/nanotwitter`. When complete, submit it to github. You should use the same github repo but tag the previous version as 0.3 and the current version of 0.4. (See [Git Tagging](http://git-scm.com/book/tr/v2/Git-Basics-Tagging))
@@ -64,7 +64,7 @@ homework: nT Version 0.4
 * Deadlock ("mortal embrace")
   * Example with two people and two tools
 * Race Condition
-  * When the results vary due to 
+  * When the results vary due to
   * How to avoid: using semaphors, queues, and other techniques
 * Ruby GIL
 * Higher level constructs, e.g. Actors (threads that only talk through queues)
@@ -89,14 +89,14 @@ homework: nT Version 0.4
 * Asynchronous
   1. Client makes a request ('Publish' to a queue)
   1. Client can now continue
-  1. Server picks next item off queue and does the service. 
+  1. Server picks next item off queue and does the service.
   1. When service complete, notifies client to use the result.
 * That's the theoretical framework
 
 #### RabbitMQ: One of several implementations
 * Runs in a process of it's own
 * Defines the following terminology
-  * Producers: Software that sends messages 
+  * Producers: Software that sends messages
   * Consumers: Software that consumes (and processes) messages
   * Queues: FIFO "holding area"  for messages
   * Message: A bit of data which often incorporates an action or command
@@ -113,3 +113,5 @@ homework: nT Version 0.4
 * [Concurrency and Parallelism Blog Post](http://www.toptal.com/ruby/ruby-concurrency-and-parallelism-a-practical-primer)
 * [Ruby Concurrency Exmplained](http://merbist.com/2011/02/22/concurrency-in-ruby-explained/)
 
+#### Next Class
+* Look at homework: <%= link_to_next_lecture %>
