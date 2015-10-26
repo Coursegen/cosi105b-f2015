@@ -25,34 +25,34 @@ Each step in this outline has a name which I use to refer to it elsehwere in thi
 * **\[TESTINTERFACE\]** Implement complete test interface from the <%= link_to_section :nt, :nt_functionality %>
 * **\[APP 0.3\]** Clean up the directory to get rid of any random files. Write a readme.md in the root directory. Update your repo (one for all team members) with nanoTwitter 0.3 and tag the release.
 
-##### Testing and Deployment
+##### nanoTwitter 0.4: Testing and Deployment
 
 * **\[CODESHIP\]** Deploy to Codeship for automatic running of tests
 * **\[HEROKU\]** Have Codeship deploy to Heroku. Make sure tests still run.
 * **\[MANUALTEST\]** Once nT is up on heroku, try having all three team members log into it at the same time and do some tweeting.
 
-##### Inital Load Testing (nT version 0.3)
-  **Here are important instructions: <%= link_to_topic :nt_load_testing %>**
+##### Inital Load Testing (nT version 0.5)
+**Here are important instructions: <%= link_to_topic :nt_load_testing %>**
 
 * **\[LOADTEST\]** Investigate and choose a way to load test your app. Use loader.io. Configure your app and heroky accordingly.
 * **\[INSTRUMENT\]**Investigate and choose a way to instrument your test app. Use new relic. Configure your app and heroku accordingly.
 * **\[RUNLOADEXPERIMENT\]**Design and run a series of load tests and write a report of your findings
 
-##### Performance Tuning (nt version 0.4)
+##### Performance Tuning (nt version 0.6)
 
 * **\[IMPROVESCHEMA\]**Update your schema to put indeces and other enhancements and see the effect on scaling
 * **\[NEWWEB\]** Switch web server from WebBrick; try others, measure.
 * **\[SWAPDATABASE\]**Try different databases (Mongo or others) and see the effect on scaling
 * **\[SCALEEXPERIMENT\]**Design and execute scaling experiments and see the differences
 
-##### Advanced Scaling (nt version 0.5)
+##### Advanced Scaling (nt version 0.7)
 
 * **\[REDIS\]** Investigate and figure out how to setup a Redis Caching service
 * **\[CACHING\]**Consider where to add caching and do some more experiments to see how
 * **\[UIBOOTSTRAP\]** Revise user interface to make it pretty, using Bootstrap
 * **\[SCALEEXPERIMENT\]**Design and execute scaling experiments and see the differences
 
-##### Web Service API and Client (nt version 0.6)
+##### Web Service API and Client (nt version 0.8)
 
 * **\[APIROUTES\]**Go back to the beginning Design external API urls. Implement them as further Sinatra routes.
 * **\[CLIENTLIB\]**Write client libraries for your APIs.
