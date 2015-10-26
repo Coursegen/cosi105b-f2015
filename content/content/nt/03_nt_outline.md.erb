@@ -21,9 +21,9 @@ Each step in this outline has a name which I use to refer to it elsehwere in thi
 
 ##### nanoTwitter 0.3: Core functionality
 
-* **\[UNITTESTS\]** Write set of unit tests with automation. Focus on the models. Also include a few integration tests. You should have at least 5 tests!
-* **\[TESTINTERFACE\]** Implement complete test interface from the <%= link_to_section :nt, :nt_functionality %>
-* **\[APP 0.3\]** Clean up the directory to get rid of any random files. Write a readme.md in the root directory. Update your repo (one for all team members) with nanoTwitter 0.3 and tag the release.
+* **\[UNITTESTS\]** Write set of unit tests with MiniTest. (RSpec is also ok, but I recommend MiniTest. It will give you fewer headaches. ) This is a good opportunity to look at your Sinatra application and try to break it down into several files/classes. Any non-trivial Sinatra based app defines some classes which work independently of the Sinatra framework. Try to figure out how to do that. You should have several unit tests and one integration test.
+* **\[TESTINTERFACE\]** Implement the complete test interface from the <%= link_to_section :nt, :nt_functionality %>
+* **\[APP 0.3\]** Clean up the directory to get rid of any random files. Write a readme.md in the root directory containing information that would be useful to another developer trying out your code. Update your repo (one for all team members) with nanoTwitter 0.3 and tag the release.
 
 ##### Testing and Deployment
 

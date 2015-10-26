@@ -67,8 +67,9 @@ title: nano Twitter Functionality
   * /users/23 - return user information for user 23
   * /tweets/recent - return the recent n tweets
   * /users/23/tweets - return the users recent tweets
+  * ... etc. The eventual goal is that another programmer could implement a simple nanoTwitter client on Android (for example.)
 
-* Values as JSON
+* Values as JSON, as example:
   * Tweet:
 `{  "id": 123,
     "text": foobar,
@@ -88,4 +89,4 @@ title: nano Twitter Functionality
 * /test/tweets/1234
   * user testuser genereates 1234 new fake tweets
 * /test/follow/1234
-  * 1234 randomly selected users follow user 1234
+  * 1234 randomly selected users follow user "testUser".
