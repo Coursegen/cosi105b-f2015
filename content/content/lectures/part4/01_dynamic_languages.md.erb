@@ -1,12 +1,12 @@
 ---
 title: Dynamic Languages
 desc: Getting deeper into Object Oriented design
-homework: 1) Read POODR Chapter 5, Submit answers to warmup questions to Latte; 2) Submit "What is Duck Typing" post to Latte; 3) Teams complete nT 0.1 and submit.
+homework: 1) Read POODR Chapter 5, Submit answers to warmup questions to Latte; 2) Teams work on nT 0.3; 3) Do Duck Typing assignment
 ---
 <%= homework_hdr %>
-1. Study \[POODR\] Chapter 5. <%= deliverable "Please complete the warmups in Latte"%>
-2. Think about this question: What is Duck typing, and exactly how is it different from Java. Try to answer the question: what specific feature in Java do you not need anymore if you have Duck Typing. Use an example. <%= deliverable "Submit a response as a pdf. Explain your reasoning. It's a tricky question." %>
-3. Complete nT functionality up to \[UNITTESTS\]. Work should be done in your <%= link_to_intro :portfolio %>.
+1. **POODR**: Study \[POODR\] Chapter 5. <%= deliverable "Please complete the warmups in Latte"%>
+2. **nanoTwitter teams**: I won't micromanage this, but continue working on nanoTwitter. nT 0.3 Wil have to be complete next class.
+3. **Duck Typing**: Do <%= link_to_topic :duck_typing_ex %>. <%= deliverable "Submit code in a single.rb file to Latte" %>
 
 #### Discussion
 * Article Discussion
@@ -15,7 +15,7 @@ homework: 1) Read POODR Chapter 5, Submit answers to warmup questions to Latte; 
   * 5 minutes: Read and think on your own about the answers to those questions
   * 5 minutes: disucss with your neighbor
 
-#### POODR Example
+#### Static vs. Dynamic Typing
 * Look at and examine the sequence of examples from Chapter 5
 
 * Static vs. Dynamic Typing
@@ -39,6 +39,13 @@ myAnimal.eat();
   * Nothing in the syntax of the code limits what is possible at run time
   * Compilation and exection are more tightly connected
   * Opens up new and rich design options (Duck typing, meta programming)
+
+<%= include_topic :duck_typing %>
+
+* Inferred typing
+  * A new concept
+  * Somewhere between the two
+  * Some newer languages, e.g. TypeScript: [Type Inference](https://github.com/Microsoft/TypeScript-Handbook/blob/master/pages/Type%20Inference.md)
 
 <%= include_topic :four_rules_simple_design %>
 
