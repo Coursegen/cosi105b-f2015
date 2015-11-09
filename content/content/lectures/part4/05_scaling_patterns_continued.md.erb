@@ -1,14 +1,13 @@
 ---
-title: More Scaling Patterns
+title: Scaling Patterns - Concurrency
 desc: Queueing and Concurrency
-homework: TBD
+homework: 1) Continue working on nT 0.5; Read article closely, answer warmup questions
 ---
 <%= homework_hdr %>
+* **Teams:** Continue working on nT 0.5. See <%= link_to_section :nt, :nt_outline %> and also <%= link_to_topic :nt_load_testing %>
+* **Read**: Here's an excellent article introducing the topics we will be discussing today: [Ruby Concurrency and Parllelism: A Practical Tutorial](http://www.toptal.com/ruby/ruby-concurrency-and-parallelism-a-practical-primer). It's a little complicated, but really really worth your time and effort. You will learn a lot. <%= deliverable "Warmup Questions" %>
 
-#### Discussions
-* Progress on nanoTwitter
-
-### Scaling patterns
+### Scaling patterns: Concurrency
 * Do more with the available resources
 * Do more things at the same time
 * Resource idle time is your enemy
@@ -30,7 +29,7 @@ homework: TBD
   * After creating the new user in db, send a confirm email with a link
   * Inline is no good, due to network latency and error handling
 
-### Concurrency on a single Computer
+### Scaling pattern: concurrency on a single computer
 
 * Difference between syncrhonous and asynchronous
 * Difference between concurrent and parallel
@@ -106,8 +105,7 @@ homework: TBD
 #### References
 * [RabbitMQ Tutorial](https://www.rabbitmq.com/tutorials/tutorial-one-ruby.html)
 * [Rabbit Demo (github)](https://github.com/Cosi-105/rabbit_demo)
-* [Concurrency and Parallelism Blog Post](http://www.toptal.com/ruby/ruby-concurrency-and-parallelism-a-practical-primer)
-* [Ruby Concurrency Exmplained](http://merbist.com/2011/02/22/concurrency-in-ruby-explained/)
+* [Ruby Concurrency Exmlained](http://merbist.com/2011/02/22/concurrency-in-ruby-explained/)
 
 #### Next Class
 * Look at homework: <%= link_to_next_lecture %>

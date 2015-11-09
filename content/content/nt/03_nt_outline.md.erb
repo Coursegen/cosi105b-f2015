@@ -28,15 +28,16 @@ Each step in this outline has a name which I use to refer to it elsehwere in thi
 
 ##### nanoTwitter 0.4: Testing and Deployment
 
-* **\[HEROKU\]** Have Codeship deploy to Heroku. Make sure tests still run.
+* **\[HEROKU\]** Have Codeship deploy to Heroku. Now when you push to github, Codeship should automatically run all your tests, and if they all pass, then automatically deploy to Heroku. Make sure tests all this is happening.
 * **\[MANUALTEST\]** Once nT is up on heroku, try having all three team members log into it at the same time and do some tweeting.
-* **\[LOADTEST\]** Investigate and choose a way to load test your app. Use loader.io. Configure your app and heroky accordingly.
+* **\[LOADTEST\]** Use loader.io to generate some artificial loads. Configure Loader.io and your app so the load testing can work. And start playing around with different loads. Familiarlize yourself with Loader.io, it's options and what the functionality actually means.
+* **\[MORETESTS\]** With load testing it is typical to discover actual bugs in the code. When you find a bug, try hard to add one or more tests to your test suite that would have exposed the bug ahead of time. For example, if load testing reveals that adding a user with a duplicate name causes an exception, fix the bug, but then also add a new unit test that proves that the bug is fixed.
 
 ##### NanoTwitter 0.5: Inital Load Testing
 **Here are important instructions: <%= link_to_topic :nt_load_testing %>**
 
-* **\[INSTRUMENT\]**Investigate and choose a way to instrument your test app. Use new relic. Configure your app and heroku accordingly.
-* **\[RUNLOADEXPERIMENT\]**Design and run a series of load tests and write a report of your findings
+* **\[INSTRUMENT\]** Instrument your nanoTwitter to begin collecting internal performance and timing data. While there are lots of ways to do this, for now, we will use New Relic, which is easiest available directly through Heroku. Figure out how to enable New Relic within your Heroku Configuration and get to know the options.
+* **\[RUNLOADEXPERIMENT\]** Get more scientific. Instead of randomly trying different things, design some specific experiments and start collecting repeatable data so you can see whether a change improves one thing but might harm something else. Keep up your notes in a text file inside your github repo so it becomes part of your work product.
 * **\[NEWWEB\]** Switch web server from WebBrick; try others, measure.
 * **\[IMPROVESCHEMA\]**Update your schema to put indeces and other enhancements and see the effect on scaling
 * **\[nanoTwitter 0.5\]** Clean up the directory to get rid of any random files. Update your readme.md. Tag the release and update your repo.

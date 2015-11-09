@@ -1,24 +1,11 @@
 ---
-title: Scaling Patterns
+title: Scaling Patterns - Caching and Databases
 desc: Database Partitioning and Caching
-homework: 1) Read article and watch video, Submit answers to warmup questions on Latte; 2) Complete nT 0.4
+homework: 1) Read article and watch video, submit answers to warmup questions on Latte; 2) Complete nT 0.4
 ---
 <%= homework_hdr %>
 * Watch and Read: [Basics of Database Sharding](https://youtu.be/W6pFKihvqH4). and [5 Early Lessons from Rapid High Availability Scaling](http://mikepackdev.com/blog_posts/40-5-early-lessons-from-rapid-high-availability-scaling-with-rails). Don't be concerned that Rails is mentioned, the concepts and principles are fundamental. Please read this and watch this material closely, it is quite important. <%= deliverable "Answer warmups in Latte" %>
-* Finish everything under nT 0.4 and before.  Do the work in your portfolio, submit it to github. <%= team_deliverable "Also zip together your directory and post it to latte."%>**GRADED FOR PARTICIPATION ONLY**
-
-#### Discussion
-* Points Raised in the reading
-  * Multiple questions about denormalization
-  * Sharding
-    * Why would anyone ever use anything other than Hash lookup
-    * How to apply it to nanoTwitter
-    * Is it always a good idea?
-    * How does consistent hashing even work?
-  * Terms
-    * Chokepoint
-    * Indexing: Note the uniqueness argument too
-    * Universal User: What?
+* Finish everything under nT 0.4 and before.  Do the work in your portfolio, submit it to github. <%= team_deliverable "Also zip together your directory and post it to latte."%>. **GRADED FOR PARTICIPATION ONLY**
 
 #### Some Background
 
@@ -35,11 +22,14 @@ homework: 1) Read article and watch video, Submit answers to warmup questions on
   * Identify the bottle neck
 * Action
   * Remove the bottle neck
+* Remember: One of the cardinal "sins" is optimizing early
+  * Instead, optimize based on measurement
+  * Discover which parts of your product's features is causing a scaling problem
+  * Consider which of your techniques might be brought to bear
 
 <%= include_topic :scaling_caching %>
 <%= include_topic :scaling_db_caching %>
 <%= include_topic :scaling_db_partitioning %>
-
 
 #### Next Class
 * Look at homework: <%= link_to_next_lecture %>
