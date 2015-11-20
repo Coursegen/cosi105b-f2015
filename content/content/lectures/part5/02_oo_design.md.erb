@@ -5,16 +5,11 @@ homework: 1) CRC card workshop; 2) Read [POODR] Ch 6, Submit answers to warmup q
 ---
 <%= homework_hdr %>
 * Study [A library for OO thinking](http://c2.com/doc/oopsla89/paper.html). Consider a system to manage a small school's registration system. There are students, faculty, courses, registrations, semesters and so on. Design a set of CRC cards for that system. <%= deliverable "Take digital photos of your CRC cards, make sure they are legible, put them into a file with any explanations needed, and export to pdf. Submit it." %>
-* Read \[POODR\] Chapter 6.
-  * See if you can explain to yourself what she means with "Inheritance is at its core a mechanism for *automatic message delegation*. It defines a forwarding path for not-understood messages." Take your time.
-  * If you 'got' the previous chapter, you saw many places in which a message (=method call) is 'delegated' to another class. Do you see the similarity and how delegation is related to inheritance?
-  * The antipattern she mentions, putting a 'type' field in a class is a very common one. It is likely the first thing you think of. It is a major code smell telling you to look again at your design with the goal of eliminating the type. It's as bad as having a conditional checking if my class is "Mountain Bike", another major code smell.
-  * Study to make sure you understand what she means by "The best way to create an abstract class is by pushing code up from concrete subclasses."
-  * <%= deliverable "Write down three things that you didn't understand, and if you undertood it all, then three things you learned. Submit as pdf" %>
+* Read \[POODR\] Chapter 6. <%= deliverable "Answer warmups on Latte" %>
 
-  #### Class Feedback
+#### Class Feedback
 
-  *  3x5 Cards:
+  * 3x5 Cards:
     * Anonymous --> honest
     * STOP/START/CONTINUE.
     * Would you recommend this course to another student? 1-10:
@@ -36,15 +31,11 @@ homework: 1) CRC card workshop; 2) Read [POODR] Ch 6, Submit answers to warmup q
 #### Inheritence
 * Lets tour the code for [Chapter 5 of POODR](https://github.com/skmetz/poodr/blob/master/chapter_6.rb)
 
-* Refactoring as a tool
-  * Here to discover, uncover code sharing opportunities
-  * Unusally we don't attempt refactoring without supporting tests
-  * Technically I wouldn't call this refactoring, I would call this design
-  * Liskoff Substitution Principle (!!)
-    * Google it, you will see lots of hits
-    * Part of the SOLID principles of OO Design (google that too)
-    * Code that works correctly with objects of class P should continue to work correcty with objects of class C (where C < P, C )
-    * Or: Code that works correctly with Bicycle should work exactly the same with RoadBike or MountainBike. (Think of the Mechanic doing a "prepare bike")
+* Liskoff Substitution Principle (!!)
+  * Google it, you will see lots of hits
+  * Part of the SOLID principles of OO Design (google that too)
+  * Code that works correctly with objects of class P should continue to work correcty with objects of class C (where C < P, C )
+  * Or: Code that works correctly with Bicycle should work exactly the same with RoadBike or MountainBike. (Think of the Mechanic doing a "prepare bike")
 
 #### Practice design CRC Cards
 * Review what CRC cards are, how they are used, why they are good
@@ -52,5 +43,5 @@ homework: 1) CRC card workshop; 2) Read [POODR] Ch 6, Submit answers to warmup q
 * Design the CRC cards for:
   * A system to reserve tickets at a venue, dealing with seats being free or assigned, what section they are in, allowing for different venues to have different layouts, representing performances using a venue etc
 
-  #### Next Class
+#### Next Class
 * Look at homework: <%= link_to_next_lecture %>
