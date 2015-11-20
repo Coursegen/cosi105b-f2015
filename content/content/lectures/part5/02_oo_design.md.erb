@@ -1,20 +1,21 @@
 ---
 title: Object Oriented Design
 desc: A closer look at Inheritance and delegation
-homework: 1) CRC card workshop; 2) Read [POODR] Ch 6, Submit answers to warmup questions in Latte; 3) Teams work on nanoTwitter 0.2
+homework: 1) CRC card workshop; 2) Read [POODR] Ch 6, Submit answers to warmup questions in Latte; 3) Teams work on nanoTwitter 0.6
 ---
 <%= homework_hdr %>
-* Study [A library for OO thinking](http://c2.com/doc/oopsla89/paper.html). Consider a system to manage a small school's registration system. There are students, faculty, courses, registrations, semesters and so on. Design a set of CRC cards for that system. <%= deliverable "Take digital photos of your CRC cards, make sure they are legible, put them into a file with any explanations needed, and export to pdf. Submit it." %>
-* Read \[POODR\] Chapter 6. <%= deliverable "Answer warmups on Latte" %>
+* <%= include_topic :hw_crc_cards %>
+* Read [POODR] Chapter 6. <%= deliverable "Deliverable: Answer warmups on Latte."%>
+
 
 #### Class Feedback
 
   * 3x5 Cards:
     * Anonymous --> honest
     * STOP/START/CONTINUE.
-    * Would you recommend this course to another student? 1-10:
-      * 1 = Would actively discourage
-      * 5 = "Can't say, ask someone else"
+    * Would you recommend this course to another student? If they ask you about it what would you say?
+      * 1 = "Do not take this course, it's terrible!!!"
+      * 5 = "I can't say, ask someone else"
       * 10 = "It's the best course I ever took"
   * Please do [Longitudinal Survey](https://docs.google.com/forms/d/1IgTI8pRozcqbBDOaQXWWT5txaUyNnNDDyNR78ZP4xpw/viewform)
   * How should we spend the remaining lectures?
@@ -23,31 +24,21 @@ homework: 1) CRC card workshop; 2) Read [POODR] Ch 6, Submit answers to warmup q
     * Relationship of Computer Science Research to Software Engineering
     * Case study presentations (e.g. how does facebook handle scaling? how does Google handle scaling, etc.)
     * Other ideas?
+  * Result from Poll, top votes:
+    * Quality, Testing, Continuous Integration and testing
+    * Computer Science: Theory and Practice
+    * Look at Systems that failed due to scale
+  * Result, lower votes
+    * Nosql
+    * Case studies presentations by students
+
 
 #### Revisit
-
 * <%= link_to_topic :scaling_queueing %>
 
-#### Practice design CRC Cards
+<%= include_topic :ex_crc_cards %>
 
-* Review what CRC cards are, how they are used, why they are good
-* Work with your neigbor. 10 minutes.
-* Design the CRC cards for:
-  * A system to reserve tickets at a venue, dealing with seats being free or assigned, what section they are in, allowing for different venues to have different layouts, representing performances using a venue etc
-
-#### Discussion About Chapter 6
-* Compare inheritance and delegation as ways for classes to share behavior. In what way are they closely related?
-* What are the negative consequences of classes that have an instance variable (e.g. @kind_of_bike) to say what variant the class is? How do you spot that pattern. How do you remove it?
-* Can you say what the "Template Method Pattern" is?
-
-#### Inheritence
-* Lets tour the code for [Chapter 6 of POODR](https://github.com/skmetz/poodr/blob/master/chapter_6.rb)
-
-* Liskoff Substitution Principle (!!)
-  * Google it, you will see lots of hits
-  * Part of the SOLID principles of OO Design (google that too)
-  * Code that works correctly with objects of class P should continue to work correcty with objects of class C (where C < P, C )
-  * Or: Code that works correctly with Bicycle should work exactly the same with RoadBike or MountainBike. (Think of the Mechanic doing a "prepare bike")
+<%= include_topic :POODR_6_discussion %>
 
 #### Next Class
 * Look at homework: <%= link_to_next_lecture %>

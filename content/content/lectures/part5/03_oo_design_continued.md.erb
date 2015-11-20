@@ -1,0 +1,45 @@
+---
+title: Object Oriented Design
+homework: Teams complete work on nT 0.6
+desc: We continue looking at Object Oriented design issues
+---
+<%= homework_hdr %>
+1. **Team**: Finish everything under nT 0.6 and before.  Do the work in your portfolio, submit it to github. <%= team_deliverable "Also zip together your directory and post it to latte."%>**GRADED FOR PARTICIPATION**
+1. **Team** Prepare everything so that we can run Loader.io tests in class so we can all see the results you are getting.
+
+#### Continuing from last class
+
+<%= include_topic :ex_crc_cards %>
+
+<%= include_topic :POODR_6_discussion %>
+
+<%= include_topic :nosql_mongodb %>
+
+#### Sharing
+
+We are now going to run some of the loader.io runs of each of the projects. Here is the way the tests are supposed to work:
+
+##### Setup
+
+Before we can run a standardized test, we want to get each server to a known state we do the following commands directly from a browser.
+
+* /test/reset - Delete everything and recreate testuser
+* /test/seed/u - create "u" new users
+* /test/tweets/t - have testuser tweet "t" times
+* /test/follow/f - have f users follow testuser
+
+##### Pattern
+
+Ok, now the server is in a known state. Next we want to do three distinct load tests
+
+* / - user tries to simply load up the home page (non-logged in)
+* /user/testuser - specifically load "testusers" home page
+* /user/testuser/tweet (POST) - have testuser create one tweet
+
+##### Test runs
+
+* Test case 1: u = 100, t = 500, f = 30
+* Test case 2: u = 500, t = 500, f = 100
+* Test case 3: u = 3000, t = 2000, f = 1000
+
+##### Loader.io Setup for test
