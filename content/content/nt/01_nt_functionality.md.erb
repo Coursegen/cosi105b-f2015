@@ -81,12 +81,54 @@ title: nano Twitter Functionality
 
 #### Test Interface
 * /test/reset
-  * if needed creates a new test user called "testuser"
-  * if needed deletes all tweets that the "testuser" ever created
-  * if needed deletes all follows of the "testuser"
-* /test/seed/1234
-  * create 1234 fake users
-* /test/tweets/1234
-  * user testuser genereates 1234 new fake tweets
-* /test/follow/1234
-  * 1234 randomly selected users follow user "testUser".
+  * if needed creates a new test user called `testuser`
+  * if needed deletes all tweets that the `testuser` ever created
+  * if needed deletes all follows of the `testuser`
+* /test/status
+  * One page "report":
+    * How many users, follows, and tweets are there
+    * Is there a testuser and what is it's user_id
+* /test/seed/n
+  * create `n` (integer) fake Users using faker
+* /test/tweets/n
+  * user `testuser` genereates `n` (integer) new fake tweets
+* /test/follow/n
+  * `n` (integer) randomly selected users follow user `testUser`
+* /test/tweet/userid
+  * User `userid` (can be a number or an identifier) makes a tweet with fake information generated on the fly
+
+#### nanoTwitter Scalability Test Protocol
+
+Here's how testing of scaling will be done with loader.io. You need to make sure that your version of nanoTwitter performs as well as possible in these scenarios!
+
+##### Setup
+
+Before we can run a standardized test, we want to get each server to a known state we do the following commands directly from a browser.
+
+* /test/reset - Delete everything and recreate testuser
+* /test/status - See that the state is what you expect
+* /test/seed/u - create "u" new users
+* /test/tweets/t - have testuser tweet "t" times
+* /test/follow/f - have f users follow testuser
+
+##### Pattern
+
+Ok, now the server is in a known state. Next we want to do three distinct load tests
+
+* / - user tries to simply load up the home page (non-logged in)
+* /user/testuser - specifically load "testusers" home page
+* /user/testuser/tweet (POST) - have testuser create one tweet
+
+##### Test runs
+
+* Test case 1: u = 100, t = 500, f = 30
+* Test case 2: u = 500, t = 500, f = 100
+* Test case 3: u = 3000, t = 2000, f = 1000
+
+##### Loader.io Setup for test
+* Create a test case for each of the cases you want to test
+  * Run 1 minute tests and play with the number of users to see what happens when you try to reach the limits indicated in the test runs
+  * Use the Maintain Client Load test
+  * Enter each of the three urls above for three different test at least
+  * Make sure you /test/reset between each test
+* Collect data for a final report
