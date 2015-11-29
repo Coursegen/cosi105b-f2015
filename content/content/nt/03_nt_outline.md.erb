@@ -44,13 +44,13 @@ Each step in this outline has a name which I use to refer to it elsehwere in thi
 
 ##### nanoTwitter 0.6: Advanced Scaling
 
-* **\[REDIS\]** Investigate and figure out how to setup a Redis Caching service
-* **\[CACHING\]**Consider where to add caching and do some more experiments to see how
-* **\[SCALEEXPERIMENT\]**Design and execute scaling experiments and see the differences
+* **\[REDIS\]** Investigate and figure out how to setup a Redis Caching service. You will need to set it up locally on your computer, for testing, and also figure out how to configure it on Heroku.
+* **\[CACHING\]** Consider where to add caching and do some more experiments to see the affect. You will want to refer also to the way we will test your nanoTwitter with the standard test runs, which are explained in <%= link_to_section :nt, :nt_functionality %>
+* **\[SCALEEXPERIMENT\]** Design and execute scaling experiments and see the differences. Make sure you record the results carefully so you will be able to report on them in your final report!
 
 ##### nanoTwitter 0.7: Web Service API and Client
 
-* **\[APIROUTES\]**Go back to the beginning Design external API urls. Implement them as further Sinatra routes.
-* **\[CLIENTLIB\]**Write client libraries for your APIs.
-* **\[CLIENTLIBTEST\]**Write a complete set of tests for them
+* **\[APIROUTES\]**Go back to the beginning Design external API urls. Implement them as further Sinatra routes. The needed routes are explained in <%= link_to_section :nt, :nt_functionality %>
+* **\[CLIENTLIB\]** Write client libraries for your APIs. This client library could be written in any language, because it's purpose is to support a programmer who wants to use nanoTwitter's functionality as a service. For example, if I wanted to write an iPhone app to access all the nanoTwitter functionality, I would incorporate this clientlib in my code. In that case, this client lib would be implemented in Swift. We would call this a "Swift binding" for the nanoTwitter REST API. For this assignment, write the client library in Ruby. Follow the example as explained early in \[SODRR\].
+* **\[CLIENTLIBTEST\]** Write a complete set of tests for your client library demonstrating that the client library indeed works. Again the example is explained early in \[SODRR\].
 * **\[nanoTwitter 0.7\]** Clean up the directory to get rid of any random files. Update your readme.md. Tag the release and update your repo.
