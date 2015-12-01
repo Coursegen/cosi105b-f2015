@@ -80,7 +80,10 @@ title: nano Twitter Functionality
   * Follow list: `["user_id": 22, "user_id": 23, ...]`
 
 #### Test Interface
-* /test/reset
+* /test/reset/all
+  * If needed deletes all users, tweets, follows
+  * if needed creates a new test user called `testuser`
+* /test/reset/testuser
   * if needed creates a new test user called `testuser`
   * if needed deletes all tweets that the `testuser` ever created
   * if needed deletes all follows of the `testuser`
@@ -105,7 +108,7 @@ Here's how testing of scaling will be done with loader.io. You need to make sure
 
 Before we can run a standardized test, we want to get each server to a known state we do the following commands directly from a browser.
 
-* /test/reset - Delete everything and recreate testuser
+* /test/reset/all - Delete everything and recreate testuser
 * /test/status - See that the state is what you expect
 * /test/seed/u - create "u" new users
 * /test/tweets/t - have testuser tweet "t" times
