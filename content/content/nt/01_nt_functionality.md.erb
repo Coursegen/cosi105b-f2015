@@ -118,9 +118,9 @@ Before we can run a standardized test, we want to get each server to a known sta
 
 Ok, now the server is in a known state. Next we want to do three distinct load tests
 
-* / - user tries to simply load up the home page (non-logged in)
-* /user/testuser - specifically load "testusers" home page
-* /user/testuser/tweet (POST) - have testuser create one tweet
+1. / - user tries to simply load up the home page (non-logged in)
+2. /user/testuser - specifically load "testusers" home page
+3. /user/testuser/tweet (POST) - have testuser create one tweet
 
 ##### Test runs
 
@@ -131,7 +131,7 @@ Ok, now the server is in a known state. Next we want to do three distinct load t
 ##### Loader.io Setup for test
 * Create a test case for each of the cases you want to test
   * Run 1 minute tests and play with the number of users to see what happens when you try to reach the limits indicated in the test runs
-  * Use the Maintain Client Load test
+  * Use the "Maintain Client Load" test for pattern 1 and 2, and "Clients per test" for pattern 3
   * Enter each of the three urls above for three different test at least
   * Make sure you /test/reset between each test
 * Collect data for a final report
