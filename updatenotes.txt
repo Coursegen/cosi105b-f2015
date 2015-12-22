@@ -1,0 +1,4 @@
+- for nanotwitter, have a directory with comments and observations for each version of nt
+- look at description of final deliverables to make sure the site explanation is clear and that it includes a table with the results of the scalability tests.
+- Give students a formal spec for the results of their nanoTwitter, including scaling results, codeClimate results, and other quantitatov results
+- Your heroku site must run
